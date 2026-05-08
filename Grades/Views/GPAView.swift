@@ -158,6 +158,7 @@ struct GPAView: View {
 		} else {
 			course1Value = 0
 		}
+		
 		if course1Type == "Honors" {
 			course1Value += 0.5
 		} else if course1Type == "G/T · AP" {
@@ -175,6 +176,7 @@ struct GPAView: View {
 		} else {
 			course2Value = 0
 		}
+		
 		if course2Type == "Honors" {
 			course2Value += 0.5
 		} else if course2Type == "G/T · AP" {
@@ -192,6 +194,7 @@ struct GPAView: View {
 		} else {
 			course3Value = 0
 		}
+		
 		if course3Type == "Honors" {
 			course3Value += 0.5
 		} else if course3Type == "G/T · AP" {
@@ -209,6 +212,7 @@ struct GPAView: View {
 		} else {
 			course4Value = 0
 		}
+		
 		if course4Type == "Honors" {
 			course4Value += 0.5
 		} else if course4Type == "G/T · AP" {
@@ -226,6 +230,7 @@ struct GPAView: View {
 		} else {
 			course5Value = 0
 		}
+		
 		if course5Type == "Honors" {
 			course5Value += 0.5
 		} else if course5Type == "G/T · AP" {
@@ -243,6 +248,7 @@ struct GPAView: View {
 		} else {
 			course6Value = 0
 		}
+		
 		if course6Type == "Honors" {
 			course6Value += 0.5
 		} else if course6Type == "G/T · AP" {
@@ -260,6 +266,7 @@ struct GPAView: View {
 		} else {
 			course7Value = 0
 		}
+		
 		if course7Type == "Honors" {
 			course7Value += 0.5
 		} else if course7Type == "G/T · AP" {
@@ -279,12 +286,14 @@ struct GPAView: View {
 						VStack(alignment: .leading) {
 							Text("Course 1")
 								.fontWeight(.semibold)
+							
 							HStack(spacing: 32) {
 								Picker("Grade", selection: $course1Grade) {
 									ForEach(grades, id: \.self) {
 										Text($0)
 									}
 								}
+								
 								Picker("Type", selection: $course1Type) {
 									ForEach(types, id: \.self) {
 										Text($0)
@@ -292,15 +301,18 @@ struct GPAView: View {
 								}
 							}
 						}
+						
 						VStack(alignment: .leading) {
 							Text("Course 2")
 								.fontWeight(.semibold)
+							
 							HStack(spacing: 32) {
 								Picker("Grade", selection: $course2Grade) {
 									ForEach(grades, id: \.self) {
 										Text($0)
 									}
 								}
+								
 								Picker("Type", selection: $course2Type) {
 									ForEach(types, id: \.self) {
 										Text($0)
@@ -308,15 +320,18 @@ struct GPAView: View {
 								}
 							}
 						}
+						
 						VStack(alignment: .leading) {
 							Text("Course 3")
 								.fontWeight(.semibold)
+							
 							HStack(spacing: 32) {
 								Picker("Grade", selection: $course3Grade) {
 									ForEach(grades, id: \.self) {
 										Text($0)
 									}
 								}
+								
 								Picker("Type", selection: $course3Type) {
 									ForEach(types, id: \.self) {
 										Text($0)
@@ -324,15 +339,18 @@ struct GPAView: View {
 								}
 							}
 						}
+						
 						VStack(alignment: .leading) {
 							Text("Course 4")
 								.fontWeight(.semibold)
+							
 							HStack(spacing: 32) {
 								Picker("Grade", selection: $course4Grade) {
 									ForEach(grades, id: \.self) {
 										Text($0)
 									}
 								}
+								
 								Picker("Type", selection: $course4Type) {
 									ForEach(types, id: \.self) {
 										Text($0)
@@ -340,15 +358,18 @@ struct GPAView: View {
 								}
 							}
 						}
+						
 						VStack(alignment: .leading) {
 							Text("Course 5")
 								.fontWeight(.semibold)
+							
 							HStack(spacing: 32) {
 								Picker("Grade", selection: $course5Grade) {
 									ForEach(grades, id: \.self) {
 										Text($0)
 									}
 								}
+								
 								Picker("Type", selection: $course5Type) {
 									ForEach(types, id: \.self) {
 										Text($0)
@@ -356,15 +377,18 @@ struct GPAView: View {
 								}
 							}
 						}
+						
 						VStack(alignment: .leading) {
 							Text("Course 6")
 								.fontWeight(.semibold)
+							
 							HStack(spacing: 32) {
 								Picker("Grade", selection: $course6Grade) {
 									ForEach(grades, id: \.self) {
 										Text($0)
 									}
 								}
+								
 								Picker("Type", selection: $course6Type) {
 									ForEach(types, id: \.self) {
 										Text($0)
@@ -372,15 +396,18 @@ struct GPAView: View {
 								}
 							}
 						}
+						
 						VStack(alignment: .leading) {
 							Text("Course 7")
 								.fontWeight(.semibold)
+							
 							HStack(spacing: 32) {
 								Picker("Grade", selection: $course7Grade) {
 									ForEach(grades, id: \.self) {
 										Text($0)
 									}
 								}
+								
 								Picker("Type", selection: $course7Type) {
 									ForEach(types, id: \.self) {
 										Text($0)
@@ -389,15 +416,18 @@ struct GPAView: View {
 							}
 						}
 					}
+					
 					Section(footer: Text("Regular courses are worth 4.0 points, Honors courses are worth 4.5 points, and G/T & AP courses are worth 5.0 points.")) {
 						HStack(spacing: 32) {
 							LabeledContent("Weighted", value: weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
+							
 							LabeledContent("Unweighted", value: unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 						}
 						.contextMenu {
 							Button("Copy Weighted", systemImage: "document.on.document") {
 								Copy.copyToClipboard(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 							}
+							
 							Button("Copy Unweighted", systemImage: "document.on.document") {
 								Copy.copyToClipboard(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 							}
@@ -409,14 +439,17 @@ struct GPAView: View {
 							HStack {
 								Text("Course 1")
 									.fontWeight(.semibold)
+								
 								Spacer()
 							}
+							
 							HStack {
 								Picker("Grade", selection: $course1Grade) {
 									ForEach(grades, id: \.self) {
 										Text($0)
 									}
 								}
+								
 								Picker("Type", selection: $course1Type) {
 									ForEach(types, id: \.self) {
 										Text($0)
@@ -424,18 +457,22 @@ struct GPAView: View {
 								}
 							}
 						}
+						
 						HStack {
 							HStack {
 								Text("Course 2")
 									.fontWeight(.semibold)
+								
 								Spacer()
 							}
+							
 							HStack {
 								Picker("Grade", selection: $course2Grade) {
 									ForEach(grades, id: \.self) {
 										Text($0)
 									}
 								}
+								
 								Picker("Type", selection: $course2Type) {
 									ForEach(types, id: \.self) {
 										Text($0)
@@ -443,18 +480,22 @@ struct GPAView: View {
 								}
 							}
 						}
+						
 						HStack {
 							HStack {
 								Text("Course 3")
 									.fontWeight(.semibold)
+								
 								Spacer()
 							}
+							
 							HStack {
 								Picker("Grade", selection: $course3Grade) {
 									ForEach(grades, id: \.self) {
 										Text($0)
 									}
 								}
+								
 								Picker("Type", selection: $course3Type) {
 									ForEach(types, id: \.self) {
 										Text($0)
@@ -462,18 +503,22 @@ struct GPAView: View {
 								}
 							}
 						}
+						
 						HStack {
 							HStack {
 								Text("Course 4")
 									.fontWeight(.semibold)
+								
 								Spacer()
 							}
+							
 							HStack {
 								Picker("Grade", selection: $course4Grade) {
 									ForEach(grades, id: \.self) {
 										Text($0)
 									}
 								}
+								
 								Picker("Type", selection: $course4Type) {
 									ForEach(types, id: \.self) {
 										Text($0)
@@ -481,18 +526,22 @@ struct GPAView: View {
 								}
 							}
 						}
+						
 						HStack {
 							HStack {
 								Text("Course 5")
 									.fontWeight(.semibold)
+								
 								Spacer()
 							}
+							
 							HStack {
 								Picker("Grade", selection: $course5Grade) {
 									ForEach(grades, id: \.self) {
 										Text($0)
 									}
 								}
+								
 								Picker("Type", selection: $course5Type) {
 									ForEach(types, id: \.self) {
 										Text($0)
@@ -500,18 +549,22 @@ struct GPAView: View {
 								}
 							}
 						}
+						
 						HStack {
 							HStack {
 								Text("Course 6")
 									.fontWeight(.semibold)
+								
 								Spacer()
 							}
+							
 							HStack {
 								Picker("Grade", selection: $course6Grade) {
 									ForEach(grades, id: \.self) {
 										Text($0)
 									}
 								}
+								
 								Picker("Type", selection: $course6Type) {
 									ForEach(types, id: \.self) {
 										Text($0)
@@ -519,18 +572,22 @@ struct GPAView: View {
 								}
 							}
 						}
+						
 						HStack {
 							HStack {
 								Text("Course 7")
 									.fontWeight(.semibold)
+								
 								Spacer()
 							}
+							
 							HStack {
 								Picker("Grade", selection: $course7Grade) {
 									ForEach(grades, id: \.self) {
 										Text($0)
 									}
 								}
+								
 								Picker("Type", selection: $course7Type) {
 									ForEach(types, id: \.self) {
 										Text($0)
@@ -544,13 +601,16 @@ struct GPAView: View {
 						HStack(spacing: 16) {
 							HStack {
 								Text("Weighted GPA")
+								
 								Spacer()
+								
 								Button {
 									if !weightedCopyButtonClicked {
 										withAnimation(.spring(duration: 0.4)) {
 											Copy.copyToClipboard(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 											weightedCopyButtonClicked = true
 										}
+										
 										DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 											withAnimation(.spring(duration: 0.4)) {
 												weightedCopyButtonClicked = false
@@ -562,16 +622,14 @@ struct GPAView: View {
 										HStack(spacing: 4) {
 											Image(systemName: "document.on.document.fill")
 												.padding(.vertical, -4)
+											
 											Text("Copied")
 										}
 										.padding(7)
 										.background(weightedCopyButtonHovered ? Color(.tertiarySystemFill) : .clear)
 										.foregroundStyle(.secondary)
 										.clipShape(.rect(cornerRadius: 9))
-										.transition(
-											.scale(scale: 0.8)
-											.combined(with: .opacity)
-										)
+										.transition(.scale(scale: 0.8).combined(with: .opacity))
 										.onHover { hovered in
 											weightedCopyButtonHovered = hovered
 										}
@@ -581,10 +639,7 @@ struct GPAView: View {
 											.background(weightedCopyButtonHovered ? Color(.tertiarySystemFill) : .clear)
 											.foregroundStyle(.secondary)
 											.clipShape(.rect(cornerRadius: 7))
-											.transition(
-												.scale(scale: 0.8)
-												.combined(with: .opacity)
-											)
+											.transition(.scale(scale: 0.8).combined(with: .opacity))
 											.onHover { hovered in
 												weightedCopyButtonHovered = hovered
 											}
@@ -594,15 +649,19 @@ struct GPAView: View {
 								.offset(x: weightedCopyButtonClicked ? 0 : -2)
 								.padding(-7)
 							}
+							
 							HStack {
 								Text("Unweighted GPA")
+								
 								Spacer()
+								
 								Button {
 									if !unweightedCopyButtonClicked {
 										withAnimation(.spring(duration: 0.4)) {
 											Copy.copyToClipboard(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 											unweightedCopyButtonClicked = true
 										}
+										
 										DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 											withAnimation(.spring(duration: 0.4)) {
 												unweightedCopyButtonClicked = false
@@ -614,16 +673,14 @@ struct GPAView: View {
 										HStack(spacing: 4) {
 											Image(systemName: "document.on.document.fill")
 												.padding(.vertical, -4)
+											
 											Text("Copied")
 										}
 										.padding(7)
 										.background(unweightedCopyButtonHovered ? Color(.tertiarySystemFill) : .clear)
 										.foregroundStyle(.secondary)
 										.clipShape(.rect(cornerRadius: 9))
-										.transition(
-											.scale(scale: 0.8)
-											.combined(with: .opacity)
-										)
+										.transition(.scale(scale: 0.8).combined(with: .opacity))
 										.onHover { hovered in
 											unweightedCopyButtonHovered = hovered
 										}
@@ -633,10 +690,7 @@ struct GPAView: View {
 											.background(unweightedCopyButtonHovered ? Color(.tertiarySystemFill) : .clear)
 											.foregroundStyle(.secondary)
 											.clipShape(.rect(cornerRadius: 7))
-											.transition(
-												.scale(scale: 0.8)
-												.combined(with: .opacity)
-											)
+											.transition(.scale(scale: 0.8).combined(with: .opacity))
 											.onHover { hovered in
 												unweightedCopyButtonHovered = hovered
 											}
@@ -650,12 +704,14 @@ struct GPAView: View {
 						#else
 						HStack {
 							LabeledContent("Weighted", value: weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
+							
 							LabeledContent("Unweighted", value: unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 						}
 						.contextMenu {
 							Button("Copy Weighted", systemImage: "document.on.document") {
 								Copy.copyToClipboard(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 							}
+							
 							Button("Copy Unweighted", systemImage: "document.on.document") {
 								Copy.copyToClipboard(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 							}
@@ -677,6 +733,7 @@ struct GPAView: View {
 						course5Grade = "A"
 						course6Grade = "A"
 						course7Grade = "A"
+						
 						course1Type = "Regular"
 						course2Type = "Regular"
 						course3Type = "Regular"

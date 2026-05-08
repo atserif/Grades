@@ -98,28 +98,34 @@ struct SemesterView: View {
 							Text($0)
 						}
 					}
+					
 					Picker("Quarter 2", selection: $q2Grade) {
 						ForEach(grades, id: \.self) {
 							Text($0)
 						}
 					}
+					
 					Picker("Final", selection: $finalGrade) {
 						ForEach(grades, id: \.self) {
 							Text($0)
 						}
 					}
 				}
+				
 				Section(footer: Text("Each quarter grade is worth 40%. The final exam is worth 20%.")) {
 					#if os(macOS)
 					HStack {
 						Text("Course Grade")
+						
 						Spacer()
+						
 						Button {
 							if !copyButtonClicked {
 								withAnimation(.spring(duration: 0.4)) {
 									Copy.copyToClipboard(courseGrade)
 									copyButtonClicked = true
 								}
+								
 								DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 									withAnimation(.spring(duration: 0.4)) {
 										copyButtonClicked = false
@@ -131,16 +137,14 @@ struct SemesterView: View {
 								HStack(spacing: 4) {
 									Image(systemName: "document.on.document.fill")
 										.padding(.vertical, -4)
+									
 									Text("Copied")
 								}
 								.padding(7)
 								.background(copyButtonHovered ? Color(.tertiarySystemFill) : .clear)
 								.foregroundStyle(.secondary)
 								.clipShape(.rect(cornerRadius: 9))
-								.transition(
-									.scale(scale: 0.8)
-									.combined(with: .opacity)
-								)
+								.transition(.scale(scale: 0.8).combined(with: .opacity))
 								.onHover { hovered in
 									copyButtonHovered = hovered
 								}
@@ -150,10 +154,7 @@ struct SemesterView: View {
 									.background(copyButtonHovered ? Color(.tertiarySystemFill) : .clear)
 									.foregroundStyle(.secondary)
 									.clipShape(.rect(cornerRadius: 7))
-									.transition(
-										.scale(scale: 0.8)
-										.combined(with: .opacity)
-									)
+									.transition(.scale(scale: 0.8).combined(with: .opacity))
 									.onHover { hovered in
 										copyButtonHovered = hovered
 									}

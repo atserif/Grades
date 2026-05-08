@@ -23,12 +23,15 @@ struct ContentView: View {
 			Tab("Full Year", systemImage: "calendar") {
 				FullYearView()
 			}
+			
 			Tab("Semester", systemImage: "calendar.badge.clock") {
 				SemesterView()
 			}
+			
 			Tab(stateAssessedTabDisplayName, systemImage: "mappin.and.ellipse") {
 				StateAssessedView()
 			}
+			
 			Tab("GPA", systemImage: "rosette") {
 				GPAView()
 			}

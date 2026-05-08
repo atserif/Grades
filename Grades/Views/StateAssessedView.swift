@@ -126,21 +126,25 @@ struct StateAssessedView: View {
 							Text($0)
 						}
 					}
+					
 					Picker("Quarter 2", selection: $q2Grade) {
 						ForEach(grades, id: \.self) {
 							Text($0)
 						}
 					}
+					
 					Picker("Quarter 3", selection: $q3Grade) {
 						ForEach(grades, id: \.self) {
 							Text($0)
 						}
 					}
+					
 					Picker("Quarter 4", selection: $q4Grade) {
 						ForEach(grades, id: \.self) {
 							Text($0)
 						}
 					}
+					
 					Picker("State Assessment", selection: $assessmentGrade) {
 						ForEach(grades, id: \.self) {
 							Text($0)
@@ -151,13 +155,16 @@ struct StateAssessedView: View {
 					#if os(macOS)
 					HStack {
 						Text("Course Grade")
+						
 						Spacer()
+						
 						Button {
 							if !copyButtonClicked {
 								withAnimation(.spring(duration: 0.4)) {
 									Copy.copyToClipboard(courseGrade)
 									copyButtonClicked = true
 								}
+								
 								DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 									withAnimation(.spring(duration: 0.4)) {
 										copyButtonClicked = false
@@ -169,16 +176,14 @@ struct StateAssessedView: View {
 								HStack(spacing: 4) {
 									Image(systemName: "document.on.document.fill")
 										.padding(.vertical, -4)
+									
 									Text("Copied")
 								}
 								.padding(7)
 								.background(copyButtonHovered ? Color(.tertiarySystemFill) : .clear)
 								.foregroundStyle(.secondary)
 								.clipShape(.rect(cornerRadius: 9))
-								.transition(
-									.scale(scale: 0.8)
-									.combined(with: .opacity)
-								)
+								.transition(.scale(scale: 0.8).combined(with: .opacity))
 								.onHover { hovered in
 									copyButtonHovered = hovered
 								}
@@ -188,10 +193,7 @@ struct StateAssessedView: View {
 									.background(copyButtonHovered ? Color(.tertiarySystemFill) : .clear)
 									.foregroundStyle(.secondary)
 									.clipShape(.rect(cornerRadius: 7))
-									.transition(
-										.scale(scale: 0.8)
-										.combined(with: .opacity)
-									)
+									.transition(.scale(scale: 0.8).combined(with: .opacity))
 									.onHover { hovered in
 										copyButtonHovered = hovered
 									}
