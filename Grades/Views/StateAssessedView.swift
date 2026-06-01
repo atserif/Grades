@@ -21,97 +21,30 @@ struct StateAssessedView: View {
 		}
 	}
 	
-	@State private var q1Grade = "A"
-	@State private var q2Grade = "A"
-	@State private var q3Grade = "A"
-	@State private var q4Grade = "A"
-	@State private var assessmentGrade = "A"
-	
-	private let grades = ["A", "B", "C", "D", "E"]
-	
-	private var courseGrade: String {
-		var q1Value = 0
-		var q2Value = 0
-		var q3Value = 0
-		var q4Value = 0
-		var assessmentValue = 0
+	@State private var q1Grade: Grades = .A
+	@State private var q2Grade: Grades = .A
+	@State private var q3Grade: Grades = .A
+	@State private var q4Grade: Grades = .A
+	@State private var assessmentGrade: Grades = .A
 		
-		var letterGrade = "A"
+	private var courseGrade: Grades {
+		var letterGrade: Grades
 		
-		if q1Grade == "A" {
-			q1Value = 4
-		} else if q1Grade == "B" {
-			q1Value = 3
-		} else if q1Grade == "C" {
-			q1Value = 2
-		} else if q1Grade == "D" {
-			q1Value = 1
-		} else {
-			q1Value = 0
-		}
-		
-		if q2Grade == "A" {
-			q2Value = 4
-		} else if q2Grade == "B" {
-			q2Value = 3
-		} else if q2Grade == "C" {
-			q2Value = 2
-		} else if q2Grade == "D" {
-			q2Value = 1
-		} else {
-			q2Value = 0
-		}
-		
-		if q3Grade == "A" {
-			q3Value = 4
-		} else if q3Grade == "B" {
-			q3Value = 3
-		} else if q3Grade == "C" {
-			q3Value = 2
-		} else if q3Grade == "D" {
-			q3Value = 1
-		} else {
-			q3Value = 0
-		}
-		
-		if q4Grade == "A" {
-			q4Value = 4
-		} else if q4Grade == "B" {
-			q4Value = 3
-		} else if q4Grade == "C" {
-			q4Value = 2
-		} else if q4Grade == "D" {
-			q4Value = 1
-		} else {
-			q4Value = 0
-		}
-		
-		if assessmentGrade == "A" {
-			assessmentValue = 4
-		} else if assessmentGrade == "B" {
-			assessmentValue = 3
-		} else if assessmentGrade == "C" {
-			assessmentValue = 2
-		} else if assessmentGrade == "D" {
-			assessmentValue = 1
-		} else {
-			assessmentValue = 0
-		}
-		
-		let weightedTotalValue = (q1Value + q2Value + q3Value + q4Value + assessmentValue) * 2
+		let weightedTotalValue = (q1Grade.rawValue + q2Grade.rawValue + q3Grade.rawValue + q4Grade.rawValue + assessmentGrade.rawValue) * 2
 		
 		let averageValue = Double(weightedTotalValue) / 10
 		
-		if averageValue >= 3.5 {
-			letterGrade = "A"
-		} else if averageValue >= 2.5 && averageValue < 3.5 {
-			letterGrade = "B"
-		} else if averageValue >= 1.5 && averageValue < 2.5 {
-			letterGrade = "C"
-		} else if averageValue >= 0.75 && averageValue < 1.5 {
-			letterGrade = "D"
-		} else {
-			letterGrade = "E"
+		switch averageValue {
+		case 3.5...:
+			letterGrade = .A
+		case 2.5..<3.5:
+			letterGrade = .B
+		case 1.5..<2.5:
+			letterGrade = .C
+		case 0.75..<1.5:
+			letterGrade = .D
+		default:
+			letterGrade = .E
 		}
 		
 		return letterGrade
@@ -122,32 +55,32 @@ struct StateAssessedView: View {
 			Form {
 				Section(header: Text("Quarter & Assessment Grades")) {
 					Picker("Quarter 1", selection: $q1Grade) {
-						ForEach(grades, id: \.self) {
-							Text($0)
+						ForEach(Grades.allCases) { grade in
+							Text(grade.description).tag(grade)
 						}
 					}
 					
 					Picker("Quarter 2", selection: $q2Grade) {
-						ForEach(grades, id: \.self) {
-							Text($0)
+						ForEach(Grades.allCases) { grade in
+							Text(grade.description).tag(grade)
 						}
 					}
 					
 					Picker("Quarter 3", selection: $q3Grade) {
-						ForEach(grades, id: \.self) {
-							Text($0)
+						ForEach(Grades.allCases) { grade in
+							Text(grade.description).tag(grade)
 						}
 					}
 					
 					Picker("Quarter 4", selection: $q4Grade) {
-						ForEach(grades, id: \.self) {
-							Text($0)
+						ForEach(Grades.allCases) { grade in
+							Text(grade.description).tag(grade)
 						}
 					}
 					
 					Picker("State Assessment", selection: $assessmentGrade) {
-						ForEach(grades, id: \.self) {
-							Text($0)
+						ForEach(Grades.allCases) { grade in
+							Text(grade.description).tag(grade)
 						}
 					}
 				}
@@ -161,7 +94,7 @@ struct StateAssessedView: View {
 						Button {
 							if !copyButtonClicked {
 								withAnimation(.spring(duration: 0.4)) {
-									Copy.copyToClipboard(courseGrade)
+									Copy.copyToClipboard(courseGrade.description)
 									copyButtonClicked = true
 								}
 								
@@ -204,10 +137,10 @@ struct StateAssessedView: View {
 						.padding(-7)
 					}
 					#else
-					LabeledContent("Course Grade", value: courseGrade)
+					LabeledContent("Course Grade", value: courseGrade.description)
 						.contextMenu {
 							Button("Copy Course Grade", systemImage: "document.on.document") {
-								Copy.copyToClipboard(courseGrade)
+								Copy.copyToClipboard(courseGrade.description)
 							}
 						}
 					#endif
@@ -219,11 +152,11 @@ struct StateAssessedView: View {
 			.toolbar {
 				ToolbarItem(placement: .primaryAction) {
 					Button("Reset", systemImage: "arrow.counterclockwise") {
-						q1Grade = "A"
-						q2Grade = "A"
-						q3Grade = "A"
-						q4Grade = "A"
-						assessmentGrade = "A"
+						q1Grade = .A
+						q2Grade = .A
+						q3Grade = .A
+						q4Grade = .A
+						assessmentGrade = .A
 					}
 				}
 			}
