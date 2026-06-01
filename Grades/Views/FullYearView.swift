@@ -20,26 +20,6 @@ struct FullYearView: View {
 	@State private var copyButtonHovered = false
 	@State private var copyButtonClicked = false
 	
-	enum Grades: Int, CaseIterable, Identifiable, CustomStringConvertible {
-		case A = 4
-		case B = 3
-		case C = 2
-		case D = 1
-		case E = 0
-		
-		var id: Int { rawValue }
-		
-		var description: String {
-			switch self {
-			case .A: "A"
-			case .B: "B"
-			case .C: "C"
-			case .D: "D"
-			case .E: "E"
-			}
-		}
-	}
-	
 	private var courseGrade: Grades {
 		var letterGrade: Grades
 		
