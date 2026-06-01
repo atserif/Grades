@@ -47,15 +47,16 @@ struct FullYearView: View {
 		
 		let averageValue = Double(weightedTotalValue) / 10
 		
-		if averageValue >= 3.5 {
+		switch averageValue {
+		case 3.5...:
 			letterGrade = .A
-		} else if averageValue >= 2.5 && averageValue < 3.5 {
+		case 2.5..<3.5:
 			letterGrade = .B
-		} else if averageValue >= 1.5 && averageValue < 2.5 {
+		case 1.5..<2.5:
 			letterGrade = .C
-		} else if averageValue >= 0.75 && averageValue < 1.5 {
+		case 0.75..<1.5:
 			letterGrade = .D
-		} else {
+		default:
 			letterGrade = .E
 		}
 		
