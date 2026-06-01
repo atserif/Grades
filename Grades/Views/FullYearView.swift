@@ -21,98 +21,37 @@ struct FullYearView: View {
 		}
 	}
 	
-	@State private var q1Grade = "A"
-	@State private var q2Grade = "A"
-	@State private var midtermGrade = "A"
-	@State private var q3Grade = "A"
-	@State private var q4Grade = "A"
-	@State private var finalGrade = "A"
+	@State private var q1Grade: Grades = .A
+	@State private var q2Grade: Grades = .A
+	@State private var midtermGrade: Grades = .A
+	@State private var q3Grade: Grades = .A
+	@State private var q4Grade: Grades = .A
+	@State private var finalGrade: Grades = .A
 	
-	private let grades = ["A", "B", "C", "D", "E"]
+	enum Grades: Int, CaseIterable, Identifiable, CustomStringConvertible {
+		case A = 4
+		case B = 3
+		case C = 2
+		case D = 1
+		case E = 0
+		
+		var id: Int { rawValue }
+		
+		var description: String {
+			switch self {
+			case .A: "A"
+			case .B: "B"
+			case .C: "C"
+			case .D: "D"
+			case .E: "E"
+			}
+		}
+	}
 	
 	private var courseGrade: String {
-		var q1Value = 0
-		var q2Value = 0
-		var midtermValue = 0
-		var q3Value = 0
-		var q4Value = 0
-		var finalValue = 0
+		var letterGrade: String
 		
-		var letterGrade = "A"
-		
-		if q1Grade == "A" {
-			q1Value = 4
-		} else if q1Grade == "B" {
-			q1Value = 3
-		} else if q1Grade == "C" {
-			q1Value = 2
-		} else if q1Grade == "D" {
-			q1Value = 1
-		} else {
-			q1Value = 0
-		}
-		
-		if q2Grade == "A" {
-			q2Value = 4
-		} else if q2Grade == "B" {
-			q2Value = 3
-		} else if q2Grade == "C" {
-			q2Value = 2
-		} else if q2Grade == "D" {
-			q2Value = 1
-		} else {
-			q2Value = 0
-		}
-		
-		if midtermGrade == "A" {
-			midtermValue = 4
-		} else if midtermGrade == "B" {
-			midtermValue = 3
-		} else if midtermGrade == "C" {
-			midtermValue = 2
-		} else if midtermGrade == "D" {
-			midtermValue = 1
-		} else {
-			midtermValue = 0
-		}
-		
-		if q3Grade == "A" {
-			q3Value = 4
-		} else if q3Grade == "B" {
-			q3Value = 3
-		} else if q3Grade == "C" {
-			q3Value = 2
-		} else if q3Grade == "D" {
-			q3Value = 1
-		} else {
-			q3Value = 0
-		}
-		
-		if q4Grade == "A" {
-			q4Value = 4
-		} else if q4Grade == "B" {
-			q4Value = 3
-		} else if q4Grade == "C" {
-			q4Value = 2
-		} else if q4Grade == "D" {
-			q4Value = 1
-		} else {
-			q4Value = 0
-		}
-		
-		if finalGrade == "A" {
-			finalValue = 4
-		} else if finalGrade == "B" {
-			finalValue = 3
-		} else if finalGrade == "C" {
-			finalValue = 2
-		} else if finalGrade == "D" {
-			finalValue = 1
-		} else {
-			finalValue = 0
-		}
-		
-		let weightedTotalValue = (q1Value + q2Value + q3Value + q4Value) * 2 + midtermValue + finalValue
+		let weightedTotalValue = (q1Grade.rawValue + q2Grade.rawValue + q3Grade.rawValue + q4Grade.rawValue) * 2 + midtermGrade.rawValue + finalGrade.rawValue
 		
 		let averageValue = Double(weightedTotalValue) / 10
 		
@@ -136,38 +75,38 @@ struct FullYearView: View {
 			Form {
 				Section(header: Text("Quarter & Exam Grades")) {
 					Picker("Quarter 1", selection: $q1Grade) {
-						ForEach(grades, id: \.self) {
-							Text($0)
+						ForEach(Grades.allCases) { grade in
+							Text(grade.description).tag(grade)
 						}
 					}
 					
 					Picker("Quarter 2", selection: $q2Grade) {
-						ForEach(grades, id: \.self) {
-							Text($0)
+						ForEach(Grades.allCases) { grade in
+							Text(grade.description).tag(grade)
 						}
 					}
 					
 					Picker("Midterm", selection: $midtermGrade) {
-						ForEach(grades, id: \.self) {
-							Text($0)
+						ForEach(Grades.allCases) { grade in
+							Text(grade.description).tag(grade)
 						}
 					}
 					
 					Picker("Quarter 3", selection: $q3Grade) {
-						ForEach(grades, id: \.self) {
-							Text($0)
+						ForEach(Grades.allCases) { grade in
+							Text(grade.description).tag(grade)
 						}
 					}
 					
 					Picker("Quarter 4", selection: $q4Grade) {
-						ForEach(grades, id: \.self) {
-							Text($0)
+						ForEach(Grades.allCases) { grade in
+							Text(grade.description).tag(grade)
 						}
 					}
 					
 					Picker("Final", selection: $finalGrade) {
-						ForEach(grades, id: \.self) {
-							Text($0)
+						ForEach(Grades.allCases) { grade in
+							Text(grade.description).tag(grade)
 						}
 					}
 				}
@@ -239,12 +178,12 @@ struct FullYearView: View {
 			.toolbar {
 				ToolbarItem(placement: .primaryAction) {
 					Button("Reset", systemImage: "arrow.counterclockwise") {
-						q1Grade = "A"
-						q2Grade = "A"
-						midtermGrade = "A"
-						q3Grade = "A"
-						q4Grade = "A"
-						finalGrade = "A"
+						q1Grade = .A
+						q2Grade = .A
+						midtermGrade = .A
+						q3Grade = .A
+						q4Grade = .A
+						finalGrade = .A
 					}
 				}
 			}
