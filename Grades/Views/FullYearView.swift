@@ -10,23 +10,15 @@ import SwiftUI
 struct FullYearView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
-	@State private var copyButtonHovered = false
-	@State private var copyButtonClicked = false
-	
-	private var navigationTitle: String {
-		if horizontalSizeClass == .compact {
-			"Full Year"
-		} else {
-			"Full Year Courses"
-		}
-	}
-	
 	@State private var q1Grade: Grades = .A
 	@State private var q2Grade: Grades = .A
 	@State private var midtermGrade: Grades = .A
 	@State private var q3Grade: Grades = .A
 	@State private var q4Grade: Grades = .A
 	@State private var finalGrade: Grades = .A
+	
+	@State private var copyButtonHovered = false
+	@State private var copyButtonClicked = false
 	
 	enum Grades: Int, CaseIterable, Identifiable, CustomStringConvertible {
 		case A = 4
@@ -48,26 +40,34 @@ struct FullYearView: View {
 		}
 	}
 	
-	private var courseGrade: String {
-		var letterGrade: String
+	private var courseGrade: Grades {
+		var letterGrade: Grades
 		
 		let weightedTotalValue = (q1Grade.rawValue + q2Grade.rawValue + q3Grade.rawValue + q4Grade.rawValue) * 2 + midtermGrade.rawValue + finalGrade.rawValue
 		
 		let averageValue = Double(weightedTotalValue) / 10
 		
 		if averageValue >= 3.5 {
-			letterGrade = "A"
+			letterGrade = .A
 		} else if averageValue >= 2.5 && averageValue < 3.5 {
-			letterGrade = "B"
+			letterGrade = .B
 		} else if averageValue >= 1.5 && averageValue < 2.5 {
-			letterGrade = "C"
+			letterGrade = .C
 		} else if averageValue >= 0.75 && averageValue < 1.5 {
-			letterGrade = "D"
+			letterGrade = .D
 		} else {
-			letterGrade = "E"
+			letterGrade = .E
 		}
 		
 		return letterGrade
+	}
+	
+	private var navigationTitle: String {
+		if horizontalSizeClass == .compact {
+			"Full Year"
+		} else {
+			"Full Year Courses"
+		}
 	}
 	
 	var body: some View {
@@ -110,6 +110,7 @@ struct FullYearView: View {
 						}
 					}
 				}
+				
 				Section(footer: Text("Each quarter grade is worth 20%. The midterm and final exams are worth 10% each.")) {
 					#if os(macOS)
 					HStack {
@@ -163,10 +164,10 @@ struct FullYearView: View {
 						.padding(-7)
 					}
 					#else
-					LabeledContent("Course Grade", value: courseGrade)
+					LabeledContent("Course Grade", value: courseGrade.description)
 						.contextMenu {
 							Button("Copy Course Grade", systemImage: "document.on.document") {
-								Copy.copyToClipboard(courseGrade)
+								Copy.copyToClipboard(courseGrade.description)
 							}
 						}
 					#endif
