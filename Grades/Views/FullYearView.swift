@@ -102,7 +102,7 @@ struct FullYearView: View {
 						Button {
 							if !copyButtonClicked {
 								withAnimation(.spring(duration: 0.4)) {
-									Copy.copyToClipboard(courseGrade)
+									Copy.copyToClipboard(courseGrade.description)
 									copyButtonClicked = true
 								}
 								
