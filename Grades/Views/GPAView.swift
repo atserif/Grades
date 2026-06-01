@@ -23,257 +23,99 @@ struct GPAView: View {
 		}
 	}
 	
-	@State private var course1Grade = "A"
-	@State private var course2Grade = "A"
-	@State private var course3Grade = "A"
-	@State private var course4Grade = "A"
-	@State private var course5Grade = "A"
-	@State private var course6Grade = "A"
-	@State private var course7Grade = "A"
-	@State private var course1Type = "Regular"
-	@State private var course2Type = "Regular"
-	@State private var course3Type = "Regular"
-	@State private var course4Type = "Regular"
-	@State private var course5Type = "Regular"
-	@State private var course6Type = "Regular"
-	@State private var course7Type = "Regular"
+	@State private var course1Grade: Grades = .A
+	@State private var course2Grade: Grades = .A
+	@State private var course3Grade: Grades = .A
+	@State private var course4Grade: Grades = .A
+	@State private var course5Grade: Grades = .A
+	@State private var course6Grade: Grades = .A
+	@State private var course7Grade: Grades = .A
 	
-	private let grades = ["A", "B", "C", "D", "E"]
-	private let types = ["Regular", "Honors", "G/T · AP"]
-		
+	@State private var course1Level: Levels = .regular
+	@State private var course2Level: Levels = .regular
+	@State private var course3Level: Levels = .regular
+	@State private var course4Level: Levels = .regular
+	@State private var course5Level: Levels = .regular
+	@State private var course6Level: Levels = .regular
+	@State private var course7Level: Levels = .regular
+	
 	private var unweightedGPA: Double {
-		var course1Value: Double
-		var course2Value: Double
-		var course3Value: Double
-		var course4Value: Double
-		var course5Value: Double
-		var course6Value: Double
-		var course7Value: Double
-		
-		if course1Grade == "A" {
-			course1Value = 4
-		} else if course1Grade == "B" {
-			course1Value = 3
-		} else if course1Grade == "C" {
-			course1Value = 2
-		} else if course1Grade == "D" {
-			course1Value = 1
-		} else {
-			course1Value = 0
-		}
-		
-		if course2Grade == "A" {
-			course2Value = 4
-		} else if course2Grade == "B" {
-			course2Value = 3
-		} else if course2Grade == "C" {
-			course2Value = 2
-		} else if course2Grade == "D" {
-			course2Value = 1
-		} else {
-			course2Value = 0
-		}
-		
-		if course3Grade == "A" {
-			course3Value = 4
-		} else if course3Grade == "B" {
-			course3Value = 3
-		} else if course3Grade == "C" {
-			course3Value = 2
-		} else if course3Grade == "D" {
-			course3Value = 1
-		} else {
-			course3Value = 0
-		}
-		
-		if course4Grade == "A" {
-			course4Value = 4
-		} else if course4Grade == "B" {
-			course4Value = 3
-		} else if course4Grade == "C" {
-			course4Value = 2
-		} else if course4Grade == "D" {
-			course4Value = 1
-		} else {
-			course4Value = 0
-		}
-		
-		if course5Grade == "A" {
-			course5Value = 4
-		} else if course5Grade == "B" {
-			course5Value = 3
-		} else if course5Grade == "C" {
-			course5Value = 2
-		} else if course5Grade == "D" {
-			course5Value = 1
-		} else {
-			course5Value = 0
-		}
-		
-		if course6Grade == "A" {
-			course6Value = 4
-		} else if course6Grade == "B" {
-			course6Value = 3
-		} else if course6Grade == "C" {
-			course6Value = 2
-		} else if course6Grade == "D" {
-			course6Value = 1
-		} else {
-			course6Value = 0
-		}
-		
-		if course7Grade == "A" {
-			course7Value = 4
-		} else if course7Grade == "B" {
-			course7Value = 3
-		} else if course7Grade == "C" {
-			course7Value = 2
-		} else if course7Grade == "D" {
-			course7Value = 1
-		} else {
-			course7Value = 0
-		}
-		
-		let finalValue = (course1Value + course2Value + course3Value + course4Value + course5Value + course6Value + course7Value) / 7
-		
-		return finalValue
+		Double(course1Grade.rawValue + course2Grade.rawValue + course3Grade.rawValue + course4Grade.rawValue + course5Grade.rawValue + course7Grade.rawValue + course7Grade.rawValue) / 7
 	}
+	
 	private var weightedGPA: Double {
-		var course1Value: Double
-		var course2Value: Double
-		var course3Value: Double
-		var course4Value: Double
-		var course5Value: Double
-		var course6Value: Double
-		var course7Value: Double
+		let course1Value: Double
+		let course2Value: Double
+		let course3Value: Double
+		let course4Value: Double
+		let course5Value: Double
+		let course6Value: Double
+		let course7Value: Double
 		
-		if course1Grade == "A" {
-			course1Value = 4
-		} else if course1Grade == "B" {
-			course1Value = 3
-		} else if course1Grade == "C" {
-			course1Value = 2
-		} else if course1Grade == "D" {
-			course1Value = 1
-		} else {
-			course1Value = 0
+		switch course1Level {
+		case .regular:
+			course1Value = Double(course1Grade.rawValue)
+		case .honors:
+			course1Value = Double(course1Grade.rawValue) + 0.5
+		case .gtap:
+			course1Value = Double(course1Grade.rawValue + 1)
 		}
 		
-		if course1Type == "Honors" {
-			course1Value += 0.5
-		} else if course1Type == "G/T · AP" {
-			course1Value += 1
+		switch course2Level {
+		case .regular:
+			course2Value = Double(course2Grade.rawValue)
+		case .honors:
+			course2Value = Double(course2Grade.rawValue) + 0.5
+		case .gtap:
+			course2Value = Double(course2Grade.rawValue + 1)
 		}
 		
-		if course2Grade == "A" {
-			course2Value = 4
-		} else if course2Grade == "B" {
-			course2Value = 3
-		} else if course2Grade == "C" {
-			course2Value = 2
-		} else if course2Grade == "D" {
-			course2Value = 1
-		} else {
-			course2Value = 0
+		switch course2Level {
+		case .regular:
+			course3Value = Double(course3Grade.rawValue)
+		case .honors:
+			course3Value = Double(course3Grade.rawValue) + 0.5
+		case .gtap:
+			course3Value = Double(course3Grade.rawValue + 1)
 		}
 		
-		if course2Type == "Honors" {
-			course2Value += 0.5
-		} else if course2Type == "G/T · AP" {
-			course2Value += 1
+		switch course4Level {
+		case .regular:
+			course4Value = Double(course4Grade.rawValue)
+		case .honors:
+			course4Value = Double(course4Grade.rawValue) + 0.5
+		case .gtap:
+			course4Value = Double(course4Grade.rawValue + 1)
 		}
 		
-		if course3Grade == "A" {
-			course3Value = 4
-		} else if course3Grade == "B" {
-			course3Value = 3
-		} else if course3Grade == "C" {
-			course3Value = 2
-		} else if course3Grade == "D" {
-			course3Value = 1
-		} else {
-			course3Value = 0
+		switch course5Level {
+		case .regular:
+			course5Value = Double(course5Grade.rawValue)
+		case .honors:
+			course5Value = Double(course5Grade.rawValue) + 0.5
+		case .gtap:
+			course5Value = Double(course5Grade.rawValue + 1)
 		}
 		
-		if course3Type == "Honors" {
-			course3Value += 0.5
-		} else if course3Type == "G/T · AP" {
-			course3Value += 1
+		switch course6Level {
+		case .regular:
+			course6Value = Double(course6Grade.rawValue)
+		case .honors:
+			course6Value = Double(course6Grade.rawValue) + 0.5
+		case .gtap:
+			course6Value = Double(course6Grade.rawValue + 1)
 		}
 		
-		if course4Grade == "A" {
-			course4Value = 4
-		} else if course4Grade == "B" {
-			course4Value = 3
-		} else if course4Grade == "C" {
-			course4Value = 2
-		} else if course4Grade == "D" {
-			course4Value = 1
-		} else {
-			course4Value = 0
+		switch course7Level {
+		case .regular:
+			course7Value = Double(course7Grade.rawValue)
+		case .honors:
+			course7Value = Double(course7Grade.rawValue) + 0.5
+		case .gtap:
+			course7Value = Double(course7Grade.rawValue + 1)
 		}
 		
-		if course4Type == "Honors" {
-			course4Value += 0.5
-		} else if course4Type == "G/T · AP" {
-			course4Value += 1
-		}
-		
-		if course5Grade == "A" {
-			course5Value = 4
-		} else if course5Grade == "B" {
-			course5Value = 3
-		} else if course5Grade == "C" {
-			course5Value = 2
-		} else if course5Grade == "D" {
-			course5Value = 1
-		} else {
-			course5Value = 0
-		}
-		
-		if course5Type == "Honors" {
-			course5Value += 0.5
-		} else if course5Type == "G/T · AP" {
-			course5Value += 1
-		}
-		
-		if course6Grade == "A" {
-			course6Value = 4
-		} else if course6Grade == "B" {
-			course6Value = 3
-		} else if course6Grade == "C" {
-			course6Value = 2
-		} else if course6Grade == "D" {
-			course6Value = 1
-		} else {
-			course6Value = 0
-		}
-		
-		if course6Type == "Honors" {
-			course6Value += 0.5
-		} else if course6Type == "G/T · AP" {
-			course6Value += 1
-		}
-		
-		if course7Grade == "A" {
-			course7Value = 4
-		} else if course7Grade == "B" {
-			course7Value = 3
-		} else if course7Grade == "C" {
-			course7Value = 2
-		} else if course7Grade == "D" {
-			course7Value = 1
-		} else {
-			course7Value = 0
-		}
-		
-		if course7Type == "Honors" {
-			course7Value += 0.5
-		} else if course7Type == "G/T · AP" {
-			course7Value += 1
-		}
-		
-		let finalValue = (course1Value + course2Value + course3Value + course4Value + course5Value + course6Value + course7Value) / 7
+		let finalValue: Double = (course1Value + course2Value + course3Value + course4Value + course5Value + course6Value + course7Value) / 7
 		
 		return finalValue
 	}
@@ -289,14 +131,14 @@ struct GPAView: View {
 							
 							HStack(spacing: 32) {
 								Picker("Grade", selection: $course1Grade) {
-									ForEach(grades, id: \.self) {
-										Text($0)
+									ForEach(Grades.allCases) { grade in
+										Text(grade.description).tag(grade)
 									}
 								}
 								
-								Picker("Type", selection: $course1Type) {
-									ForEach(types, id: \.self) {
-										Text($0)
+								Picker("Type", selection: $course1Level) {
+									ForEach(Levels.allCases) { level in
+										Text(level.description).tag(level)
 									}
 								}
 							}
@@ -308,14 +150,14 @@ struct GPAView: View {
 							
 							HStack(spacing: 32) {
 								Picker("Grade", selection: $course2Grade) {
-									ForEach(grades, id: \.self) {
-										Text($0)
+									ForEach(Grades.allCases) { grade in
+										Text(grade.description).tag(grade)
 									}
 								}
 								
-								Picker("Type", selection: $course2Type) {
-									ForEach(types, id: \.self) {
-										Text($0)
+								Picker("Type", selection: $course2Level) {
+									ForEach(Levels.allCases) { level in
+										Text(level.description).tag(level)
 									}
 								}
 							}
@@ -327,14 +169,14 @@ struct GPAView: View {
 							
 							HStack(spacing: 32) {
 								Picker("Grade", selection: $course3Grade) {
-									ForEach(grades, id: \.self) {
-										Text($0)
+									ForEach(Grades.allCases) { grade in
+										Text(grade.description).tag(grade)
 									}
 								}
 								
-								Picker("Type", selection: $course3Type) {
-									ForEach(types, id: \.self) {
-										Text($0)
+								Picker("Type", selection: $course3Level) {
+									ForEach(Levels.allCases) { level in
+										Text(level.description).tag(level)
 									}
 								}
 							}
@@ -346,14 +188,14 @@ struct GPAView: View {
 							
 							HStack(spacing: 32) {
 								Picker("Grade", selection: $course4Grade) {
-									ForEach(grades, id: \.self) {
-										Text($0)
+									ForEach(Grades.allCases) { grade in
+										Text(grade.description).tag(grade)
 									}
 								}
 								
-								Picker("Type", selection: $course4Type) {
-									ForEach(types, id: \.self) {
-										Text($0)
+								Picker("Type", selection: $course4Level) {
+									ForEach(Levels.allCases) { level in
+										Text(level.description).tag(level)
 									}
 								}
 							}
@@ -365,14 +207,14 @@ struct GPAView: View {
 							
 							HStack(spacing: 32) {
 								Picker("Grade", selection: $course5Grade) {
-									ForEach(grades, id: \.self) {
-										Text($0)
+									ForEach(Grades.allCases) { grade in
+										Text(grade.description).tag(grade)
 									}
 								}
 								
-								Picker("Type", selection: $course5Type) {
-									ForEach(types, id: \.self) {
-										Text($0)
+								Picker("Type", selection: $course5Level) {
+									ForEach(Levels.allCases) { level in
+										Text(level.description).tag(level)
 									}
 								}
 							}
@@ -384,14 +226,14 @@ struct GPAView: View {
 							
 							HStack(spacing: 32) {
 								Picker("Grade", selection: $course6Grade) {
-									ForEach(grades, id: \.self) {
-										Text($0)
+									ForEach(Grades.allCases) { grade in
+										Text(grade.description).tag(grade)
 									}
 								}
 								
-								Picker("Type", selection: $course6Type) {
-									ForEach(types, id: \.self) {
-										Text($0)
+								Picker("Type", selection: $course6Level) {
+									ForEach(Levels.allCases) { level in
+										Text(level.description).tag(level)
 									}
 								}
 							}
@@ -403,14 +245,14 @@ struct GPAView: View {
 							
 							HStack(spacing: 32) {
 								Picker("Grade", selection: $course7Grade) {
-									ForEach(grades, id: \.self) {
-										Text($0)
+									ForEach(Grades.allCases) { grade in
+										Text(grade.description).tag(grade)
 									}
 								}
 								
-								Picker("Type", selection: $course7Type) {
-									ForEach(types, id: \.self) {
-										Text($0)
+								Picker("Type", selection: $course7Level) {
+									ForEach(Levels.allCases) { level in
+										Text(level.description).tag(level)
 									}
 								}
 							}
@@ -445,14 +287,14 @@ struct GPAView: View {
 							
 							HStack {
 								Picker("Grade", selection: $course1Grade) {
-									ForEach(grades, id: \.self) {
-										Text($0)
+									ForEach(Grades.allCases) { grade in
+										Text(grade.description).tag(grade)
 									}
 								}
 								
-								Picker("Type", selection: $course1Type) {
-									ForEach(types, id: \.self) {
-										Text($0)
+								Picker("Type", selection: $course1Level) {
+									ForEach(Levels.allCases) { level in
+										Text(level.description).tag(level)
 									}
 								}
 							}
@@ -468,14 +310,14 @@ struct GPAView: View {
 							
 							HStack {
 								Picker("Grade", selection: $course2Grade) {
-									ForEach(grades, id: \.self) {
-										Text($0)
+									ForEach(Grades.allCases) { grade in
+										Text(grade.description).tag(grade)
 									}
 								}
 								
-								Picker("Type", selection: $course2Type) {
-									ForEach(types, id: \.self) {
-										Text($0)
+								Picker("Type", selection: $course2Level) {
+									ForEach(Levels.allCases) { level in
+										Text(level.description).tag(level)
 									}
 								}
 							}
@@ -491,14 +333,14 @@ struct GPAView: View {
 							
 							HStack {
 								Picker("Grade", selection: $course3Grade) {
-									ForEach(grades, id: \.self) {
-										Text($0)
+									ForEach(Grades.allCases) { grade in
+										Text(grade.description).tag(grade)
 									}
 								}
 								
-								Picker("Type", selection: $course3Type) {
-									ForEach(types, id: \.self) {
-										Text($0)
+								Picker("Type", selection: $course3Level) {
+									ForEach(Levels.allCases) { level in
+										Text(level.description).tag(level)
 									}
 								}
 							}
@@ -514,14 +356,14 @@ struct GPAView: View {
 							
 							HStack {
 								Picker("Grade", selection: $course4Grade) {
-									ForEach(grades, id: \.self) {
-										Text($0)
+									ForEach(Grades.allCases) { grade in
+										Text(grade.description).tag(grade)
 									}
 								}
 								
-								Picker("Type", selection: $course4Type) {
-									ForEach(types, id: \.self) {
-										Text($0)
+								Picker("Type", selection: $course4Level) {
+									ForEach(Levels.allCases) { level in
+										Text(level.description).tag(level)
 									}
 								}
 							}
@@ -537,14 +379,14 @@ struct GPAView: View {
 							
 							HStack {
 								Picker("Grade", selection: $course5Grade) {
-									ForEach(grades, id: \.self) {
-										Text($0)
+									ForEach(Grades.allCases) { grade in
+										Text(grade.description).tag(grade)
 									}
 								}
 								
-								Picker("Type", selection: $course5Type) {
-									ForEach(types, id: \.self) {
-										Text($0)
+								Picker("Type", selection: $course5Level) {
+									ForEach(Levels.allCases) { level in
+										Text(level.description).tag(level)
 									}
 								}
 							}
@@ -560,14 +402,14 @@ struct GPAView: View {
 							
 							HStack {
 								Picker("Grade", selection: $course6Grade) {
-									ForEach(grades, id: \.self) {
-										Text($0)
+									ForEach(Grades.allCases) { grade in
+										Text(grade.description).tag(grade)
 									}
 								}
 								
-								Picker("Type", selection: $course6Type) {
-									ForEach(types, id: \.self) {
-										Text($0)
+								Picker("Type", selection: $course6Level) {
+									ForEach(Levels.allCases) { level in
+										Text(level.description).tag(level)
 									}
 								}
 							}
@@ -583,14 +425,14 @@ struct GPAView: View {
 							
 							HStack {
 								Picker("Grade", selection: $course7Grade) {
-									ForEach(grades, id: \.self) {
-										Text($0)
+									ForEach(Grades.allCases) { grade in
+										Text(grade.description).tag(grade)
 									}
 								}
 								
-								Picker("Type", selection: $course7Type) {
-									ForEach(types, id: \.self) {
-										Text($0)
+								Picker("Type", selection: $course7Level) {
+									ForEach(Levels.allCases) { level in
+										Text(level.description).tag(level)
 									}
 								}
 							}
@@ -726,21 +568,21 @@ struct GPAView: View {
 			.toolbar {
 				ToolbarItem(placement: .primaryAction) {
 					Button("Reset", systemImage: "arrow.counterclockwise") {
-						course1Grade = "A"
-						course2Grade = "A"
-						course3Grade = "A"
-						course4Grade = "A"
-						course5Grade = "A"
-						course6Grade = "A"
-						course7Grade = "A"
+						course1Grade = .A
+						course2Grade = .A
+						course3Grade = .A
+						course4Grade = .A
+						course5Grade = .A
+						course6Grade = .A
+						course7Grade = .A
 						
-						course1Type = "Regular"
-						course2Type = "Regular"
-						course3Type = "Regular"
-						course4Type = "Regular"
-						course5Type = "Regular"
-						course6Type = "Regular"
-						course7Type = "Regular"
+						course1Level = .regular
+						course2Level = .regular
+						course3Level = .regular
+						course4Level = .regular
+						course5Level = .regular
+						course6Level = .regular
+						course7Level = .regular
 					}
 				}
 			}
