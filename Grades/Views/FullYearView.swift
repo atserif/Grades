@@ -129,7 +129,7 @@ struct FullYearView: View {
 									copyButtonHovered = hovered
 								}
 							} else {
-								Text(courseGrade)
+								Text(courseGrade.description)
 									.padding(5)
 									.background(copyButtonHovered ? Color(.tertiarySystemFill) : .clear)
 									.foregroundStyle(.secondary)
