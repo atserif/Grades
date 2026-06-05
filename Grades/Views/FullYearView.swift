@@ -10,6 +10,9 @@ import SwiftUI
 struct FullYearView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
+	@State private var copyButtonHovered: Bool = false
+	@State private var copyButtonClicked: Bool = false
+	
 	@State private var q1Grade: Grades = .A
 	@State private var q2Grade: Grades = .A
 	@State private var midtermGrade: Grades = .A
@@ -17,17 +20,13 @@ struct FullYearView: View {
 	@State private var q4Grade: Grades = .A
 	@State private var finalGrade: Grades = .A
 	
-	@State private var copyButtonHovered = false
-	@State private var copyButtonClicked = false
-	
 	private var courseGrade: Grades {
 		var letterGrade: Grades
 		
-		let weightedTotalValue = (q1Grade.rawValue + q2Grade.rawValue + q3Grade.rawValue + q4Grade.rawValue) * 2 + midtermGrade.rawValue + finalGrade.rawValue
+		let weightedTotal: Double = ((q1Grade.rawValue + q2Grade.rawValue + q3Grade.rawValue + q4Grade.rawValue) * 2) + midtermGrade.rawValue + finalGrade.rawValue
+		let average: Double = weightedTotal / 10
 		
-		let averageValue = Double(weightedTotalValue) / 10
-		
-		switch averageValue {
+		switch average {
 		case 3.5...:
 			letterGrade = .A
 		case 2.5..<3.5:

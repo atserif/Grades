@@ -10,16 +10,8 @@ import SwiftUI
 struct SemesterView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
-	@State private var copyButtonHovered = false
-	@State private var copyButtonClicked = false
-	
-	private var navigationTitle: String {
-		if horizontalSizeClass == .compact {
-			"Semester"
-		} else {
-			"Semester Courses"
-		}
-	}
+	@State private var copyButtonHovered: Bool = false
+	@State private var copyButtonClicked: Bool = false
 	
 	@State private var q1Grade: Grades = .A
 	@State private var q2Grade: Grades = .A
@@ -28,11 +20,10 @@ struct SemesterView: View {
 	private var courseGrade: Grades {
 		var letterGrade: Grades
 		
-		let weightedTotalValue = (q1Grade.rawValue + q2Grade.rawValue) * 2 + finalGrade.rawValue
+		let weightedTotal: Double = ((q1Grade.rawValue + q2Grade.rawValue) * 2) + finalGrade.rawValue
+		let average: Double = weightedTotal / 5
 		
-		let averageValue = Double(weightedTotalValue) / 5
-		
-		switch averageValue {
+		switch average {
 		case 3.5...:
 			letterGrade = .A
 		case 2.5..<3.5:
@@ -46,6 +37,14 @@ struct SemesterView: View {
 		}
 		
 		return letterGrade
+	}
+	
+	private var navigationTitle: String {
+		if horizontalSizeClass == .compact {
+			"Semester"
+		} else {
+			"Semester Courses"
+		}
 	}
 	
 	var body: some View {

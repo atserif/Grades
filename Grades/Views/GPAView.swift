@@ -10,18 +10,10 @@ import SwiftUI
 struct GPAView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
-	@State private var weightedCopyButtonHovered = false
-	@State private var weightedCopyButtonClicked = false
-	@State private var unweightedCopyButtonHovered = false
-	@State private var unweightedCopyButtonClicked = false
-	
-	private var navigationTitle: String {
-		if horizontalSizeClass == .compact {
-			"GPA"
-		} else {
-			"Grade Point Average"
-		}
-	}
+	@State private var weightedCopyButtonHovered: Bool = false
+	@State private var weightedCopyButtonClicked: Bool = false
+	@State private var unweightedCopyButtonHovered: Bool = false
+	@State private var unweightedCopyButtonClicked: Bool = false
 	
 	@State private var courses: [Course] = [
 		Course(grade: .A, level: .regular),
@@ -34,84 +26,21 @@ struct GPAView: View {
 	]
 	
 	private var unweightedGPA: Double {
-		Double(courses[0].grade.rawValue + courses[1].grade.rawValue + courses[2].grade.rawValue + courses[3].grade.rawValue + courses[4].grade.rawValue + courses[5].grade.rawValue + courses[6].grade.rawValue) / 7
+		let total: Double = courses.map { $0.grade.rawValue }.reduce(0, +)
+		return total / Double(courses.count)
 	}
 	
 	private var weightedGPA: Double {
-		let course1Value: Double
-		let course2Value: Double
-		let course3Value: Double
-		let course4Value: Double
-		let course5Value: Double
-		let course6Value: Double
-		let course7Value: Double
-		
-		switch courses[0].level {
-		case .regular:
-			course1Value = Double(courses[0].grade.rawValue)
-		case .honors:
-			course1Value = Double(courses[0].grade.rawValue) + 0.5
-		case .gtap:
-			course1Value = Double(courses[0].grade.rawValue) + 1
+		let total = courses.map { $0.grade.rawValue + $0.level.rawValue }.reduce(0, +)
+		return total / Double(courses.count)
+	}
+	
+	private var navigationTitle: String {
+		if horizontalSizeClass == .compact {
+			"GPA"
+		} else {
+			"Grade Point Average"
 		}
-		
-		switch courses[1].level {
-		case .regular:
-			course2Value = Double(courses[1].grade.rawValue)
-		case .honors:
-			course2Value = Double(courses[1].grade.rawValue) + 0.5
-		case .gtap:
-			course2Value = Double(courses[1].grade.rawValue) + 1
-		}
-		
-		switch courses[2].level {
-		case .regular:
-			course3Value = Double(courses[2].grade.rawValue)
-		case .honors:
-			course3Value = Double(courses[2].grade.rawValue) + 0.5
-		case .gtap:
-			course3Value = Double(courses[2].grade.rawValue) + 1
-		}
-		
-		switch courses[3].level {
-		case .regular:
-			course4Value = Double(courses[3].grade.rawValue)
-		case .honors:
-			course4Value = Double(courses[3].grade.rawValue) + 0.5
-		case .gtap:
-			course4Value = Double(courses[3].grade.rawValue) + 1
-		}
-		
-		switch courses[4].level {
-		case .regular:
-			course5Value = Double(courses[4].grade.rawValue)
-		case .honors:
-			course5Value = Double(courses[4].grade.rawValue) + 0.5
-		case .gtap:
-			course5Value = Double(courses[4].grade.rawValue) + 1
-		}
-		
-		switch courses[5].level {
-		case .regular:
-			course6Value = Double(courses[5].grade.rawValue)
-		case .honors:
-			course6Value = Double(courses[5].grade.rawValue) + 0.5
-		case .gtap:
-			course6Value = Double(courses[5].grade.rawValue) + 1
-		}
-		
-		switch courses[6].level {
-		case .regular:
-			course7Value = Double(courses[6].grade.rawValue)
-		case .honors:
-			course7Value = Double(courses[6].grade.rawValue) + 0.5
-		case .gtap:
-			course7Value = Double(courses[6].grade.rawValue) + 1
-		}
-		
-		let finalValue: Double = (course1Value + course2Value + course3Value + course4Value + course5Value + course6Value + course7Value) / 7
-		
-		return finalValue
 	}
 	
 	var body: some View {

@@ -5,14 +5,14 @@
 //  Created by Aram Soneson on 6/1/26.
 //
 
-enum Grades: Int, CaseIterable, Identifiable, CustomStringConvertible {
+enum Grades: Double, CaseIterable, Identifiable, CustomStringConvertible {
 	case A = 4
 	case B = 3
 	case C = 2
 	case D = 1
 	case E = 0
 	
-	var id: Int { rawValue }
+	var id: Double { rawValue }
 	
 	var description: String {
 		switch self {
