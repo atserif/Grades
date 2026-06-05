@@ -93,56 +93,10 @@ struct FullYearView: View {
 				
 				Section(footer: Text("Each quarter grade is worth 20%. The midterm and final exams are worth 10% each.")) {
 					#if os(macOS)
-					HStack {
-						Text("Course Grade")
-						
-						Spacer()
-						
-						Button {
-							if !copyButtonClicked {
-								withAnimation(.spring(duration: 0.4)) {
-									Copy.copyToClipboard(courseGrade.description)
-									copyButtonClicked = true
-								}
-								
-								DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-									withAnimation(.spring(duration: 0.4)) {
-										copyButtonClicked = false
-									}
-								}
-							}
-						} label: {
-							if copyButtonClicked {
-								HStack(spacing: 4) {
-									Image(systemName: "document.on.document.fill")
-										.padding(.vertical, -4)
-									
-									Text("Copied")
-								}
-								.padding(7)
-								.background(copyButtonHovered ? Color(.tertiarySystemFill) : .clear)
-								.foregroundStyle(.secondary)
-								.clipShape(.rect(cornerRadius: 9))
-								.transition(.scale(scale: 0.8).combined(with: .opacity))
-								.onHover { hovered in
-									copyButtonHovered = hovered
-								}
-							} else {
-								Text(courseGrade.description)
-									.padding(5)
-									.background(copyButtonHovered ? Color(.tertiarySystemFill) : .clear)
-									.foregroundStyle(.secondary)
-									.clipShape(.rect(cornerRadius: 7))
-									.transition(.scale(scale: 0.8).combined(with: .opacity))
-									.onHover { hovered in
-										copyButtonHovered = hovered
-									}
-							}
-						}
-						.buttonStyle(UnresponsiveButtonStyle())
-						.offset(x: copyButtonClicked ? 0 : -2)
-						.padding(-7)
-					}
+					CopyableRow(
+						label: "Course Grade",
+						value: courseGrade.description
+					)
 					#else
 					LabeledContent("Course Grade", value: courseGrade.description)
 						.contextMenu {

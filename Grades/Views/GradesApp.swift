@@ -11,9 +11,9 @@ import SwiftUI
 struct GradesApp: App {
 	var body: some Scene {
 		#if os(macOS)
-		WindowGroup {
+		Window("Grades", id: "grades") {
 			ContentView()
-				.frame(minWidth: 800, idealWidth: 900, minHeight: 500, idealHeight: 550)
+				.frame(minWidth: 800, idealWidth: 800, minHeight: 500, idealHeight: 500)
 				.onAppear {
 					NSWindow.allowsAutomaticWindowTabbing = false
 				}
