@@ -34,6 +34,7 @@ struct CopyableRow: View {
 					}
 				}
 			} label: {
+				// TODO: Fix hover effect flickering while animation is playing
 				Label {
 					Text(clicked ? "Copied" : value)
 				} icon: {
