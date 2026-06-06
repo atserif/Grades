@@ -10,11 +10,6 @@ import SwiftUI
 struct GPAView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
-	@State private var weightedCopyButtonHovered: Bool = false
-	@State private var weightedCopyButtonClicked: Bool = false
-	@State private var unweightedCopyButtonHovered: Bool = false
-	@State private var unweightedCopyButtonClicked: Bool = false
-	
 	@State private var courses: [Course] = [
 		Course(grade: .A, level: .regular),
 		Course(grade: .A, level: .regular),
@@ -48,7 +43,7 @@ struct GPAView: View {
 			Form {
 				if horizontalSizeClass == .compact {
 					Section(header: Text("Course Grades & Types")) {
-						ForEach(0..<7) { index in
+						ForEach(courses.indices, id: \.self) { index in
 							VStack(alignment: .leading) {
 								Text("Course \(index + 1)")
 									.fontWeight(.semibold)
@@ -88,7 +83,7 @@ struct GPAView: View {
 					}
 				} else {
 					Section(header: Text("Course Grades & Types")) {
-						ForEach(0..<7) { index in
+						ForEach(courses.indices, id: \.self) { index in
 							HStack {
 								Text("Course \(index + 1)")
 									.fontWeight(.semibold)

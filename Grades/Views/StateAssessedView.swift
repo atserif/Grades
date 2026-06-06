@@ -9,21 +9,20 @@ import SwiftUI
 
 struct StateAssessedView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
-
-	@State private var copyButtonHovered: Bool = false
-	@State private var copyButtonClicked: Bool = false
 	
-	@State private var q1Grade: Grades = .A
-	@State private var q2Grade: Grades = .A
-	@State private var q3Grade: Grades = .A
-	@State private var q4Grade: Grades = .A
-	@State private var assessmentGrade: Grades = .A
+	@State private var gradingPeriods: [GradingPeriod] = [
+		GradingPeriod(name: "Quarter 1", grade: .A),
+		GradingPeriod(name: "Quarter 2", grade: .A),
+		GradingPeriod(name: "Quarter 3", grade: .A),
+		GradingPeriod(name: "Quarter 4", grade: .A),
+		GradingPeriod(name: "State Assessment", grade: .A)
+	]
 		
 	private var courseGrade: Grades {
 		var letterGrade: Grades
 		
-		let weightedTotal: Double = (q1Grade.rawValue + q2Grade.rawValue + q3Grade.rawValue + q4Grade.rawValue + assessmentGrade.rawValue) * 2
-		let average: Double = weightedTotal / 10
+		let total: Double = gradingPeriods.map { $0.grade.rawValue }.reduce(0, +)
+		let average: Double = total / 5
 		
 		switch average {
 		case 3.5...:
@@ -53,36 +52,15 @@ struct StateAssessedView: View {
 		NavigationStack {
 			Form {
 				Section(header: Text("Quarter & Assessment Grades")) {
-					Picker("Quarter 1", selection: $q1Grade) {
-						ForEach(Grades.allCases) { grade in
-							Text(grade.description).tag(grade)
-						}
-					}
-					
-					Picker("Quarter 2", selection: $q2Grade) {
-						ForEach(Grades.allCases) { grade in
-							Text(grade.description).tag(grade)
-						}
-					}
-					
-					Picker("Quarter 3", selection: $q3Grade) {
-						ForEach(Grades.allCases) { grade in
-							Text(grade.description).tag(grade)
-						}
-					}
-					
-					Picker("Quarter 4", selection: $q4Grade) {
-						ForEach(Grades.allCases) { grade in
-							Text(grade.description).tag(grade)
-						}
-					}
-					
-					Picker("State Assessment", selection: $assessmentGrade) {
-						ForEach(Grades.allCases) { grade in
-							Text(grade.description).tag(grade)
+					ForEach(gradingPeriods.indices, id: \.self) { index in
+						Picker(gradingPeriods[index].name, selection: $gradingPeriods[index].grade) {
+							ForEach(Grades.allCases) { grade in
+								Text(grade.description).tag(grade)
+							}
 						}
 					}
 				}
+				
 				Section(footer: Text("Quarter grades and the state assessment are each worth 20%. Applies to Biology, Biology G/T, American Government, and American Government Honors.")) {
 					#if os(macOS)
 					CopyableRow(
@@ -105,11 +83,7 @@ struct StateAssessedView: View {
 			.toolbar {
 				ToolbarItem(placement: .primaryAction) {
 					Button("Reset", systemImage: "arrow.counterclockwise") {
-						q1Grade = .A
-						q2Grade = .A
-						q3Grade = .A
-						q4Grade = .A
-						assessmentGrade = .A
+						gradingPeriods.indices.forEach { gradingPeriods[$0].grade = .A }
 					}
 				}
 			}

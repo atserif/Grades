@@ -10,21 +10,21 @@ import SwiftUI
 struct FullYearView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
-	@State private var copyButtonHovered: Bool = false
-	@State private var copyButtonClicked: Bool = false
-	
-	@State private var q1Grade: Grades = .A
-	@State private var q2Grade: Grades = .A
-	@State private var midtermGrade: Grades = .A
-	@State private var q3Grade: Grades = .A
-	@State private var q4Grade: Grades = .A
-	@State private var finalGrade: Grades = .A
+	@State private var gradingPeriods: [GradingPeriod] = [
+		GradingPeriod(name: "Quarter 1", grade: .A),
+		GradingPeriod(name: "Quarter 2", grade: .A),
+		GradingPeriod(name: "Midterm", grade: .A),
+		GradingPeriod(name: "Quarter 3", grade: .A),
+		GradingPeriod(name: "Quarter 4", grade: .A),
+		GradingPeriod(name: "Final", grade: .A)
+	]
 	
 	private var courseGrade: Grades {
 		var letterGrade: Grades
 		
-		let weightedTotal: Double = ((q1Grade.rawValue + q2Grade.rawValue + q3Grade.rawValue + q4Grade.rawValue) * 2) + midtermGrade.rawValue + finalGrade.rawValue
-		let average: Double = weightedTotal / 10
+		let quarterTotal: Double = gradingPeriods.filter { $0.name.hasPrefix("Quarter ") }.map { $0.grade.rawValue }.reduce(0, +) * 2
+		let examTotal: Double = gradingPeriods.filter { !$0.name.hasPrefix("Quarter ") }.map { $0.grade.rawValue }.reduce(0, +)
+		let average: Double = (quarterTotal + examTotal) / 10
 		
 		switch average {
 		case 3.5...:
@@ -54,39 +54,11 @@ struct FullYearView: View {
 		NavigationStack {
 			Form {
 				Section(header: Text("Quarter & Exam Grades")) {
-					Picker("Quarter 1", selection: $q1Grade) {
-						ForEach(Grades.allCases) { grade in
-							Text(grade.description).tag(grade)
-						}
-					}
-					
-					Picker("Quarter 2", selection: $q2Grade) {
-						ForEach(Grades.allCases) { grade in
-							Text(grade.description).tag(grade)
-						}
-					}
-					
-					Picker("Midterm", selection: $midtermGrade) {
-						ForEach(Grades.allCases) { grade in
-							Text(grade.description).tag(grade)
-						}
-					}
-					
-					Picker("Quarter 3", selection: $q3Grade) {
-						ForEach(Grades.allCases) { grade in
-							Text(grade.description).tag(grade)
-						}
-					}
-					
-					Picker("Quarter 4", selection: $q4Grade) {
-						ForEach(Grades.allCases) { grade in
-							Text(grade.description).tag(grade)
-						}
-					}
-					
-					Picker("Final", selection: $finalGrade) {
-						ForEach(Grades.allCases) { grade in
-							Text(grade.description).tag(grade)
+					ForEach(gradingPeriods.indices, id: \.self) { index in
+						Picker(gradingPeriods[index].name, selection: $gradingPeriods[index].grade) {
+							ForEach(Grades.allCases) { grade in
+								Text(grade.description).tag(grade)
+							}
 						}
 					}
 				}
@@ -113,12 +85,7 @@ struct FullYearView: View {
 			.toolbar {
 				ToolbarItem(placement: .primaryAction) {
 					Button("Reset", systemImage: "arrow.counterclockwise") {
-						q1Grade = .A
-						q2Grade = .A
-						midtermGrade = .A
-						q3Grade = .A
-						q4Grade = .A
-						finalGrade = .A
+						gradingPeriods.indices.forEach { gradingPeriods[$0].grade = .A }
 					}
 				}
 			}

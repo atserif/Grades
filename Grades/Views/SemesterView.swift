@@ -10,18 +10,18 @@ import SwiftUI
 struct SemesterView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
-	@State private var copyButtonHovered: Bool = false
-	@State private var copyButtonClicked: Bool = false
-	
-	@State private var q1Grade: Grades = .A
-	@State private var q2Grade: Grades = .A
-	@State private var finalGrade: Grades = .A
+	@State private var gradingPeriods: [GradingPeriod] = [
+		GradingPeriod(name: "Quarter 1", grade: .A),
+		GradingPeriod(name: "Quarter 2", grade: .A),
+		GradingPeriod(name: "Final", grade: .A),
+	]
 		
 	private var courseGrade: Grades {
 		var letterGrade: Grades
 		
-		let weightedTotal: Double = ((q1Grade.rawValue + q2Grade.rawValue) * 2) + finalGrade.rawValue
-		let average: Double = weightedTotal / 5
+		let quarterTotal: Double = gradingPeriods.filter{ $0.name.hasPrefix("Quarter ") }.map { $0.grade.rawValue }.reduce(0, +) * 2
+		let examTotal: Double = gradingPeriods.filter{ !$0.name.hasPrefix("Quarter ") }.map { $0.grade.rawValue }.reduce(0, +)
+		let average: Double = (quarterTotal + examTotal) / 5
 		
 		switch average {
 		case 3.5...:
@@ -51,21 +51,11 @@ struct SemesterView: View {
 		NavigationStack {
 			Form {
 				Section(header: Text("Quarter & Exam Grades")) {
-					Picker("Quarter 1", selection: $q1Grade) {
-						ForEach(Grades.allCases) { grade in
-							Text(grade.description).tag(grade)
-						}
-					}
-					
-					Picker("Quarter 2", selection: $q2Grade) {
-						ForEach(Grades.allCases) { grade in
-							Text(grade.description).tag(grade)
-						}
-					}
-					
-					Picker("Final", selection: $finalGrade) {
-						ForEach(Grades.allCases) { grade in
-							Text(grade.description).tag(grade)
+					ForEach(gradingPeriods.indices, id: \.self) { index in
+						Picker(gradingPeriods[index].name, selection: $gradingPeriods[index].grade) {
+							ForEach(Grades.allCases) { grade in
+								Text(grade.description).tag(grade)
+							}
 						}
 					}
 				}
@@ -92,9 +82,7 @@ struct SemesterView: View {
 			.toolbar {
 				ToolbarItem(placement: .primaryAction) {
 					Button("Reset", systemImage: "arrow.counterclockwise") {
-						q1Grade = .A
-						q2Grade = .A
-						finalGrade = .A
+						gradingPeriods.indices.forEach { gradingPeriods[$0].grade = .A }
 					}
 				}
 			}
