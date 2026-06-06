@@ -22,43 +22,36 @@ struct CopyableRow: View {
 			
 			Button {
 				if !clicked {
-					withAnimation(.spring(duration: 0.4)) {
+					withAnimation(.easeInOut(duration: 0.3)) {
 						Copy.copyToClipboard(value)
 						clicked = true
 					}
 					
 					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-						withAnimation(.spring(duration: 0.4)) {
+						withAnimation(.easeInOut(duration: 0.3)) {
 							clicked = false
 						}
 					}
 				}
 			} label: {
-				if clicked {
-					HStack(spacing: 4) {
+				Label {
+					Text(clicked ? "Copied" : value)
+				} icon: {
+					if clicked {
 						Image(systemName: "document.on.document.fill")
-							.padding(.vertical, -4)
-						
-						Text("Copied")
+							.transition(.move(edge: .trailing).combined(with: .opacity).combined(with: .blurReplace))
 					}
-					.padding(7)
-					.background(hovered ? Color(.tertiarySystemFill) : .clear)
-					.foregroundStyle(.secondary)
-					.clipShape(.rect(cornerRadius: 9))
-					.transition(.scale(scale: 0.8).combined(with: .opacity))
-					.onHover {
-						hovered = $0
-					}
-				} else {
-					Text(value)
-						.padding(5)
-						.background(hovered ? Color(.tertiarySystemFill) : .clear)
-						.foregroundStyle(.secondary)
-						.clipShape(.rect(cornerRadius: 7))
-						.transition(.scale(scale: 0.8).combined(with: .opacity))
-						.onHover {
-							hovered = $0
-						}
+				}
+				.padding(clicked ? 7 : 5)
+				.labelIconToTitleSpacing(4)
+				.foregroundStyle(.secondary)
+				.background(clicked ? Color(.tertiarySystemFill) : hovered ? Color(.tertiarySystemFill) : .clear)
+				.clipShape(.rect(cornerRadius: clicked ? 9 : 7))
+				.contentTransition(.numericText())
+				.animation(.default, value: value)
+				.monospacedDigit()
+				.onHover { isHovering in
+					hovered = isHovering
 				}
 			}
 			.buttonStyle(UnresponsiveButtonStyle())
