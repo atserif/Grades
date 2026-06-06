@@ -51,8 +51,8 @@ struct CopyableRow: View {
 				.contentTransition(.numericText())
 				.animation(.default, value: value)
 				.monospacedDigit()
-				.onHover { isHovering in
-					hovered = isHovering
+				.onHover {
+					hovered = $0
 				}
 			}
 			.buttonStyle(UnresponsiveButtonStyle())
