@@ -74,6 +74,8 @@ struct StateAssessedView: View {
 								Copy.copyToClipboard(courseGrade.description)
 							}
 						}
+						.contentTransition(.numericText())
+						.animation(.default, value: courseGrade.description)
 					#endif
 				}
 			}

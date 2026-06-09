@@ -48,7 +48,7 @@ struct GPAView: View {
 								Text("Course \(index + 1)")
 									.fontWeight(.semibold)
 								
-								HStack(spacing: 32) {
+								HStack(spacing: 16) {
 									Picker("Grade", selection: $courses[index].grade) {
 										ForEach(Grades.allCases) { grade in
 											Text(grade.description).tag(grade)
@@ -66,10 +66,14 @@ struct GPAView: View {
 					}
 					
 					Section(footer: Text("Regular courses are worth 4.0 points, Honors courses are worth 4.5 points, and G/T & AP courses are worth 5.0 points.")) {
-						HStack {
+						HStack(spacing: 16) {
 							LabeledContent("Unweighted", value: unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
+								.contentTransition(.numericText())
+								.animation(.default, value: unweightedGPA)
 							
 							LabeledContent("Weighted", value: weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
+								.contentTransition(.numericText())
+								.animation(.default, value: weightedGPA)
 						}
 						.contextMenu {
 							Button("Copy Unweighted", systemImage: "document.on.document") {
@@ -121,8 +125,12 @@ struct GPAView: View {
 						#else
 						HStack {
 							LabeledContent("Unweighted", value: unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
+								.contentTransition(.numericText())
+								.animation(.default, value: unweightedGPA)
 							
 							LabeledContent("Weighted", value: weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
+								.contentTransition(.numericText())
+								.animation(.default, value: weightedGPA)
 						}
 						.contextMenu {
 							Button("Copy Unweighted", systemImage: "document.on.document") {
