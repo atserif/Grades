@@ -1,156 +1,99 @@
 {
-  "fill-specializations" : [
-    {
-      "value" : {
-        "linear-gradient" : [
-          "display-p3:0.90980,0.43137,0.34902,1.00000",
-          "srgb:0.86275,0.20392,0.10588,1.00000"
-        ],
-        "orientation" : {
-          "start" : {
-            "x" : 0.5,
-            "y" : 0
-          },
-          "stop" : {
-            "x" : 0.5,
-            "y" : 0.7
-          }
-        }
-      }
-    },
-    {
-      "appearance" : "dark",
-      "value" : "system-dark"
-    }
+  "features" : [
+    "refractivity"
   ],
+  "fill" : {
+    "automatic-gradient" : "srgb:1.00000,0.28000,0.10000,1.00000"
+  },
   "groups" : [
     {
-      "blend-mode" : "normal",
-      "blur-material" : 0.5,
+      "blend-mode" : "plus-lighter",
+      "blur-material" : 0.02,
       "layers" : [
         {
-          "image-name" : "Mono 5.png",
-          "name" : "focus_mono",
-          "opacity-specializations" : [
-            {
-              "value" : 0
-            },
-            {
-              "appearance" : "dark",
-              "value" : 0
-            },
-            {
-              "appearance" : "tinted",
-              "value" : 1
-            }
-          ]
-        },
-        {
-          "image-name" : "Dark 4.png",
-          "name" : "focus_dark",
-          "opacity-specializations" : [
-            {
-              "value" : 0
-            },
-            {
-              "appearance" : "dark",
-              "value" : 1
-            }
-          ]
-        },
-        {
-          "image-name" : "Frame 1 2.png",
-          "name" : "focus",
-          "opacity-specializations" : [
-            {
-              "appearance" : "dark",
-              "value" : 0
-            },
-            {
-              "appearance" : "tinted",
-              "value" : 0
-            }
-          ]
+          "image-name" : "indicator.svg",
+          "name" : "indicator"
         }
       ],
-      "lighting" : "individual",
-      "opacity" : 0.8,
+      "opacity" : 0.15,
       "position" : {
-        "scale" : 0.205,
+        "scale" : 6.9,
         "translation-in-points" : [
           0,
           0
         ]
       },
+      "refractivity" : {
+        "depth" : 0.2,
+        "enabled" : true,
+        "strength" : 0.6
+      },
       "shadow" : {
         "kind" : "neutral",
-        "opacity" : 0.5
+        "opacity" : 1.6
       },
-      "specular" : true,
       "translucency" : {
         "enabled" : true,
-        "value" : 0.5
+        "value" : 0.2
       }
     },
     {
-      "blur-material" : 0.5,
+      "blur-material" : 0.3,
       "layers" : [
         {
-          "image-name" : "Mono 6.png",
-          "name" : "loop_mono",
-          "opacity-specializations" : [
-            {
-              "value" : 0
-            },
-            {
-              "appearance" : "tinted",
-              "value" : 1
-            }
-          ]
-        },
-        {
-          "image-name" : "Dark 3.png",
-          "name" : "loop_dark",
-          "opacity-specializations" : [
-            {
-              "value" : 0
-            },
-            {
-              "appearance" : "dark",
-              "value" : 1
-            }
-          ]
-        },
-        {
-          "hidden" : false,
-          "image-name" : "Light.png",
-          "name" : "loop",
-          "opacity-specializations" : [
-            {
-              "appearance" : "dark",
-              "value" : 0
-            },
-            {
-              "appearance" : "tinted",
-              "value" : 0
-            }
-          ]
+          "image-name" : "progress.svg",
+          "name" : "progress"
         }
       ],
+      "opacity" : 0.9,
       "position" : {
-        "scale" : 0.205,
+        "scale" : 6.9,
         "translation-in-points" : [
           0,
           0
         ]
       },
+      "refractivity" : {
+        "depth" : 0.15,
+        "enabled" : true,
+        "strength" : 0.4
+      },
       "shadow" : {
         "kind" : "neutral",
-        "opacity" : 0.5
+        "opacity" : 1
       },
       "translucency" : {
-        "enabled" : true,
-        "value" : 0.4
+        "enabled" : false,
+        "value" : 0.2
+      }
+    },
+    {
+      "layers" : [
+        {
+          "image-name" : "track.svg",
+          "name" : "track"
+        }
+      ],
+      "opacity" : 0.6,
+      "position" : {
+        "scale" : 6.9,
+        "translation-in-points" : [
+          0,
+          0
+        ]
+      },
+      "refractivity" : {
+        "depth" : 0,
+        "enabled" : false,
+        "strength" : 0.5
+      },
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.6
+      },
+      "translucency" : {
+        "enabled" : false,
+        "value" : 0.2
       }
     }
   ],
