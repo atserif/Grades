@@ -24,7 +24,7 @@ struct ContentView: View {
 				FullYearView()
 			}
 			
-			Tab("Semester", systemImage: "calendar.badge.clock") {
+			Tab("Semester", systemImage: "circle.lefthalf.striped.horizontal") {
 				SemesterView()
 			}
 			
