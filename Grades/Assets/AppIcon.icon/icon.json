@@ -1,10 +1,11 @@
 {
   "fill" : {
-    "automatic-gradient" : "srgb:1.00000,0.63922,0.09804,1.00000"
+    "automatic-gradient" : "srgb:0.88627,0.23922,0.16078,1.00000"
   },
   "groups" : [
     {
       "blur-material" : 0.5,
+      "hidden" : false,
       "layers" : [
         {
           "image-name" : "symbol.svg",
@@ -12,15 +13,15 @@
           "position" : {
             "scale" : 1,
             "translation-in-points" : [
-              -54.7,
-              46.8
+              -14.16090935574914,
+              2.7572027027027275
             ]
           }
         }
       ],
       "opacity" : 0.85,
       "position" : {
-        "scale" : 3,
+        "scale" : 3.7,
         "translation-in-points" : [
           0,
           0
@@ -36,12 +37,13 @@
       }
     },
     {
+      "hidden" : false,
       "layers" : [
         {
           "fill-specializations" : [
             {
               "value" : {
-                "automatic-gradient" : "srgb:1.00000,0.63922,0.09804,1.00000"
+                "automatic-gradient" : "srgb:0.88627,0.23922,0.16078,1.00000"
               }
             },
             {
