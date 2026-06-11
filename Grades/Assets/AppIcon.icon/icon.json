@@ -9,6 +9,9 @@
     {
       "blur-material-specializations" : [
         {
+          "value" : 0.5
+        },
+        {
           "appearance" : "dark",
           "value" : 0.5
         }
@@ -19,9 +22,9 @@
           "name" : "symbol"
         }
       ],
-      "opacity" : 1,
+      "opacity" : 0.85,
       "position" : {
-        "scale" : 2.8,
+        "scale" : 3.7,
         "translation-in-points" : [
           0,
           0
@@ -39,6 +42,12 @@
       ],
       "shadow-specializations" : [
         {
+          "value" : {
+            "kind" : "neutral",
+            "opacity" : 0.8
+          }
+        },
+        {
           "appearance" : "dark",
           "value" : {
             "kind" : "neutral",
@@ -48,7 +57,7 @@
       ],
       "translucency" : {
         "enabled" : true,
-        "value" : 0.4
+        "value" : 0.5
       }
     },
     {
@@ -72,9 +81,9 @@
       "refractivity-specializations" : [
         {
           "value" : {
-            "depth" : 0.5,
+            "depth" : 0.6,
             "enabled" : true,
-            "strength" : 0.25
+            "strength" : 0.3
           }
         },
         {
@@ -88,7 +97,7 @@
       ],
       "shadow" : {
         "kind" : "neutral",
-        "opacity" : 1
+        "opacity" : 1.6
       },
       "translucency" : {
         "enabled" : false,
