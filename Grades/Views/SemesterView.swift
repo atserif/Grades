@@ -61,21 +61,10 @@ struct SemesterView: View {
 				}
 				
 				Section(footer: Text("Each quarter grade is worth 40%. The final exam is worth 20%.")) {
-					#if os(macOS)
 					CopyableRow(
 						label: "Course Grade",
 						value: courseGrade.description
 					)
-					#else
-					LabeledContent("Course Grade", value: courseGrade.description)
-						.contextMenu {
-							Button("Copy Course Grade", systemImage: "document.on.document") {
-								Copy.copyToClipboard(courseGrade.description)
-							}
-						}
-						.contentTransition(.numericText())
-						.animation(.default, value: courseGrade.description)
-					#endif
 				}
 			}
 			.formStyle(.grouped)

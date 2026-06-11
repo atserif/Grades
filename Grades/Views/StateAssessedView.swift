@@ -62,21 +62,10 @@ struct StateAssessedView: View {
 				}
 				
 				Section(footer: Text("Quarter grades and the state assessment are each worth 20%. Applies to Biology, Biology G/T, American Government, and American Government Honors.")) {
-					#if os(macOS)
 					CopyableRow(
 						label: "Course Grade",
 						value: courseGrade.description
 					)
-					#else
-					LabeledContent("Course Grade", value: courseGrade.description)
-						.contextMenu {
-							Button("Copy Course Grade", systemImage: "document.on.document") {
-								Copy.copyToClipboard(courseGrade.description)
-							}
-						}
-						.contentTransition(.numericText())
-						.animation(.default, value: courseGrade.description)
-					#endif
 				}
 			}
 			.formStyle(.grouped)

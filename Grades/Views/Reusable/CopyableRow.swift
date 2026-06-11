@@ -60,12 +60,14 @@ struct CopyableRow: View {
 			.padding(-7)
 		}
 		#else
-		LabeledContent("Course Grade", value: value)
+		LabeledContent(label, value: value)
 			.contextMenu {
-				Button("Copy Course Grade", systemImage: "document.on.document") {
+				Button("Copy \(label)", systemImage: "document.on.document") {
 					Copy.copyToClipboard(value)
 				}
 			}
+			.contentTransition(.numericText())
+			.animation(.default, value: value)
 		#endif
 	}
 }

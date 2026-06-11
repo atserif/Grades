@@ -64,21 +64,10 @@ struct FullYearView: View {
 				}
 				
 				Section(footer: Text("Each quarter grade is worth 20%. The midterm and final exams are worth 10% each.")) {
-					#if os(macOS)
 					CopyableRow(
 						label: "Course Grade",
 						value: courseGrade.description
 					)
-					#else
-					LabeledContent("Course Grade", value: courseGrade.description)
-						.contextMenu {
-							Button("Copy Course Grade", systemImage: "document.on.document") {
-								Copy.copyToClipboard(courseGrade.description)
-							}
-						}
-						.contentTransition(.numericText())
-						.animation(.default, value: courseGrade.description)
-					#endif
 				}
 			}
 			.formStyle(.grouped)
