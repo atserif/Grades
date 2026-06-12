@@ -3,15 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 110;
 	objects = {
 
 /* Begin PBXFileReference section */
-		9D218DBC2FACBC070033271F /* Grades.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grades.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DA260142FDC380400169067 /* Grades.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grades.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		9D218DBE2FACBC070033271F /* Grades */ = {
+		9DA260162FDC380400169067 /* Grades */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Grades;
 			sourceTree = "<group>";
@@ -19,28 +19,26 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9D218DB92FACBC070033271F /* Frameworks */ = {
+		9DA260112FDC380400169067 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9D218DB32FACBC070033271F = {
+		9DA2600B2FDC380400169067 = {
 			isa = PBXGroup;
 			children = (
-				9D218DBE2FACBC070033271F /* Grades */,
-				9D218DBD2FACBC070033271F /* Products */,
+				9DA260162FDC380400169067 /* Grades */,
+				9DA260152FDC380400169067 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		9D218DBD2FACBC070033271F /* Products */ = {
+		9DA260152FDC380400169067 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9D218DBC2FACBC070033271F /* Grades.app */,
+				9DA260142FDC380400169067 /* Grades.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,84 +46,76 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9D218DBB2FACBC070033271F /* Grades */ = {
+		9DA260132FDC380400169067 /* Grades */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9D218DC72FACBC080033271F /* Build configuration list for PBXNativeTarget "Grades" */;
+			buildConfigurationList = 9DA2601F2FDC380500169067 /* Build configuration list for PBXNativeTarget "Grades" */;
 			buildPhases = (
-				9D218DB82FACBC070033271F /* Sources */,
-				9D218DB92FACBC070033271F /* Frameworks */,
-				9D218DBA2FACBC070033271F /* Resources */,
+				9DA260102FDC380400169067 /* Sources */,
+				9DA260112FDC380400169067 /* Frameworks */,
+				9DA260122FDC380400169067 /* Resources */,
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			fileSystemSynchronizedGroups = (
-				9D218DBE2FACBC070033271F /* Grades */,
+				9DA260162FDC380400169067 /* Grades */,
 			);
 			name = Grades;
-			packageProductDependencies = (
-			);
 			productName = Grades;
-			productReference = 9D218DBC2FACBC070033271F /* Grades.app */;
+			productReference = 9DA260142FDC380400169067 /* Grades.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		9D218DB42FACBC070033271F /* Project object */ = {
+		9DA2600C2FDC380400169067 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2640;
-				LastUpgradeCheck = 2650;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
 				TargetAttributes = {
-					9D218DBB2FACBC070033271F = {
-						CreatedOnToolsVersion = 26.4.1;
+					9DA260132FDC380400169067 = {
+						CreatedOnToolsVersion = 27.0;
 					};
 				};
 			};
-			buildConfigurationList = 9D218DB72FACBC070033271F /* Build configuration list for PBXProject "Grades" */;
+			buildConfigurationList = 9DA2600F2FDC380400169067 /* Build configuration list for PBXProject "Grades" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 9D218DB32FACBC070033271F;
+			mainGroup = 9DA2600B2FDC380400169067;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
-			productRefGroup = 9D218DBD2FACBC070033271F /* Products */;
+			preferredProjectObjectVersion = 100;
+			productRefGroup = 9DA260152FDC380400169067 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9D218DBB2FACBC070033271F /* Grades */,
+				9DA260132FDC380400169067 /* Grades */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		9D218DBA2FACBC070033271F /* Resources */ = {
+		9DA260122FDC380400169067 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9D218DB82FACBC070033271F /* Sources */ = {
+		9DA260102FDC380400169067 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		9D218DC52FACBC080033271F /* Debug */ = {
+		9DA2601D2FDC380500169067 /* Debug configuration for PBXProject "Grades" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -159,7 +149,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y47U836934;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -183,14 +172,13 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
-		9D218DC62FACBC080033271F /* Release */ = {
+		9DA2601E2FDC380500169067 /* Release configuration for PBXProject "Grades" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -224,7 +212,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Y47U836934;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -241,20 +228,18 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
-		9D218DC82FACBC080033271F /* Debug */ = {
+		9DA260202FDC380500169067 /* Debug configuration for PBXNativeTarget "Grades" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 871;
-				DEAD_CODE_STRIPPING = YES;
+				CURRENT_PROJECT_VERSION = 892;
 				DEVELOPMENT_TEAM = Y47U836934;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -271,8 +256,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -295,14 +280,13 @@
 			};
 			name = Debug;
 		};
-		9D218DC92FACBC080033271F /* Release */ = {
+		9DA260212FDC380500169067 /* Release configuration for PBXNativeTarget "Grades" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 871;
-				DEAD_CODE_STRIPPING = YES;
+				CURRENT_PROJECT_VERSION = 892;
 				DEVELOPMENT_TEAM = Y47U836934;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -319,8 +303,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -346,25 +330,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9D218DB72FACBC070033271F /* Build configuration list for PBXProject "Grades" */ = {
+		9DA2600F2FDC380400169067 /* Build configuration list for PBXProject "Grades" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9D218DC52FACBC080033271F /* Debug */,
-				9D218DC62FACBC080033271F /* Release */,
+				9DA2601D2FDC380500169067 /* Debug configuration for PBXProject "Grades" */,
+				9DA2601E2FDC380500169067 /* Release configuration for PBXProject "Grades" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9D218DC72FACBC080033271F /* Build configuration list for PBXNativeTarget "Grades" */ = {
+		9DA2601F2FDC380500169067 /* Build configuration list for PBXNativeTarget "Grades" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9D218DC82FACBC080033271F /* Debug */,
-				9D218DC92FACBC080033271F /* Release */,
+				9DA260202FDC380500169067 /* Debug configuration for PBXNativeTarget "Grades" */,
+				9DA260212FDC380500169067 /* Release configuration for PBXNativeTarget "Grades" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 9D218DB42FACBC070033271F /* Project object */;
+	rootObject = 9DA2600C2FDC380400169067 /* Project object */;
+	validationLevel = 1;
 }
