@@ -41,6 +41,7 @@ struct GPAView: View {
 	var body: some View {
 		NavigationStack {
 			Form {
+				// TODO: Move compact and regular layouts to their own views
 				if horizontalSizeClass == .compact {
 					Section(header: Text("Course Grades & Types")) {
 						ForEach(courses.indices, id: \.self) { index in
