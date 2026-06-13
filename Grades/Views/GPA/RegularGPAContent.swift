@@ -1,0 +1,54 @@
+//
+//  RegularGPAContent.swift
+//  Grades
+//
+//  Created by Aram Soneson on 6/12/26.
+//
+
+import SwiftUI
+
+struct RegularGPAContent: View {
+	@Binding var courses: [Course]
+	
+	let unweightedGPA: Double
+	let weightedGPA: Double
+	
+    var body: some View {
+		Section(header: Text("Course Grades & Types")) {
+			ForEach(courses.indices, id: \.self) { index in
+				HStack {
+					Text("Course \(index + 1)")
+						.fontWeight(.semibold)
+					
+					Spacer()
+				
+					Picker("Grade", selection: $courses[index].grade) {
+						ForEach(Grades.allCases) { grade in
+							Text(grade.description).tag(grade)
+						}
+					}
+					
+					Picker("Type", selection: $courses[index].level) {
+						ForEach(Levels.allCases) { level in
+							Text(level.description).tag(level)
+						}
+					}
+				}
+			}
+		}
+		
+		Section(footer: Text("Regular courses are worth 4.0 points, Honors courses are worth 4.5 points, and G/T & AP courses are worth 5.0 points.")) {
+			HStack(spacing: 16) {
+				CopyableRow(
+					label: "Unweighted GPA",
+					value: String(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
+				)
+				
+				CopyableRow(
+					label: "Weighted GPA",
+					value: String(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
+				)
+			}
+		}
+    }
+}
