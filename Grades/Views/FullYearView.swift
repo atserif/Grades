@@ -80,7 +80,7 @@ struct FullYearView: View {
 					}
 				}
 			}
-			.scrollEdgeEffectStyle(.soft, for: .all)
+			.scrollEdgeEffectStyle(.soft, for: .top)
 		}
 	}
 }
