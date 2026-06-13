@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
-	@State private var selectedTab: TabSelection = .fullYear
+	@State private var tabSelection: TabSelection = .fullYear
 	
 	private var stateAssessedTabDisplayName: String {
 		if horizontalSizeClass == .compact {
@@ -21,7 +21,7 @@ struct ContentView: View {
 	}
 	
 	var body: some View {
-		TabView(selection: $selectedTab) {
+		TabView(selection: $tabSelection) {
 			Tab("Full Year", systemImage: "calendar", value: .fullYear) {
 				FullYearView()
 			}
