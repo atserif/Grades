@@ -23,13 +23,13 @@ struct RegularGPAContent: View {
 					Spacer()
 				
 					Picker("Grade", selection: $courses[index].grade) {
-						ForEach(Grades.allCases) { grade in
+						ForEach(Grade.allCases) { grade in
 							Text(grade.description).tag(grade)
 						}
 					}
 					
 					Picker("Type", selection: $courses[index].level) {
-						ForEach(Levels.allCases) { level in
+						ForEach(Level.allCases) { level in
 							Text(level.description).tag(level)
 						}
 					}

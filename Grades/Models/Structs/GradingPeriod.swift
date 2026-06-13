@@ -7,5 +7,5 @@
 
 struct GradingPeriod {
 	let name: String
-	var grade: Grades
+	var grade: Grade
 }

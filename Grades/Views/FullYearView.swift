@@ -19,8 +19,8 @@ struct FullYearView: View {
 		GradingPeriod(name: "Final", grade: .A)
 	]
 	
-	private var courseGrade: Grades {
-		var letterGrade: Grades
+	private var courseGrade: Grade {
+		var letterGrade: Grade
 		
 		let quarterTotal: Double = gradingPeriods.filter { $0.name.hasPrefix("Quarter ") }.map { $0.grade.rawValue }.reduce(0, +) * 2
 		let examTotal: Double = gradingPeriods.filter { !$0.name.hasPrefix("Quarter ") }.map { $0.grade.rawValue }.reduce(0, +)
@@ -56,7 +56,7 @@ struct FullYearView: View {
 				Section(header: Text("Quarter & Exam Grades")) {
 					ForEach(gradingPeriods.indices, id: \.self) { index in
 						Picker(gradingPeriods[index].name, selection: $gradingPeriods[index].grade) {
-							ForEach(Grades.allCases) { grade in
+							ForEach(Grade.allCases) { grade in
 								Text(grade.description).tag(grade)
 							}
 						}

@@ -1,11 +1,11 @@
 //
-//  Grades.swift
+//  Grade.swift
 //  Grades
 //
 //  Created by Aram Soneson on 6/1/26.
 //
 
-enum Grades: Double, CaseIterable, Identifiable, CustomStringConvertible {
+enum Grade: Double, CaseIterable, Identifiable, CustomStringConvertible {
 	case A = 4
 	case B = 3
 	case C = 2

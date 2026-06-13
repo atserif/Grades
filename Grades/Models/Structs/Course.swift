@@ -6,6 +6,6 @@
 //
 
 struct Course {
-	var grade: Grades
-	var level: Levels
+	var grade: Grade
+	var level: Level
 }

@@ -5,7 +5,7 @@
 //  Created by Aram Soneson on 6/1/26.
 //
 
-enum Levels: Double, CaseIterable, Identifiable, CustomStringConvertible {
+enum Level: Double, CaseIterable, Identifiable, CustomStringConvertible {
 	case regular = 0
 	case honors = 0.5
 	case gtap = 1

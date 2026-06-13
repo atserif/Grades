@@ -18,8 +18,8 @@ struct StateAssessedView: View {
 		GradingPeriod(name: "State Assessment", grade: .A)
 	]
 		
-	private var courseGrade: Grades {
-		var letterGrade: Grades
+	private var courseGrade: Grade {
+		var letterGrade: Grade
 		
 		let total: Double = gradingPeriods.map { $0.grade.rawValue }.reduce(0, +)
 		let average: Double = total / 5
@@ -54,7 +54,7 @@ struct StateAssessedView: View {
 				Section(header: Text("Quarter & Assessment Grades")) {
 					ForEach(gradingPeriods.indices, id: \.self) { index in
 						Picker(gradingPeriods[index].name, selection: $gradingPeriods[index].grade) {
-							ForEach(Grades.allCases) { grade in
+							ForEach(Grade.allCases) { grade in
 								Text(grade.description).tag(grade)
 							}
 						}
