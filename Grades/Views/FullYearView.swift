@@ -80,10 +80,11 @@ struct FullYearView: View {
 					}
 				}
 			}
+			.scrollEdgeEffectStyle(.soft, for: .all)
 		}
 	}
 }
 
 #Preview {
-	FullYearView()
+	ContentView()
 }

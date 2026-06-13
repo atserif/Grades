@@ -77,10 +77,11 @@ struct SemesterView: View {
 					}
 				}
 			}
+			.scrollEdgeEffectStyle(.soft, for: .all)
 		}
 	}
 }
 
 #Preview {
-	SemesterView()
+	ContentView()
 }
