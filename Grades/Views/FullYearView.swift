@@ -75,12 +75,11 @@ struct FullYearView: View {
 			.toolbarTitleDisplayMode(.inlineLarge)
 			.toolbar {
 				ToolbarItem(placement: .primaryAction) {
-					Button("Reset", systemImage: "arrow.counterclockwise") {
+					Button("Reset", systemImage: "arrow.clockwise") {
 						gradingPeriods.indices.forEach { gradingPeriods[$0].grade = .A }
 					}
 				}
 			}
-			.scrollEdgeEffectStyle(.soft, for: .top)
 		}
 	}
 }
