@@ -11,7 +11,7 @@ struct ContentView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
 	@State private var tabSelection: TabSelection = .fullYear
-	@State private var layout: Layout = .default
+	@State private var layout: Layout = .reachable
 	
 	@State private var reachablePickerPresented: Bool = false
 	
@@ -61,7 +61,7 @@ struct ContentView: View {
 				}
 				.toolbar {
 					ToolbarItem(placement: .bottomBar) {
-						Button("Settings", systemImage: "gearshape") {
+						Button("Settings", systemImage: "switch.2") {
 							
 						}
 					}
@@ -70,7 +70,7 @@ struct ContentView: View {
 					
 					ToolbarItem(placement: .bottomBar) {
 						Button {
-							reachablePickerPresented.toggle()
+							reachablePickerPresented = true
 						} label: {
 							HStack {
 								Image(systemName: tabSelection.description)
@@ -96,7 +96,7 @@ struct ContentView: View {
 					
 				}
 				.sheet(isPresented: $reachablePickerPresented) {
-					ReachablePickerView()
+					ReachablePickerView(tabSelection: $tabSelection)
 						.presentationDetents([.fraction(0.4)])
 						.navigationTransition(.zoom(sourceID: "reachablePicker", in: transition))
 						

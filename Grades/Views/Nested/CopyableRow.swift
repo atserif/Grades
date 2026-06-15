@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct CopyableRow: View {
-	let label: String
-	let value: String
 	@State private var hovered: Bool = false
 	@State private var clicked: Bool = false
+	
+	let label: String
+	let value: String
 	
 	var body: some View {
 		#if os(macOS)
