@@ -13,94 +13,67 @@ struct ContentView: View {
 	@State private var tabSelection: TabSelection = .fullYear
 	@State private var layout: Layout = .reachable
 	
-	@State private var reachablePickerPresented: Bool = false
-	
-	@Namespace private var transition
-	
-	private var stateAssessedTabDisplayName: String {
-		if horizontalSizeClass == .compact {
-			"State"
-		} else {
-			"State-Assessed"
-		}
-	}
-	
 	var body: some View {
 		switch layout {
 		case .default:
 			TabView(selection: $tabSelection) {
-				Tab("Full Year", systemImage: "calendar", value: .fullYear) {
-					FullYearView()
-				}
-				
-				Tab("Semester", systemImage: "circle.lefthalf.striped.horizontal", value: .semester) {
-					SemesterView()
-				}
-				
-				Tab(stateAssessedTabDisplayName, systemImage: "mappin.and.ellipse", value: .stateAssessed) {
-					StateAssessedView()
-				}
-				
-				Tab("GPA", systemImage: "rosette", value: .gpa) {
-					GPAView()
+				ForEach(TabSelection.allCases) { tab in
+					Tab(tab.rawValue, systemImage: tab.symbol, value: tab) {
+						AnyView(tab.view)
+					}
 				}
 			}
 		case .reachable:
-			NavigationStack {
-				ZStack {
-					switch tabSelection {
-					case .fullYear:
-						FullYearView()
-					case .semester:
-						SemesterView()
-					case .stateAssessed:
-						StateAssessedView()
-					case .gpa:
-						GPAView()
+			ScrollView(.horizontal) {
+				LazyHStack(spacing: 40) {
+					ForEach(TabSelection.allCases, id: \.self) { tab in
+						AnyView(tab.view)
+							.clipShape(ConcentricRectangle(corners: .concentric, isUniform: true))
+							.ignoresSafeArea()
+							.containerRelativeFrame([.horizontal, .vertical])
 					}
 				}
-				.toolbar {
-					ToolbarItem(placement: .bottomBar) {
-						Button("Settings", systemImage: "switch.2") {
-							
-						}
-					}
-					
-					ToolbarSpacer(.flexible, placement: .bottomBar)
-					
-					ToolbarItem(placement: .bottomBar) {
-						Button {
-							reachablePickerPresented = true
-						} label: {
-							HStack {
-								Image(systemName: tabSelection.description)
-								
-								Text(tabSelection.rawValue)
-								
-								Image(systemName: "chevron.up.chevron.down")
-									.foregroundStyle(.tertiary)
-									.font(.system(size: 10, weight: .semibold))
+				.scrollTargetLayout()
+			}
+			.scrollTargetBehavior(.viewAligned)
+			.scrollDisabled(true)
+			.scrollIndicators(.hidden)
+			.safeAreaBar(edge: .bottom, alignment: .center) {
+				GlassEffectContainer {
+					HStack {
+						Menu("More", systemImage: "ellipsis") {
+							Picker("Layout", selection: $layout) {
+								ForEach(Layout.allCases, id: \.self) { layout in
+									Text(layout.rawValue)
+								}
 							}
-							.padding(.horizontal, 8)
 						}
-					}
-					.matchedTransitionSource(id: "reachablePicker", in: transition)
-					
-					ToolbarSpacer(.flexible, placement: .bottomBar)
-					
-					ToolbarItem(placement: .bottomBar) {
-						Button("Reset", systemImage: "arrow.clockwise") {
+						.buttonStyle(.plain)
+						.buttonBorderShape(.circle)
+						.frame(width: 48, height: 48)
+						.labelStyle(.iconOnly)
+						.font(.system(size: 22))
+						.glassEffect(.regular.interactive())
+						
+						Spacer()
+						
+						ReachablePickerView()
+
+						Spacer()
+						
+						Button("Reset", systemImage: "arrow.clockwise", role: .close) {
 							
 						}
+						.buttonStyle(.plain)
+						.buttonBorderShape(.circle)
+						.frame(width: 48, height: 48)
+						.labelStyle(.iconOnly)
+						.font(.system(size: 22))
+						.glassEffect(.regular.interactive())
 					}
-					
 				}
-				.sheet(isPresented: $reachablePickerPresented) {
-					ReachablePickerView(tabSelection: $tabSelection)
-						.presentationDetents([.fraction(0.4)])
-						.navigationTransition(.zoom(sourceID: "reachablePicker", in: transition))
-						
-				}
+				.safeAreaPadding(.horizontal, 28)
+				.padding(.bottom, -6)
 			}
 		}
 	}
@@ -109,3 +82,4 @@ struct ContentView: View {
 #Preview {
 	ContentView()
 }
+
