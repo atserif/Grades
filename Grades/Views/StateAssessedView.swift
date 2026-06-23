@@ -42,7 +42,7 @@ struct StateAssessedView: View {
 	
 	private var navigationTitle: String {
 		if horizontalSizeClass == .compact {
-			"State-Assessed"
+			"State"
 		} else {
 			"State-Assessed Courses"
 		}
@@ -73,11 +73,12 @@ struct StateAssessedView: View {
 			.toolbarTitleDisplayMode(.inlineLarge)
 			.toolbar {
 				ToolbarItem(placement: .primaryAction) {
-					Button("Reset", systemImage: "arrow.clockwise") {
+					Button("Reset", systemImage: "arrow.counterclockwise") {
 						gradingPeriods.indices.forEach { gradingPeriods[$0].grade = .A }
 					}
 				}
 			}
+			.scrollEdgeEffectStyle(.soft, for: .top)
 		}
 	}
 }

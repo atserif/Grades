@@ -52,12 +52,13 @@ struct GPAView: View {
 			.toolbarTitleDisplayMode(.inlineLarge)
 			.toolbar {
 				ToolbarItem(placement: .primaryAction) {
-					Button("Reset", systemImage: "arrow.clockwise") {
+					Button("Reset", systemImage: "arrow.counterclockwise") {
 						courses.indices.forEach( { courses[$0].grade = .A } )
 						courses.indices.forEach( { courses[$0].level = .regular } )
 					}
 				}
 			}
+			.scrollEdgeEffectStyle(.soft, for: .top)
 		}
 	}
 }
