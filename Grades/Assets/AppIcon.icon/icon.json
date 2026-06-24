@@ -2,7 +2,7 @@
   "fill-specializations" : [
     {
       "value" : {
-        "automatic-gradient" : "srgb:0.88627,0.23922,0.16078,1.00000"
+        "automatic-gradient" : "srgb:0.18039,0.29020,0.45098,1.00000"
       }
     },
     {
@@ -20,7 +20,7 @@
             {
               "appearance" : "dark",
               "value" : {
-                "automatic-gradient" : "srgb:0.88627,0.23922,0.16078,1.00000"
+                "automatic-gradient" : "srgb:0.18039,0.34902,0.60000,1.00000"
               }
             },
             {
@@ -72,7 +72,7 @@
           "fill-specializations" : [
             {
               "value" : {
-                "automatic-gradient" : "srgb:0.88627,0.23922,0.16078,1.00000"
+                "automatic-gradient" : "srgb:0.18039,0.29020,0.45098,1.00000"
               }
             },
             {
@@ -117,8 +117,8 @@
               "appearance" : "dark",
               "value" : {
                 "linear-gradient" : [
-                  "display-p3:0.90894,0.33126,0.23918,1.00000",
-                  "srgb:0.88627,0.23922,0.16078,1.00000"
+                  "display-p3:0.26275,0.40000,0.65882,1.00000",
+                  "srgb:0.18039,0.34902,0.60000,1.00000"
                 ],
                 "orientation" : {
                   "start" : {
@@ -156,8 +156,8 @@
               "appearance" : "dark",
               "value" : {
                 "linear-gradient" : [
-                  "display-p3:0.90894,0.33126,0.23918,1.00000",
-                  "srgb:0.88627,0.23922,0.16078,1.00000"
+                  "display-p3:0.26275,0.40000,0.65882,1.00000",
+                  "srgb:0.18039,0.34902,0.60000,1.00000"
                 ],
                 "orientation" : {
                   "start" : {
@@ -195,8 +195,8 @@
               "appearance" : "dark",
               "value" : {
                 "linear-gradient" : [
-                  "display-p3:0.90894,0.33126,0.23918,1.00000",
-                  "srgb:0.88627,0.23922,0.16078,1.00000"
+                  "display-p3:0.26275,0.40000,0.65882,1.00000",
+                  "srgb:0.18039,0.34902,0.60000,1.00000"
                 ],
                 "orientation" : {
                   "start" : {
