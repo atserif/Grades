@@ -16,21 +16,25 @@ struct RegularGPAContent: View {
     var body: some View {
 		Section(header: Text("Course Grades & Types")) {
 			ForEach(courses.indices, id: \.self) { index in
-				HStack {
-					Text("Course \(index + 1)")
-						.fontWeight(.semibold)
-					
-					Spacer()
-				
-					Picker("Grade", selection: $courses[index].grade) {
-						ForEach(Grade.allCases) { grade in
-							Text(grade.description).tag(grade)
-						}
+				HStack(spacing: 16) {
+					HStack {
+						Text("Course \(index + 1)")
+							.fontWeight(.semibold)
+						
+						Spacer()
 					}
 					
-					Picker("Type", selection: $courses[index].level) {
-						ForEach(Level.allCases) { level in
-							Text(level.description).tag(level)
+					HStack(spacing: 16) {
+						Picker("Grade", selection: $courses[index].grade) {
+							ForEach(Grade.allCases) { grade in
+								Text(grade.description).tag(grade)
+							}
+						}
+						
+						Picker("Type", selection: $courses[index].level) {
+							ForEach(Level.allCases) { level in
+								Text(level.description).tag(level)
+							}
 						}
 					}
 				}
