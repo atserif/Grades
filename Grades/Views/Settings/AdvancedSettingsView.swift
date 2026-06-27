@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct AdvancedSettingsView: View {
-    var body: some View {
+	var body: some View {
 		Form {
 			Text("Advanced")
 		}
 		.formStyle(.grouped)
-    }
+	}
 }

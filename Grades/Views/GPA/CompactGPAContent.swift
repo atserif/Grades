@@ -13,7 +13,7 @@ struct CompactGPAContent: View {
 	let unweightedGPA: Double
 	let weightedGPA: Double
 	
-    var body: some View {
+	var body: some View {
 		Section(header: Text("Course Grades & Types")) {
 			ForEach(courses.indices, id: \.self) { index in
 				VStack(alignment: .leading) {
@@ -57,5 +57,5 @@ struct CompactGPAContent: View {
 				}
 			}
 		}
-    }
+	}
 }

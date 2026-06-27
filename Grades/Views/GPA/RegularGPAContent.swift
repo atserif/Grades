@@ -13,7 +13,7 @@ struct RegularGPAContent: View {
 	let unweightedGPA: Double
 	let weightedGPA: Double
 	
-    var body: some View {
+	var body: some View {
 		Section(header: Text("Course Grades & Types")) {
 			ForEach(courses.indices, id: \.self) { index in
 				HStack(spacing: 16) {
@@ -54,5 +54,5 @@ struct RegularGPAContent: View {
 				)
 			}
 		}
-    }
+	}
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsView: View {
 	@State private var tabSelection: SettingsTabSelection = .general
 	
-    var body: some View {
+	var body: some View {
 		TabView(selection: $tabSelection.animation()) {
 			Tab("General", systemImage: "gearshape", value: .general) {
 				GeneralSettingsView()
@@ -20,9 +20,9 @@ struct SettingsView: View {
 				AdvancedSettingsView()
 			}
 		}
-    }
+	}
 }
 
 #Preview {
-    SettingsView()
+	SettingsView()
 }
