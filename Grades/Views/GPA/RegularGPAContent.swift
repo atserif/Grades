@@ -42,6 +42,7 @@ struct RegularGPAContent: View {
 		}
 		
 		Section(footer: Text("Regular courses are worth 4.0 points, Honors courses are worth 4.5 points, and G/T & AP courses are worth 5.0 points.")) {
+			#if os(macOS)
 			HStack(spacing: 16) {
 				CopyableRow(
 					label: "Unweighted GPA",
@@ -53,6 +54,21 @@ struct RegularGPAContent: View {
 					value: String(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 				)
 			}
+			#else
+			HStack(spacing: 16) {
+				LabeledContent("Unweighted GPA", value: String(unweightedGPA.formatted(.number.precision(.fractionLength(1...3)))))
+				
+				LabeledContent("Weighted GPA", value: String(weightedGPA.formatted(.number.precision(.fractionLength(1...3)))))
+			}
+			.contextMenu {
+				Button("Copy Unweighted", systemImage: "document.on.document") {
+					Copy.copyToClipboard(String(unweightedGPA.formatted(.number.precision(.fractionLength(1...3)))))
+				}
+				Button("Copy Weighted", systemImage: "document.on.document") {
+					Copy.copyToClipboard(String(weightedGPA.formatted(.number.precision(.fractionLength(1...3)))))
+				}
+			}
+			#endif
 		}
 	}
 }
