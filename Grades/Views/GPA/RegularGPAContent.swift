@@ -30,12 +30,14 @@ struct RegularGPAContent: View {
 								Text(grade.description).tag(grade)
 							}
 						}
+						.pickerStyle(.menu)
 						
 						Picker("Type", selection: $courses[index].level) {
 							ForEach(Level.allCases) { level in
 								Text(level.description).tag(level)
 							}
 						}
+						.pickerStyle(.menu)
 					}
 				}
 			}
@@ -57,8 +59,12 @@ struct RegularGPAContent: View {
 			#else
 			HStack(spacing: 16) {
 				LabeledContent("Unweighted GPA", value: String(unweightedGPA.formatted(.number.precision(.fractionLength(1...3)))))
+					.contentTransition(.numericText())
+					.animation(.default, value: unweightedGPA)
 				
 				LabeledContent("Weighted GPA", value: String(weightedGPA.formatted(.number.precision(.fractionLength(1...3)))))
+					.contentTransition(.numericText())
+					.animation(.default, value: weightedGPA)
 			}
 			.contextMenu {
 				Button("Copy Unweighted", systemImage: "document.on.document") {

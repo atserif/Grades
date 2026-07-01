@@ -60,6 +60,7 @@ struct FullYearView: View {
 								Text(grade.description).tag(grade)
 							}
 						}
+						.pickerStyle(.menu)
 					}
 				}
 				

@@ -26,12 +26,14 @@ struct CompactGPAContent: View {
 								Text(grade.description).tag(grade)
 							}
 						}
+						.pickerStyle(.menu)
 						
 						Picker("Type", selection: $courses[index].level) {
 							ForEach(Level.allCases) { level in
 								Text(level.description).tag(level)
 							}
 						}
+						.pickerStyle(.menu)
 					}
 				}
 			}

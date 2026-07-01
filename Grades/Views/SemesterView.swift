@@ -57,6 +57,7 @@ struct SemesterView: View {
 								Text(grade.description).tag(grade)
 							}
 						}
+						.pickerStyle(.menu)
 					}
 				}
 				
