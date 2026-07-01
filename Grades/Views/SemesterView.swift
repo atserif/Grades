@@ -77,7 +77,6 @@ struct SemesterView: View {
 					}
 				}
 			}
-			.scrollEdgeEffectStyle(.soft, for: .all)
 		}
 	}
 }

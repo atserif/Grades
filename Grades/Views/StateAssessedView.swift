@@ -78,7 +78,6 @@ struct StateAssessedView: View {
 					}
 				}
 			}
-			.scrollEdgeEffectStyle(.soft, for: .all)
 		}
 	}
 }

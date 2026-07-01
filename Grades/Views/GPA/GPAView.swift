@@ -58,7 +58,6 @@ struct GPAView: View {
 					}
 				}
 			}
-			.scrollEdgeEffectStyle(.soft, for: .all)
 		}
 	}
 }
