@@ -23,12 +23,12 @@ struct GradesApp: App {
 			CommandGroup(replacing: .pasteboard) { }
 			CommandGroup(replacing: .systemServices) { }
 		}
-		Settings {
-			SettingsView()
-				.frame(maxWidth: 400)
-				.fixedSize(horizontal: false, vertical: true)
-				.windowResizeAnchor(.top)
-		}
+//		Settings {
+//			SettingsView()
+//				.frame(maxWidth: 400)
+//				.fixedSize(horizontal: false, vertical: true)
+//				.windowResizeAnchor(.top)
+//		}
 		#else
 		WindowGroup {
 			ContentView()
