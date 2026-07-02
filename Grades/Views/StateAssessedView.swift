@@ -60,6 +60,7 @@ struct StateAssessedView: View {
 							}
 						}
 						.pickerStyle(.menu)
+						.tint(.secondary)
 					}
 				}
 				

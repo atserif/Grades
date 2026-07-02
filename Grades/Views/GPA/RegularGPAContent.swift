@@ -31,6 +31,7 @@ struct RegularGPAContent: View {
 							}
 						}
 						.pickerStyle(.menu)
+						.tint(.secondary)
 						
 						Picker("Type", selection: $courses[index].level) {
 							ForEach(Level.allCases) { level in
@@ -38,6 +39,7 @@ struct RegularGPAContent: View {
 							}
 						}
 						.pickerStyle(.menu)
+						.tint(.secondary)
 					}
 				}
 			}

@@ -62,6 +62,7 @@ struct FullYearView: View {
 							}
 						}
 						.pickerStyle(.menu)
+						.tint(.secondary)
 					}
 				}
 				

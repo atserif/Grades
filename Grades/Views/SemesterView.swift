@@ -59,6 +59,7 @@ struct SemesterView: View {
 							}
 						}
 						.pickerStyle(.menu)
+						.tint(.secondary)
 					}
 				}
 				
