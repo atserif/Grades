@@ -17,8 +17,8 @@ struct CompactGPAContent: View {
 		Section(header: Text("Course Grades & Types")) {
 			ForEach(courses.indices, id: \.self) { index in
 				VStack(alignment: .leading) {
-					TextField("Course name", text: $courses[index].name, prompt: Text("Course name"))
-						.bold()
+					TextField("Course Name", text: $courses[index].name, prompt: Text("Course Name"))
+						.fontWeight(.semibold)
 						.submitLabel(.done)
 						.autocorrectionDisabled()
 						.labelsHidden()

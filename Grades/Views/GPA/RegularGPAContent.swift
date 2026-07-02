@@ -17,15 +17,11 @@ struct RegularGPAContent: View {
 		Section(header: Text("Course Grades & Types")) {
 			ForEach(courses.indices, id: \.self) { index in
 				HStack(spacing: 16) {
-					HStack {
-						TextField("Course name", text: $courses[index].name, prompt: Text("Course name"))
-							.bold()
-							.submitLabel(.done)
-							.autocorrectionDisabled()
-							.labelsHidden()
-						
-						Spacer()
-					}
+					TextField("Course Name", text: $courses[index].name, prompt: Text("Course Name"))
+						.fontWeight(.semibold)
+						.submitLabel(.done)
+						.autocorrectionDisabled()
+						.labelsHidden()
 					
 					HStack(spacing: 16) {
 						Picker("Grade", selection: $courses[index].grade) {

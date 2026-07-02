@@ -60,6 +60,7 @@ struct GPAView: View {
 					}
 				}
 			}
+			.scrollDismissesKeyboard(.interactively)
 		}
 	}
 }
