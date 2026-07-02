@@ -43,10 +43,11 @@ struct FullYearView: View {
 	}
 	
 	private var navigationTitle: String {
-		if horizontalSizeClass == .compact {
-			"Full Year"
-		} else {
+		switch horizontalSizeClass {
+		case .regular:
 			"Full Year Courses"
+		case .compact, .none, .some:
+			"Full Year"
 		}
 	}
 	

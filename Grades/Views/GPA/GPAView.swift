@@ -31,10 +31,11 @@ struct GPAView: View {
 	}
 	
 	private var navigationTitle: String {
-		if horizontalSizeClass == .compact {
-			"GPA"
-		} else {
+		switch horizontalSizeClass {
+		case .regular:
 			"Grade Point Average"
+		case .compact, .none, .some:
+			"GPA"
 		}
 	}
 	

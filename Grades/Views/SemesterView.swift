@@ -40,10 +40,11 @@ struct SemesterView: View {
 	}
 	
 	private var navigationTitle: String {
-		if horizontalSizeClass == .compact {
-			"Semester"
-		} else {
+		switch horizontalSizeClass {
+		case .regular:
 			"Semester Courses"
+		case .compact, .none, .some:
+			"Semester"
 		}
 	}
 	

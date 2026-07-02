@@ -13,10 +13,11 @@ struct ContentView: View {
 	@State private var tabSelection: TabSelection = .fullYear
 	
 	private var stateAssessedTabDisplayName: String {
-		if horizontalSizeClass == .compact {
-			"State"
-		} else {
+		switch horizontalSizeClass {
+		case .regular:
 			"State-Assessed"
+		case .compact, .none, .some:
+			"State"
 		}
 	}
 	

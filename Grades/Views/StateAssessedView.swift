@@ -41,10 +41,11 @@ struct StateAssessedView: View {
 	}
 	
 	private var navigationTitle: String {
-		if horizontalSizeClass == .compact {
-			"State"
-		} else {
+		switch horizontalSizeClass {
+		case .regular:
 			"State-Assessed Courses"
+		case .compact, .none, .some:
+			"State"
 		}
 	}
 	
