@@ -1,8 +1,8 @@
 <div align="center">
 	<picture>
-	  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/atserif/Grades/refs/heads/main/assets/AppIconDefault.png?token=GHSAT0AAAAAAD7HUPMLSKVZAH55PGD2HD6U2R3F6KA">
-	  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/atserif/Grades/refs/heads/main/assets/AppIconDark.png?token=GHSAT0AAAAAAD7HUPMLVCEN72YOZOO2UYJA2R3F6UQ">
-	  <img width=190 height=190 alt="Grades app icon." src="https://raw.githubusercontent.com/atserif/Grades/refs/heads/main/assets/AppIconDefault.png?token=GHSAT0AAAAAAD7HUPMLSKVZAH55PGD2HD6U2R3F6KA">
+	  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/atserif/Grades/refs/heads/main/assets/AppIconDefault.png?token=GHSAT0AAAAAAD7HUPMKET64SB3ZZ5FDXZ3G2SF2BIA">
+	  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/atserif/Grades/refs/heads/main/assets/AppIconDark.png?token=GHSAT0AAAAAAD7HUPMLLPPMBDC2BBLZEI6C2SF2A2Q">
+	  <img width=190 height=190 alt="Grades app icon." src="https://raw.githubusercontent.com/atserif/Grades/refs/heads/main/assets/AppIconDefault.png?token=GHSAT0AAAAAAD7HUPMKET64SB3ZZ5FDXZ3G2SF2BIA">
 	</picture>
 	<h1>Grades</h1>
 	<p>Fully native, performant grade calculator for HCPSS.</p>
