@@ -2,7 +2,7 @@
 	<picture>
 	  <source media="(prefers-color-scheme: light)" srcset="/assets/AppIconDefault.png">
 	  <source media="(prefers-color-scheme: dark)" srcset="/assets/AppIconDark.png">
-	  <img width=190 height=190 alt="Grades app icon." src="/assets/AppIconDefault.png">
+	  <img width=190 height=190 alt="Grades app icon.">
 	</picture>
 	<h1>Grades</h1>
 	<p>Fully native, performant grade calculator for HCPSS.</p>
