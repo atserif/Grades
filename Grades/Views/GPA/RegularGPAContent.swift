@@ -19,7 +19,7 @@ struct RegularGPAContent: View {
 				HStack(spacing: 16) {
 					HStack {
 						Text("Course \(index + 1)")
-							.fontWeight(.semibold)
+							.bold()
 						
 						Spacer()
 					}

@@ -18,7 +18,7 @@ struct CompactGPAContent: View {
 			ForEach(courses.indices, id: \.self) { index in
 				VStack(alignment: .leading) {
 					Text("Course \(index + 1)")
-						.fontWeight(.semibold)
+						.bold()
 					
 					HStack(spacing: 16) {
 						Picker("Grade", selection: $courses[index].grade) {
