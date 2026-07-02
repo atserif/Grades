@@ -42,10 +42,11 @@ struct GPAView: View {
 	var body: some View {
 		NavigationStack {
 			Form {
-				if horizontalSizeClass == .compact {
-					CompactGPAContent(courses: $courses, unweightedGPA: unweightedGPA, weightedGPA: weightedGPA)
-				} else {
+				switch horizontalSizeClass {
+				case .regular:
 					RegularGPAContent(courses: $courses, unweightedGPA: unweightedGPA, weightedGPA: weightedGPA)
+				case .compact, .none, .some:
+					CompactGPAContent(courses: $courses, unweightedGPA: unweightedGPA, weightedGPA: weightedGPA)
 				}
 			}
 			.formStyle(.grouped)
