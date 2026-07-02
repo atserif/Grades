@@ -17,8 +17,11 @@ struct CompactGPAContent: View {
 		Section(header: Text("Course Grades & Types")) {
 			ForEach(courses.indices, id: \.self) { index in
 				VStack(alignment: .leading) {
-					Text("Course \(index + 1)")
+					TextField("Course name", text: $courses[index].name, prompt: Text("Course name"))
 						.bold()
+						.submitLabel(.done)
+						.autocorrectionDisabled()
+						.labelsHidden()
 					
 					HStack(spacing: 16) {
 						Picker("Grade", selection: $courses[index].grade) {

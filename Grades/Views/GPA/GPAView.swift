@@ -11,13 +11,13 @@ struct GPAView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
 	@State private var courses: [Course] = [
-		Course(grade: .A, level: .regular),
-		Course(grade: .A, level: .regular),
-		Course(grade: .A, level: .regular),
-		Course(grade: .A, level: .regular),
-		Course(grade: .A, level: .regular),
-		Course(grade: .A, level: .regular),
-		Course(grade: .A, level: .regular)
+		Course(name: "", grade: .A, level: .regular),
+		Course(name: "", grade: .A, level: .regular),
+		Course(name: "", grade: .A, level: .regular),
+		Course(name: "", grade: .A, level: .regular),
+		Course(name: "", grade: .A, level: .regular),
+		Course(name: "", grade: .A, level: .regular),
+		Course(name: "", grade: .A, level: .regular)
 	]
 	
 	private var unweightedGPA: Double {

@@ -6,6 +6,7 @@
 //
 
 struct Course {
+	var name: String
 	var grade: Grade
 	var level: Level
 }

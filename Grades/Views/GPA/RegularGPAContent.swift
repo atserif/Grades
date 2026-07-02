@@ -18,8 +18,11 @@ struct RegularGPAContent: View {
 			ForEach(courses.indices, id: \.self) { index in
 				HStack(spacing: 16) {
 					HStack {
-						Text("Course \(index + 1)")
+						TextField("Course name", text: $courses[index].name, prompt: Text("Course name"))
 							.bold()
+							.submitLabel(.done)
+							.autocorrectionDisabled()
+							.labelsHidden()
 						
 						Spacer()
 					}
@@ -72,6 +75,7 @@ struct RegularGPAContent: View {
 				Button("Copy Unweighted", systemImage: "document.on.document") {
 					Copy.copyToClipboard(String(unweightedGPA.formatted(.number.precision(.fractionLength(1...3)))))
 				}
+				
 				Button("Copy Weighted", systemImage: "document.on.document") {
 					Copy.copyToClipboard(String(weightedGPA.formatted(.number.precision(.fractionLength(1...3)))))
 				}

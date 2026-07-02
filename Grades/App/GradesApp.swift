@@ -19,10 +19,9 @@ struct GradesApp: App {
 				}
 		}
 		.commands {
-			CommandGroup(replacing: .undoRedo) { }
-			CommandGroup(replacing: .pasteboard) { }
 			CommandGroup(replacing: .systemServices) { }
 		}
+		
 //		Settings {
 //			SettingsView()
 //				.frame(maxWidth: 400)
