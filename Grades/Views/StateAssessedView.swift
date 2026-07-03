@@ -60,7 +60,20 @@ struct StateAssessedView: View {
 							}
 						}
 						.pickerStyle(.menu)
+						#if os(iOS)
 						.tint(.secondary)
+						#endif
+						.swipeActions {
+							Button("Reset", systemImage: "arrow.counterclockwise") {
+								gradingPeriods[index].grade = .A
+							}
+							.labelStyle(.iconOnly)
+						}
+						.contextMenu {
+							Button("Reset", systemImage: "arrow.counterclockwise") {
+								gradingPeriods[index].grade = .A
+							}
+						}
 					}
 				}
 				

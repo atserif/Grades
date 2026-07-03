@@ -62,7 +62,20 @@ struct FullYearView: View {
 							}
 						}
 						.pickerStyle(.menu)
+						#if os(iOS)
 						.tint(.secondary)
+						#endif
+						.swipeActions(edge: .trailing, allowsFullSwipe: true) {
+							Button("Reset", systemImage: "arrow.counterclockwise") {
+								gradingPeriods[index].grade = .A
+							}
+							.labelStyle(.iconOnly)
+						}
+						.contextMenu {
+							Button("Reset", systemImage: "arrow.counterclockwise") {
+								gradingPeriods[index].grade = .A
+							}
+						}
 					}
 				}
 				

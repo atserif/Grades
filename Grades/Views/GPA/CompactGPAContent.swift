@@ -15,30 +15,75 @@ struct CompactGPAContent: View {
 	
 	var body: some View {
 		Section(header: Text("Course Grades & Types")) {
-			ForEach(courses.indices, id: \.self) { index in
+			ForEach($courses) { course in
 				VStack(alignment: .leading) {
-					TextField("Course Name", text: $courses[index].name, prompt: Text("Course Name"))
+					TextField("Course Name", text: course.name, prompt: Text("Course Name"))
 						.fontWeight(.semibold)
 						.submitLabel(.done)
 						.autocorrectionDisabled()
 						.labelsHidden()
+						.writingToolsBehavior(.disabled)
+						.writingToolsAffordanceVisibility(.hidden)
 					
 					HStack(spacing: 16) {
-						Picker("Grade", selection: $courses[index].grade) {
+						Picker("Grade", selection: course.grade) {
 							ForEach(Grade.allCases) { grade in
 								Text(grade.description).tag(grade)
 							}
 						}
 						.pickerStyle(.menu)
+						#if os(iOS)
 						.tint(.secondary)
+						#endif
 						
-						Picker("Type", selection: $courses[index].level) {
+						Picker("Type", selection: course.level) {
 							ForEach(Level.allCases) { level in
 								Text(level.description).tag(level)
 							}
 						}
 						.pickerStyle(.menu)
+						#if os(iOS)
 						.tint(.secondary)
+						#endif
+					}
+				}
+				.swipeActions(edge: .trailing, allowsFullSwipe: true) {
+					Button("Delete", systemImage: "trash", role: .destructive) {
+						withAnimation {
+							courses.removeAll { $0.id == course.id }
+						}
+					}
+					.labelStyle(.iconOnly)
+					
+					Button("Reset", systemImage: "arrow.counterclockwise") {
+						course.name.wrappedValue = ""
+						course.grade.wrappedValue = .A
+						course.level.wrappedValue = .regular
+					}
+					.labelStyle(.iconOnly)
+				}
+				.contextMenu {
+					Button("Duplicate", systemImage: "plus.square.on.square") {
+						withAnimation {
+							if let selectedIndex = courses.firstIndex(where: { $0.id == course.id }) {
+								let duplicatedCourse = Course(name: course.name.wrappedValue, grade: course.grade.wrappedValue, level: course.level.wrappedValue)
+								courses.insert(duplicatedCourse, at: courses.index(after: selectedIndex))
+							}
+						}
+					}
+					
+					Button("Reset", systemImage: "arrow.counterclockwise") {
+						course.name.wrappedValue = ""
+						course.grade.wrappedValue = .A
+						course.level.wrappedValue = .regular
+					}
+					
+					Divider()
+					
+					Button("Delete", systemImage: "trash", role: .destructive) {
+						withAnimation {
+							courses.removeAll { $0.id == course.id }
+						}
 					}
 				}
 			}
@@ -65,4 +110,8 @@ struct CompactGPAContent: View {
 			}
 		}
 	}
+}
+
+#Preview {
+	ContentView()
 }
