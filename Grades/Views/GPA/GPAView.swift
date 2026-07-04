@@ -40,7 +40,7 @@ struct GPAView: View {
 	var body: some View {
 		NavigationStack {
 			if courses.isEmpty {
-				ContentUnavailableView("No Courses", systemImage: "graduationcap.fill", description: Text("Your courses will appear here."))
+				ContentUnavailableView("No Courses", systemImage: "graduationcap", description: Text("Your courses will appear here."))
 					.navigationTitle(navigationTitle)
 					.toolbarTitleDisplayMode(.inlineLarge)
 					#if os(iOS)
@@ -54,7 +54,7 @@ struct GPAView: View {
 									courses.append(newCourse)
 								}
 							}
-							.disabled(courses.count >= 100)
+							.disabled(courses.count >= 50)
 							
 							Button("Reset", systemImage: "arrow.counterclockwise") {
 								withAnimation {

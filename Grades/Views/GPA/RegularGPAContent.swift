@@ -53,14 +53,12 @@ struct RegularGPAContent: View {
 							courses.removeAll { $0.id == course.id }
 						}
 					}
-					.labelStyle(.iconOnly)
 					
 					Button("Reset", systemImage: "arrow.counterclockwise") {
 						course.name.wrappedValue = ""
 						course.grade.wrappedValue = .A
 						course.level.wrappedValue = .regular
 					}
-					.labelStyle(.iconOnly)
 				}
 				.contextMenu {
 					Button("Duplicate", systemImage: "plus.square.on.square") {

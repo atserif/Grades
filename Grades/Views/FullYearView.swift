@@ -69,7 +69,6 @@ struct FullYearView: View {
 							Button("Reset", systemImage: "arrow.counterclockwise") {
 								gradingPeriods[index].grade = .A
 							}
-							.labelStyle(.iconOnly)
 						}
 						.contextMenu {
 							Button("Reset", systemImage: "arrow.counterclockwise") {
