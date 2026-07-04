@@ -10,15 +10,13 @@ import SwiftUI
 struct GPAView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
-	@State private var courses: [Course] = [
-		Course(name: "", grade: .A, level: .regular),
-		Course(name: "", grade: .A, level: .regular),
-		Course(name: "", grade: .A, level: .regular),
-		Course(name: "", grade: .A, level: .regular),
-		Course(name: "", grade: .A, level: .regular),
-		Course(name: "", grade: .A, level: .regular),
-		Course(name: "", grade: .A, level: .regular)
-	]
+	@State private var initialCourses: [Course] = (1...7).map { _ in
+		Course(name: "New Course", grade: .A, level: .regular)
+	}
+	
+	@State private var courses: [Course] = (1...7).map { _ in
+		Course(name: "New Course", grade: .A, level: .regular)
+	}
 	
 	private var unweightedGPA: Double {
 		let total: Double = courses.map { $0.grade.rawValue }.reduce(0, +)
@@ -44,7 +42,6 @@ struct GPAView: View {
 			if courses.isEmpty {
 				ContentUnavailableView("No Courses", systemImage: "graduationcap.fill", description: Text("Your courses will appear here."))
 					.navigationTitle(navigationTitle)
-					.navigationSubtitle(navigationTitle)
 					.toolbarTitleDisplayMode(.inlineLarge)
 					#if os(iOS)
 					.background(Color(.systemGroupedBackground))
@@ -61,17 +58,10 @@ struct GPAView: View {
 							
 							Button("Reset", systemImage: "arrow.counterclockwise") {
 								withAnimation {
-									courses = [
-										Course(name: "", grade: .A, level: .regular),
-										Course(name: "", grade: .A, level: .regular),
-										Course(name: "", grade: .A, level: .regular),
-										Course(name: "", grade: .A, level: .regular),
-										Course(name: "", grade: .A, level: .regular),
-										Course(name: "", grade: .A, level: .regular),
-										Course(name: "", grade: .A, level: .regular)
-									]
+									courses = initialCourses
 								}
 							}
+							.disabled(courses.elementsEqual(initialCourses) { $0.name == $1.name && $0.grade == $1.grade && $0.level == $1.level })
 						}
 					}
 			} else {
@@ -99,17 +89,10 @@ struct GPAView: View {
 						
 						Button("Reset", systemImage: "arrow.counterclockwise") {
 							withAnimation {
-								courses = [
-									Course(name: "", grade: .A, level: .regular),
-									Course(name: "", grade: .A, level: .regular),
-									Course(name: "", grade: .A, level: .regular),
-									Course(name: "", grade: .A, level: .regular),
-									Course(name: "", grade: .A, level: .regular),
-									Course(name: "", grade: .A, level: .regular),
-									Course(name: "", grade: .A, level: .regular)
-								]
+								courses = initialCourses
 							}
 						}
+						.disabled(courses.elementsEqual(initialCourses) { $0.name == $1.name && $0.grade == $1.grade && $0.level == $1.level })
 					}
 				}
 			}
