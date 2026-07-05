@@ -56,7 +56,7 @@ struct GPAView: View {
 							}
 							.disabled(courses.count >= 50)
 							
-							Button("Reset", systemImage: "arrow.counterclockwise") {
+							Button("Reset", systemImage: "arrow.clockwise") {
 								withAnimation {
 									courses = initialCourses
 								}
@@ -87,7 +87,7 @@ struct GPAView: View {
 						}
 						.disabled(courses.count >= 100)
 						
-						Button("Reset", systemImage: "arrow.counterclockwise") {
+						Button("Reset", systemImage: "arrow.clockwise") {
 							withAnimation {
 								courses = initialCourses
 							}

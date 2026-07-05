@@ -63,12 +63,12 @@ struct SemesterView: View {
 						.tint(.secondary)
 						#endif
 						.swipeActions {
-							Button("Reset", systemImage: "arrow.counterclockwise") {
+							Button("Reset", systemImage: "arrow.clockwise") {
 								gradingPeriods[index].grade = .A
 							}
 						}
 						.contextMenu {
-							Button("Reset", systemImage: "arrow.counterclockwise") {
+							Button("Reset", systemImage: "arrow.clockwise") {
 								gradingPeriods[index].grade = .A
 							}
 						}
@@ -87,7 +87,7 @@ struct SemesterView: View {
 			.toolbarTitleDisplayMode(.inlineLarge)
 			.toolbar {
 				ToolbarItem(placement: .primaryAction) {
-					Button("Reset", systemImage: "arrow.counterclockwise") {
+					Button("Reset", systemImage: "arrow.clockwise") {
 						gradingPeriods.indices.forEach { gradingPeriods[$0].grade = .A }
 					}
 				}
