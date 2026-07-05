@@ -9,11 +9,13 @@ import SwiftUI
 
 struct GPAView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
-	
+	@Environment(\.editMode) private var editMode
+
+	@State private var selection: Set<UUID> = []
+	@State private var editState: EditMode = .inactive
 	@State private var initialCourses: [Course] = (1...7).map { _ in
 		Course(name: "New Course", grade: .A, level: .regular)
 	}
-	
 	@State private var courses: [Course] = (1...7).map { _ in
 		Course(name: "New Course", grade: .A, level: .regular)
 	}
@@ -22,12 +24,10 @@ struct GPAView: View {
 		let total: Double = courses.map { $0.grade.rawValue }.reduce(0, +)
 		return total / Double(courses.count)
 	}
-	
 	private var weightedGPA: Double {
 		let total = courses.map { $0.grade.rawValue + $0.level.rawValue }.reduce(0, +)
 		return total / Double(courses.count)
 	}
-	
 	private var navigationTitle: String {
 		switch horizontalSizeClass {
 		case .regular:
@@ -47,25 +47,27 @@ struct GPAView: View {
 					.background(Color(.systemGroupedBackground))
 					#endif
 					.toolbar {
-						ToolbarItemGroup(placement: .primaryAction) {
-							Button("New Course", systemImage: "plus") {
-								withAnimation {
-									let newCourse = Course(name: "", grade: .A, level: .regular)
-									courses.append(newCourse)
+						ToolbarItemGroup(placement: .topBarTrailing) {
+//							Menu("More", systemImage: "ellipsis") {
+								Button("New Course", systemImage: "plus") {
+									withAnimation {
+										let newCourse = Course(name: "New Course", grade: .A, level: .regular)
+										courses.append(newCourse)
+									}
 								}
-							}
-							.disabled(courses.count >= 50)
-							
-							Button("Reset", systemImage: "arrow.clockwise") {
-								withAnimation {
-									courses = initialCourses
+								.disabled(courses.count >= 50)
+								
+								Button("Reset", systemImage: "arrow.clockwise") {
+									withAnimation {
+										courses = initialCourses
+									}
 								}
-							}
-							.disabled(courses.elementsEqual(initialCourses) { $0.name == $1.name && $0.grade == $1.grade && $0.level == $1.level })
+								.disabled(courses.elementsEqual(initialCourses) { $0.name == $1.name && $0.grade == $1.grade && $0.level == $1.level })
+//							}
 						}
 					}
 			} else {
-				Form {
+				List(selection: $selection) {
 					switch horizontalSizeClass {
 					case .regular:
 						RegularGPAContent(courses: $courses, unweightedGPA: unweightedGPA, weightedGPA: weightedGPA)
@@ -77,22 +79,87 @@ struct GPAView: View {
 				.navigationTitle(navigationTitle)
 				.toolbarTitleDisplayMode(.inlineLarge)
 				.scrollDismissesKeyboard(.interactively)
+				.animation(.default, value: editState)
+				.animation(.default, value: selection)
+				.environment(\.editMode, $editState)
+				.toolbarVisibility(editState == .inactive ? .automatic : .hidden, for: .tabBar)
+				.toolbarVisibility(editState == .inactive ? .hidden : .automatic, for: .bottomBar)
 				.toolbar {
-					ToolbarItemGroup(placement: .primaryAction) {
-						Button("New Course", systemImage: "plus") {
-							withAnimation {
-								let newCourse = Course(name: "", grade: .A, level: .regular)
-								courses.append(newCourse)
+					if editState == .inactive {
+						ToolbarItem(placement: .topBarTrailing) {
+							Button("Select") {
+								withAnimation {
+									editState = .active
+								}
 							}
 						}
-						.disabled(courses.count >= 100)
 						
-						Button("Reset", systemImage: "arrow.clockwise") {
-							withAnimation {
-								courses = initialCourses
+						ToolbarSpacer(.fixed, placement: .topBarTrailing)
+						
+						ToolbarItemGroup(placement: .topBarTrailing) {
+//							Menu("More", systemImage: "ellipsis") {
+								Button("New Course", systemImage: "plus") {
+									withAnimation {
+										let newCourse = Course(name: "New Course", grade: .A, level: .regular)
+										courses.append(newCourse)
+									}
+								}
+								.disabled(courses.count >= 50)
+								
+								Button("Reset", systemImage: "arrow.clockwise") {
+									withAnimation {
+										courses = initialCourses
+									}
+								}
+								.disabled(courses.elementsEqual(initialCourses) { $0.name == $1.name && $0.grade == $1.grade && $0.level == $1.level })
+//							}
+						}
+					} else {
+						if selection.count == courses.count {
+							ToolbarItem(placement: .topBarTrailing) {
+								Button("Deselect All") {
+									withAnimation {
+										selection.removeAll()
+									}
+								}
+							}
+						} else {
+							ToolbarItem(placement: .topBarTrailing) {
+								Button("Select All") {
+									withAnimation {
+										selection = Set(courses.map { $0.id })
+									}
+								}
 							}
 						}
-						.disabled(courses.elementsEqual(initialCourses) { $0.name == $1.name && $0.grade == $1.grade && $0.level == $1.level })
+						
+						ToolbarItem(placement: .confirmationAction) {
+							Button("Confirm", systemImage: "checkmark", role: .confirm) {
+								withAnimation {
+									editState = .inactive
+									selection.removeAll()
+								}
+							}
+						}
+					}
+					
+					ToolbarSpacer(.flexible, placement: .bottomBar)
+					
+					ToolbarItem(placement: .bottomBar) {
+						Button("Delete", systemImage: "trash", role: .destructive) {
+							withAnimation {
+								courses.removeAll { course in
+									selection.contains(course.id)
+								}
+								
+								selection.removeAll()
+								
+								if courses.isEmpty {
+									editState = .inactive
+								}
+							}
+						}
+						.disabled(selection.count <= 0)
 					}
 				}
 			}
