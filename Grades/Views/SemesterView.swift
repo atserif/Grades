@@ -53,7 +53,7 @@ struct SemesterView: View {
 				Section(header: Text("Quarter & Exam Grades")) {
 					ForEach(gradingPeriods.indices, id: \.self) { index in
 						Picker(gradingPeriods[index].name, selection: $gradingPeriods[index].grade) {
-							ForEach(Grade.allCases) { grade in
+							ForEach(Grade.allCases, id: \.self) { grade in
 								Text(grade.description).tag(grade)
 							}
 						}

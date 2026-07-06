@@ -55,7 +55,7 @@ struct CompactGPAContent: View {
 					}
 					
 					Button("Reset", systemImage: "arrow.clockwise") {
-						course.name.wrappedValue = ""
+						course.name.wrappedValue = "New Course"
 						course.grade.wrappedValue = .A
 						course.level.wrappedValue = .regular
 					}
@@ -71,7 +71,7 @@ struct CompactGPAContent: View {
 					}
 					
 					Button("Reset", systemImage: "arrow.clockwise") {
-						course.name.wrappedValue = ""
+						course.name.wrappedValue = "New Course"
 						course.grade.wrappedValue = .A
 						course.level.wrappedValue = .regular
 					}
