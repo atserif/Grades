@@ -5,12 +5,10 @@
 //  Created by Aram Soneson on 6/1/26.
 //
 
-enum Level: Double, CaseIterable, Identifiable, CustomStringConvertible {
+enum Level: Double, CaseIterable, CustomStringConvertible {
 	case regular = 0
 	case honors = 0.5
 	case gtap = 1
-	
-	var id: Double { rawValue }
 	
 	var description: String {
 		switch self {

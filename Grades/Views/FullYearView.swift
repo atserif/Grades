@@ -41,7 +41,6 @@ struct FullYearView: View {
 		
 		return letterGrade
 	}
-	
 	private var navigationTitle: String {
 		switch horizontalSizeClass {
 		case .regular:
@@ -57,7 +56,7 @@ struct FullYearView: View {
 				Section(header: Text("Quarter & Exam Grades")) {
 					ForEach(gradingPeriods.indices, id: \.self) { index in
 						Picker(gradingPeriods[index].name, selection: $gradingPeriods[index].grade) {
-							ForEach(Grade.allCases) { grade in
+							ForEach(Grade.allCases, id: \.self) { grade in
 								Text(grade.description).tag(grade)
 							}
 						}

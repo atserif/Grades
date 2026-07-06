@@ -15,7 +15,7 @@ struct SemesterView: View {
 		GradingPeriod(name: "Quarter 2", grade: .A),
 		GradingPeriod(name: "Final", grade: .A),
 	]
-		
+	
 	private var courseGrade: Grade {
 		var letterGrade: Grade
 		
@@ -38,7 +38,6 @@ struct SemesterView: View {
 		
 		return letterGrade
 	}
-	
 	private var navigationTitle: String {
 		switch horizontalSizeClass {
 		case .regular:

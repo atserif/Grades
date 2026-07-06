@@ -27,7 +27,7 @@ struct CompactGPAContent: View {
 					
 					HStack(spacing: 16) {
 						Picker("Grade", selection: course.grade) {
-							ForEach(Grade.allCases) { grade in
+							ForEach(Grade.allCases, id: \.self) { grade in
 								Text(grade.description).tag(grade)
 							}
 						}
@@ -37,7 +37,7 @@ struct CompactGPAContent: View {
 						#endif
 						
 						Picker("Type", selection: course.level) {
-							ForEach(Level.allCases) { level in
+							ForEach(Level.allCases, id: \.self) { level in
 								Text(level.description).tag(level)
 							}
 						}

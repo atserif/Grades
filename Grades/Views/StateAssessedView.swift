@@ -17,7 +17,7 @@ struct StateAssessedView: View {
 		GradingPeriod(name: "Quarter 4", grade: .A),
 		GradingPeriod(name: "State Assessment", grade: .A)
 	]
-		
+	
 	private var courseGrade: Grade {
 		var letterGrade: Grade
 		
@@ -39,7 +39,6 @@ struct StateAssessedView: View {
 		
 		return letterGrade
 	}
-	
 	private var navigationTitle: String {
 		switch horizontalSizeClass {
 		case .regular:
@@ -55,7 +54,7 @@ struct StateAssessedView: View {
 				Section(header: Text("Quarter & Assessment Grades")) {
 					ForEach(gradingPeriods.indices, id: \.self) { index in
 						Picker(gradingPeriods[index].name, selection: $gradingPeriods[index].grade) {
-							ForEach(Grade.allCases) { grade in
+							ForEach(Grade.allCases, id: \.self) { grade in
 								Text(grade.description).tag(grade)
 							}
 						}
