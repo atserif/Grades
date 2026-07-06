@@ -89,6 +89,7 @@ struct RegularGPAContent: View {
 				}
 			}
 		}
+		.listRowBackground(editState == .inactive ? Color(.secondarySystemGroupedBackground) : .none)
 		
 		Section(footer: Text("Regular courses are worth 4.0 points, Honors courses are worth 4.5 points, and G/T & AP courses are worth 5.0 points.")) {
 			#if os(macOS)

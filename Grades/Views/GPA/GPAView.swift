@@ -46,7 +46,7 @@ struct GPAView: View {
 					}
 				}
 			}
-			.formStyle(.grouped)
+			.listStyle(.insetGrouped)
 			.navigationTitle(navigationTitle)
 			.toolbarTitleDisplayMode(.inlineLarge)
 			.scrollDismissesKeyboard(.interactively)
