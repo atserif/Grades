@@ -60,14 +60,17 @@ struct CopyableRow: View {
 			.padding(-7)
 		}
 		#else
-		LabeledContent(label, value: value)
-			.contextMenu {
-				Button("Copy \(label)", systemImage: "document.on.document") {
-					Copy.copyToClipboard(value)
-				}
+		LabeledContent(label) {
+			Text(value)
+				.monospacedDigit()
+		}
+		.contentTransition(.numericText())
+		.animation(.default, value: value)
+		.contextMenu {
+			Button("Copy \(label)", systemImage: "document.on.document") {
+				Copy.copyToClipboard(value)
 			}
-			.contentTransition(.numericText())
-			.animation(.default, value: value)
+		}
 		#endif
 	}
 }

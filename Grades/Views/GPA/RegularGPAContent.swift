@@ -105,21 +105,27 @@ struct RegularGPAContent: View {
 			}
 			#else
 			HStack(spacing: 16) {
-				LabeledContent("Unweighted GPA", value: String(unweightedGPA.formatted(.number.precision(.fractionLength(1...3)))))
-					.contentTransition(.numericText())
-					.animation(.default, value: unweightedGPA)
+				LabeledContent("Unweighted") {
+					Text(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
+						.monospacedDigit()
+				}
+				.contentTransition(.numericText())
+				.animation(.default, value: unweightedGPA)
 				
-				LabeledContent("Weighted GPA", value: String(weightedGPA.formatted(.number.precision(.fractionLength(1...3)))))
-					.contentTransition(.numericText())
-					.animation(.default, value: weightedGPA)
+				LabeledContent("Weighted") {
+					Text(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
+						.monospacedDigit()
+				}
+				.contentTransition(.numericText())
+				.animation(.default, value: weightedGPA)
 			}
 			.contextMenu {
 				Button("Copy Unweighted", systemImage: "document.on.document") {
-					Copy.copyToClipboard(String(unweightedGPA.formatted(.number.precision(.fractionLength(1...3)))))
+					Copy.copyToClipboard(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 				}
 				
 				Button("Copy Weighted", systemImage: "document.on.document") {
-					Copy.copyToClipboard(String(weightedGPA.formatted(.number.precision(.fractionLength(1...3)))))
+					Copy.copyToClipboard(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 				}
 			}
 			#endif
