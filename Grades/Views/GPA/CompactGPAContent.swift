@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CompactGPAContent: View {
+	@Binding var editState: EditMode
 	@Binding var courses: [Course]
 	
 	let unweightedGPA: Double
@@ -47,6 +48,8 @@ struct CompactGPAContent: View {
 						#endif
 					}
 				}
+				.geometryGroup()
+				.allowsHitTesting(editState == .inactive)
 				.swipeActions(edge: .trailing, allowsFullSwipe: true) {
 					Button("Delete", systemImage: "trash", role: .destructive) {
 						withAnimation {
