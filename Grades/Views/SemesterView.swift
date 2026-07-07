@@ -16,6 +16,8 @@ struct SemesterView: View {
 		GradingPeriod(name: "Final", grade: .A),
 	]
 	
+	private let quarterPercentage: Int = 40
+	private let examPercentage: Int = 20
 	private var courseGrade: Grade {
 		var letterGrade: Grade
 		
@@ -74,7 +76,7 @@ struct SemesterView: View {
 					}
 				}
 				
-				Section(footer: Text("Each quarter grade is worth 40%. The final exam is worth 20%.")) {
+				Section(footer: Text("Each quarter grade is worth \(quarterPercentage.formatted(.percent)). The final exam is worth \(examPercentage.formatted(.percent)).")) {
 					CopyableRow(
 						label: "Course Grade",
 						value: courseGrade.description

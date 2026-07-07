@@ -18,6 +18,7 @@ struct StateAssessedView: View {
 		GradingPeriod(name: "State Assessment", grade: .A)
 	]
 	
+	private let gradingPercentage: Int = 20
 	private var courseGrade: Grade {
 		var letterGrade: Grade
 		
@@ -75,7 +76,7 @@ struct StateAssessedView: View {
 					}
 				}
 				
-				Section(footer: Text("Quarter grades and the state assessment are each worth 20%. Applies to Biology, Biology G/T, American Government, and American Government Honors.")) {
+				Section(footer: Text("Each quarter grade, as well as the state assessment, is worth \(gradingPercentage.formatted(.percent)). Applies to Biology, Biology G/T, American Government, and American Government Honors.")) {
 					CopyableRow(
 						label: "Course Grade",
 						value: courseGrade.description
