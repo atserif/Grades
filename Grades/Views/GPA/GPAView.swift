@@ -64,7 +64,7 @@ struct GPAView: View {
 					ContentUnavailableView {
 						Label("No Courses", systemImage: "graduationcap.fill")
 					} description: {
-						Text("Your courses will appear here.")
+						Text("Courses you add will appear here.")
 					}
 					.background(Color(.systemGroupedBackground))
 				}
