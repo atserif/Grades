@@ -88,7 +88,7 @@ struct GPAView: View {
 							Button("New Course", systemImage: "plus") {
 								withAnimation {
 									let newCourse = Course(name: "New Course", grade: .A, level: .regular)
-									courses.insert(newCourse, at: 0)
+									courses.append(newCourse)
 								}
 							}
 							.disabled(courses.count >= 50)
