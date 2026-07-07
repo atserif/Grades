@@ -34,6 +34,12 @@ struct GPAView: View {
 		}
 	}
 	
+	private func resetCourses() {
+		courses = (1...7).map { _ in
+			Course(name: "New Course", grade: .A, level: .regular)
+		}
+	}
+	
 	var body: some View {
 		NavigationStack {
 			List(selection: $selection) {
@@ -89,9 +95,7 @@ struct GPAView: View {
 							
 							Button("Reset", systemImage: "arrow.clockwise") {
 								withAnimation {
-									courses = (1...7).map { _ in
-										Course(name: "New Course", grade: .A, level: .regular)
-									}
+									resetCourses()
 								}
 							}
 //						}
@@ -128,9 +132,7 @@ struct GPAView: View {
 				ToolbarItem(placement: .bottomBar) {
 					Button("Reset", systemImage: "arrow.clockwise") {
 						withAnimation {
-							courses = (1...7).map { _ in
-								Course(name: "New Course", grade: .A, level: .regular)
-							}
+							resetCourses()
 						}
 					}
 				}
