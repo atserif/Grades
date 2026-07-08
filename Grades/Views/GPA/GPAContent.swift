@@ -1,5 +1,5 @@
 //
-//  RegularGPAContent.swift
+//  CompactGPAContent.swift
 //  Grades
 //
 //  Created by Aram Soneson on 6/12/26.
@@ -7,9 +7,13 @@
 
 import SwiftUI
 
-struct RegularGPAContent: View {
+struct GPAContent: View {
+	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
+	
 	@Binding var editState: EditMode
 	@Binding var courses: [Course]
+	
+	var focused: FocusState<UUID?>.Binding
 	
 	let unweightedGPA: Double
 	let weightedGPA: Double
@@ -17,37 +21,15 @@ struct RegularGPAContent: View {
 	var body: some View {
 		Section(header: Text("Course Grades & Types")) {
 			ForEach($courses) { course in
-				HStack(spacing: 16) {
-					TextField("Course Name", text: course.name, prompt: Text("Course Name"))
-						.fontWeight(.semibold)
-						.submitLabel(.done)
-						.autocorrectionDisabled()
-						.labelsHidden()
-						.writingToolsBehavior(.disabled)
-						.writingToolsAffordanceVisibility(.hidden)
-					
-					HStack(spacing: 16) {
-						Picker("Grade", selection: course.grade) {
-							ForEach(Grade.allCases, id: \.self) { grade in
-								Text(grade.description).tag(grade)
-							}
-						}
-						.pickerStyle(.menu)
-						#if os(iOS)
-						.tint(.secondary)
-						#endif
-						
-						Picker("Type", selection: course.level) {
-							ForEach(Level.allCases, id: \.self) { level in
-								Text(level.description).tag(level)
-							}
-						}
-						.pickerStyle(.menu)
-						#if os(iOS)
-						.tint(.secondary)
-						#endif
+				Group {
+					switch horizontalSizeClass {
+					case .regular:
+						RegularGPARow(course: course, focused: focused)
+					case .compact, .none, .some:
+						CompactGPARow(course: course, focused: focused)
 					}
 				}
+				.id(course.id)
 				.geometryGroup()
 				.allowsHitTesting(editState == .inactive)
 				.swipeActions(edge: .trailing, allowsFullSwipe: true) {
@@ -58,7 +40,7 @@ struct RegularGPAContent: View {
 					}
 					
 					Button("Reset", systemImage: "arrow.clockwise") {
-						course.name.wrappedValue = "New Course"
+						course.name.wrappedValue = ""
 						course.grade.wrappedValue = .A
 						course.level.wrappedValue = .regular
 					}
@@ -74,7 +56,7 @@ struct RegularGPAContent: View {
 					}
 					
 					Button("Reset", systemImage: "arrow.clockwise") {
-						course.name.wrappedValue = "New Course"
+						course.name.wrappedValue = ""
 						course.grade.wrappedValue = .A
 						course.level.wrappedValue = .regular
 					}
@@ -89,7 +71,6 @@ struct RegularGPAContent: View {
 				}
 			}
 		}
-		.listRowBackground(editState == .inactive ? Color(.secondarySystemGroupedBackground) : .none)
 		
 		Section(footer: Text("Regular courses are worth 4.0 points, Honors courses are worth 4.5 points, and G/T & AP courses are worth 5.0 points.")) {
 			#if os(macOS)
