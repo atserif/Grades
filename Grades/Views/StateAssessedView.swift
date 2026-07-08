@@ -45,7 +45,7 @@ struct StateAssessedView: View {
 		case .regular:
 			"State-Assessed Courses"
 		case .compact, .none, .some:
-			"State"
+			"State-Assessed"
 		}
 	}
 	
