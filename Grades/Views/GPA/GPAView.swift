@@ -65,7 +65,7 @@ struct GPAView: View {
 				.overlay {
 					if courses.isEmpty {
 						ContentUnavailableView {
-							Label("No Courses", systemImage: "graduationcap")
+							Label("No Courses", systemImage: "graduationcap.fill")
 						} description: {
 							Text("Courses you add will appear here.")
 						}
