@@ -33,6 +33,13 @@ struct GPAView: View {
 			"GPA"
 		}
 	}
+	private var allCoursesSelected: Bool {
+		if selection.count == courses.count {
+			true
+		} else {
+			false
+		}
+	}
 	
 	private func newCourse(scrollReaderProxy: ScrollViewProxy) {
 		let newCourse = Course(name: "", grade: .A, level: .regular)
@@ -100,7 +107,7 @@ struct GPAView: View {
 							}
 						}
 					} else {
-						if selection.count == courses.count {
+						if allCoursesSelected {
 							ToolbarItem(placement: .topBarTrailing) {
 								Button("Deselect All") {
 									withAnimation {
@@ -159,6 +166,7 @@ struct GPAView: View {
 						.disabled(selection.isEmpty)
 					}
 				}
+				.animation(.default, value: allCoursesSelected)
 			}
 		}
 	}
