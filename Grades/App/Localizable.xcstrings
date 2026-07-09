@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
     "Advanced" : {
       "localizations" : {
         "en-GB" : {
@@ -60,16 +57,6 @@
           "stringUnit" : {
             "state" : "machine_translated",
             "value" : "Course Grades & Types"
-          }
-        }
-      }
-    },
-    "Course Name" : {
-      "localizations" : {
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "machine_translated",
-            "value" : "Course Name"
           }
         }
       }

@@ -1,0 +1,51 @@
+//
+//  GPARow.swift
+//  Grades
+//
+//  Created by Aram Soneson on 7/7/26.
+//
+
+import SwiftUI
+
+struct GPARow: View {
+	@Binding var course: Course
+	
+	var focused: FocusState<UUID?>.Binding
+	
+    var body: some View {
+		TextField("New Course", text: $course.name, prompt: Text("New Course"))
+			.focused(focused, equals: course.id)
+			.fontWeight(.semibold)
+			.submitLabel(.done)
+			.autocorrectionDisabled()
+			.labelsHidden()
+			.writingToolsBehavior(.disabled)
+			.writingToolsAffordanceVisibility(.hidden)
+		
+		HStack(spacing: 16) {
+			Picker("Grade", selection: $course.grade) {
+				ForEach(Grade.allCases, id: \.self) { grade in
+					Text(grade.description).tag(grade)
+				}
+			}
+			.pickerStyle(.menu)
+			#if os(iOS)
+			.tint(.secondary)
+			#endif
+			
+			Picker("Type", selection: $course.level) {
+				ForEach(Level.allCases, id: \.self) { level in
+					Text(level.description).tag(level)
+				}
+			}
+			.pickerStyle(.menu)
+			#if os(iOS)
+			.tint(.secondary)
+			#endif
+		}
+    }
+}
+
+#Preview {
+    ContentView()
+}

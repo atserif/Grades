@@ -1,5 +1,5 @@
 //
-//  CompactGPAContent.swift
+//  GPAContent.swift
 //  Grades
 //
 //  Created by Aram Soneson on 6/12/26.
@@ -24,9 +24,13 @@ struct GPAContent: View {
 				Group {
 					switch horizontalSizeClass {
 					case .regular:
-						RegularGPARow(course: course, focused: focused)
+						HStack(spacing: 16) {
+							GPARow(course: course, focused: focused)
+						}
 					case .compact, .none, .some:
-						CompactGPARow(course: course, focused: focused)
+						VStack(alignment: .leading) {
+							GPARow(course: course, focused: focused)
+						}
 					}
 				}
 				.id(course.id)
