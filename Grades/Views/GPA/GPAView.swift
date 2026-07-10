@@ -63,12 +63,6 @@ struct GPAView: View {
 					}
 				}
 				.listStyle(.insetGrouped)
-				.navigationTitle(navigationTitle)
-				.toolbarTitleDisplayMode(.inlineLarge)
-				.scrollDismissesKeyboard(.interactively)
-				.environment(\.editMode, $editState)
-				.toolbarVisibility(editState == .inactive ? .automatic : .hidden, for: .tabBar)
-				.toolbarVisibility(editState == .inactive ? .hidden : .automatic, for: .bottomBar)
 				.overlay {
 					if courses.isEmpty {
 						ContentUnavailableView {
@@ -80,6 +74,10 @@ struct GPAView: View {
 					}
 				}
 				.toolbar {
+					ToolbarItem(placement: .title) {
+						StaticNavigationTitle(title: navigationTitle)
+					}
+					
 					if editState == .inactive {
 						ToolbarItem(placement: .topBarTrailing) {
 							Button("Select") {
@@ -166,7 +164,13 @@ struct GPAView: View {
 						.disabled(selection.isEmpty)
 					}
 				}
+				.toolbarVisibility(editState == .inactive ? .automatic : .hidden, for: .tabBar)
+				.toolbarVisibility(editState == .inactive ? .hidden : .automatic, for: .bottomBar)
+				.toolbarTitleDisplayMode(.inline)
+				.toolbarRole(.editor)
+				.scrollDismissesKeyboard(.immediately)
 				.animation(.default, value: allCoursesSelected)
+				.environment(\.editMode, $editState)
 			}
 		}
 	}

@@ -84,15 +84,19 @@ struct SemesterView: View {
 				}
 			}
 			.formStyle(.grouped)
-			.navigationTitle(navigationTitle)
-			.toolbarTitleDisplayMode(.inlineLarge)
 			.toolbar {
+				ToolbarItem(placement: .title) {
+					StaticNavigationTitle(title: navigationTitle)
+				}
+				
 				ToolbarItem(placement: .primaryAction) {
 					Button("Reset", systemImage: "arrow.clockwise") {
 						gradingPeriods.indices.forEach { gradingPeriods[$0].grade = .A }
 					}
 				}
 			}
+			.toolbarTitleDisplayMode(.inline)
+			.toolbarRole(.editor)
 		}
 	}
 }

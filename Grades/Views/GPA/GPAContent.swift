@@ -94,16 +94,16 @@ struct GPAContent: View {
 				LabeledContent("Unweighted") {
 					Text(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 						.monospacedDigit()
+						.contentTransition(.numericText())
+						.animation(.default, value: unweightedGPA)
 				}
-				.contentTransition(.numericText())
-				.animation(.default, value: unweightedGPA)
 				
 				LabeledContent("Weighted") {
 					Text(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 						.monospacedDigit()
+						.contentTransition(.numericText())
+						.animation(.default, value: weightedGPA)
 				}
-				.contentTransition(.numericText())
-				.animation(.default, value: weightedGPA)
 			}
 			.contextMenu {
 				Button("Copy Unweighted", systemImage: "document.on.document") {
