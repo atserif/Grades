@@ -120,5 +120,5 @@ struct GPAContent: View {
 }
 
 #Preview {
-	ContentView()
+	GPAView()
 }

@@ -15,3 +15,7 @@ struct AdvancedSettingsView: View {
 		.formStyle(.grouped)
 	}
 }
+
+#Preview {
+	AdvancedSettingsView()
+}

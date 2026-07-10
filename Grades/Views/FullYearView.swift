@@ -105,5 +105,5 @@ struct FullYearView: View {
 }
 
 #Preview {
-	ContentView()
+	FullYearView()
 }

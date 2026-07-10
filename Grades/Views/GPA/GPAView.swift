@@ -177,5 +177,5 @@ struct GPAView: View {
 }
 
 #Preview {
-	ContentView()
+	GPAView()
 }

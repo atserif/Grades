@@ -102,5 +102,5 @@ struct SemesterView: View {
 }
 
 #Preview {
-	ContentView()
+	SemesterView()
 }

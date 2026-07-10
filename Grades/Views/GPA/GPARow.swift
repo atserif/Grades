@@ -47,5 +47,5 @@ struct GPARow: View {
 }
 
 #Preview {
-    ContentView()
+	GPAView()
 }

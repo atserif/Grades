@@ -102,5 +102,5 @@ struct StateAssessedView: View {
 }
 
 #Preview {
-	ContentView()
+	StateAssessedView()
 }

@@ -15,3 +15,7 @@ struct GeneralSettingsView: View {
 		.formStyle(.grouped)
 	}
 }
+
+#Preview {
+	GeneralSettingsView()
+}
