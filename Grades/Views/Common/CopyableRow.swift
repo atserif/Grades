@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct CopyableRow: View {
+	@State private var isHovered: Bool = false
+	@State private var isClicked: Bool = false
+	
 	let label: String
 	let value: String
-	@State private var hovered: Bool = false
-	@State private var clicked: Bool = false
 	
 	var body: some View {
 		#if os(macOS)
@@ -21,42 +22,42 @@ struct CopyableRow: View {
 			Spacer()
 			
 			Button {
-				if !clicked {
+				if !isClicked {
 					withAnimation(.easeInOut(duration: 0.3)) {
 						Copy.copyToClipboard(value)
-						clicked = true
+						isClicked = true
 					}
 					
 					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 						withAnimation(.easeInOut(duration: 0.3)) {
-							clicked = false
+							isClicked = false
 						}
 					}
 				}
 			} label: {
 				// TODO: Fix hover effect flickering while animation is playing
 				Label {
-					Text(clicked ? "Copied" : value)
+					Text(isClicked ? "Copied" : value)
 				} icon: {
-					if clicked {
+					if isClicked {
 						Image(systemName: "document.on.document.fill")
 							.transition(.move(edge: .trailing).combined(with: .opacity).combined(with: .blurReplace))
 					}
 				}
-				.padding(clicked ? 7 : 5)
+				.padding(isClicked ? 7 : 5)
 				.labelIconToTitleSpacing(4)
 				.foregroundStyle(.secondary)
-				.background(clicked ? Color(.tertiarySystemFill) : hovered ? Color(.tertiarySystemFill) : .clear)
-				.clipShape(.rect(cornerRadius: clicked ? 9 : 7))
+				.background(isClicked ? Color(.tertiarySystemFill) : isHovered ? Color(.tertiarySystemFill) : .clear)
+				.clipShape(.rect(cornerRadius: isClicked ? 9 : 7))
 				.contentTransition(.numericText())
 				.animation(.default, value: value)
 				.monospacedDigit()
 				.onHover {
-					hovered = $0
+					isHovered = $0
 				}
 			}
 			.buttonStyle(UnresponsiveButtonStyle())
-			.offset(x: clicked ? 0 : -2)
+			.offset(x: isClicked ? 0 : -2)
 			.padding(-7)
 		}
 		#else
