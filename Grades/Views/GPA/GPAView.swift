@@ -9,7 +9,6 @@ import SwiftUI
 
 struct GPAView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
-	@Environment(\.editMode) private var editMode
 
 	@State private var editState: EditMode = .inactive
 	@State private var selection: Set<UUID> = []
@@ -31,13 +30,6 @@ struct GPAView: View {
 			"Grade Point Average"
 		case .compact, .none, .some:
 			"GPA"
-		}
-	}
-	private var allCoursesSelected: Bool {
-		if selection.count == courses.count {
-			true
-		} else {
-			false
 		}
 	}
 	
@@ -81,9 +73,7 @@ struct GPAView: View {
 					if editState == .inactive {
 						ToolbarItem(placement: .topBarTrailing) {
 							Button("Select") {
-								withAnimation {
-									editState = .active
-								}
+								editState = .active
 							}
 							.disabled(courses.isEmpty)
 						}
@@ -92,54 +82,42 @@ struct GPAView: View {
 						
 						ToolbarItemGroup(placement: .primaryAction) {
 							Button("New Course", systemImage: "plus") {
-								withAnimation {
-									newCourse(scrollReaderProxy: proxy)
-								}
+								newCourse(scrollReaderProxy: proxy)
 							}
 							.disabled(courses.count >= 20)
 							
 							Button("Reset", systemImage: "arrow.clockwise") {
-								withAnimation {
-									courses.removeAll()
-								}
+								courses.removeAll()
 							}
 						}
 					} else {
-						if allCoursesSelected {
+						if selection.count == courses.count {
 							ToolbarItem(placement: .topBarTrailing) {
 								Button("Deselect All") {
-									withAnimation {
-										selection.removeAll()
-									}
+									selection.removeAll()
 								}
 							}
 						} else {
 							ToolbarItem(placement: .topBarTrailing) {
 								Button("Select All") {
-									withAnimation {
-										selection = Set(courses.map { $0.id })
-									}
+									selection = Set(courses.map { $0.id })
 								}
 							}
 						}
 						
 						ToolbarItem(placement: .confirmationAction) {
-							Button("Confirm", systemImage: "checkmark", role: .confirm) {
-								withAnimation {
-									editState = .inactive
-								}
+							Button(role: .confirm) {
+								editState = .inactive
 							}
 						}
 					}
 					
 					ToolbarItem(placement: .bottomBar) {
 						Button("Reset", systemImage: "arrow.clockwise") {
-							withAnimation {
-								for index in courses.indices where selection.contains(courses[index].id) {
-									courses[index].name = ""
-									courses[index].grade = .A
-									courses[index].level = .regular
-								}
+							for index in courses.indices where selection.contains(courses[index].id) {
+								courses[index].name = ""
+								courses[index].grade = .A
+								courses[index].level = .regular
 							}
 						}
 						.disabled(selection.isEmpty)
@@ -148,17 +126,15 @@ struct GPAView: View {
 					ToolbarSpacer(.flexible, placement: .bottomBar)
 					
 					ToolbarItem(placement: .bottomBar) {
-						Button("Delete", systemImage: "trash", role: .destructive) {
-							withAnimation {
-								courses.removeAll { course in
-									selection.contains(course.id)
-								}
-								
-								selection.removeAll()
-								
-								if courses.isEmpty {
-									editState = .inactive
-								}
+						Button(role: .destructive) {
+							courses.removeAll { course in
+								selection.contains(course.id)
+							}
+							
+							selection.removeAll()
+							
+							if courses.isEmpty {
+								editState = .inactive
 							}
 						}
 						.disabled(selection.isEmpty)
@@ -170,7 +146,9 @@ struct GPAView: View {
 				.toolbarRole(.editor)
 				.scrollEdgeEffectStyle(.soft, for: .all)
 				.scrollDismissesKeyboard(.immediately)
-				.animation(.default, value: allCoursesSelected)
+				.animation(.default, value: courses)
+				.animation(.default, value: editState)
+				.animation(.default, value: selection)
 				.environment(\.editMode, $editState)
 			}
 		}
