@@ -5,12 +5,14 @@
 //  Created by Aram Soneson on 6/1/26.
 //
 
-enum Level: Double, CaseIterable, CustomStringConvertible {
+import SwiftUI
+
+enum Level: Double, CaseIterable {
 	case regular = 0
 	case honors = 0.5
 	case gtap = 1
 	
-	var description: String {
+	var description: LocalizedStringKey {
 		switch self {
 		case .regular: "Regular"
 		case .honors: "Honors"

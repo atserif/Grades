@@ -43,7 +43,7 @@ struct FullYearView: View {
 		
 		return letterGrade
 	}
-	private var navigationTitle: String {
+	private var navigationTitle: LocalizedStringKey {
 		switch horizontalSizeClass {
 		case .regular:
 			"Full Year Courses"

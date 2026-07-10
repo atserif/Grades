@@ -5,7 +5,7 @@
 //  Created by Aram Soneson on 6/1/26.
 //
 
-enum Grade: Double, CaseIterable, CustomStringConvertible {
+enum Grade: Double, CaseIterable {
 	case A = 4
 	case B = 3
 	case C = 2

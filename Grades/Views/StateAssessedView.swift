@@ -40,7 +40,7 @@ struct StateAssessedView: View {
 		
 		return letterGrade
 	}
-	private var navigationTitle: String {
+	private var navigationTitle: LocalizedStringKey {
 		switch horizontalSizeClass {
 		case .regular:
 			"State-Assessed Courses"
