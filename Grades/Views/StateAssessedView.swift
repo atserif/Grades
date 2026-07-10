@@ -97,6 +97,7 @@ struct StateAssessedView: View {
 			}
 			.toolbarTitleDisplayMode(.inline)
 			.toolbarRole(.editor)
+			.scrollEdgeEffectStyle(.soft, for: .all)
 		}
 	}
 }
