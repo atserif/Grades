@@ -10,7 +10,7 @@ import SwiftUI
 struct StaticNavigationTitle: View {
 	var title: LocalizedStringKey
 	
-    var body: some View {
+	var body: some View {
 		HStack {
 			Text(title)
 				.font(.largeTitle)
@@ -19,7 +19,7 @@ struct StaticNavigationTitle: View {
 			
 			Spacer()
 		}
-    }
+	}
 }
 
 #Preview {

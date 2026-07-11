@@ -12,7 +12,7 @@ struct GPARow: View {
 	
 	var focused: FocusState<UUID?>.Binding
 	
-    var body: some View {
+	var body: some View {
 		TextField("New Course", text: $course.name, prompt: Text("New Course"))
 			.focused(focused, equals: course.id)
 			.fontWeight(.semibold)
@@ -37,7 +37,7 @@ struct GPARow: View {
 		}
 		.pickerStyle(.menu)
 		.tint(.secondary)
-    }
+	}
 }
 
 #Preview {
