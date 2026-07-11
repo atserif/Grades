@@ -10,8 +10,8 @@ import SwiftUI
 struct GPAContent: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
-	@Binding var editState: EditMode
 	@Binding var courses: [Course]
+	@Binding var editState: EditMode
 	
 	var focused: FocusState<UUID?>.Binding
 	
@@ -35,7 +35,6 @@ struct GPAContent: View {
 				}
 				.id(course.id)
 				.disabled(editState != .inactive)
-				.geometryGroup()
 				.swipeActions(edge: .trailing, allowsFullSwipe: true) {
 					Button("Delete", systemImage: "trash", role: .destructive) {
 						courses.removeAll { $0.id == course.id }
