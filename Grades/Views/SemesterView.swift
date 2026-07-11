@@ -83,7 +83,7 @@ struct SemesterView: View {
 					}
 					.contextMenu {
 						Button("Copy Course Grade", systemImage: "document.on.document") {
-							Copy.copyToClipboard(courseGrade.description)
+							copyToClipboard(courseGrade.description)
 						}
 					}
 				}

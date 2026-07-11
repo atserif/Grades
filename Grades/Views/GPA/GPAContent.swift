@@ -88,11 +88,11 @@ struct GPAContent: View {
 			}
 			.contextMenu {
 				Button("Copy Unweighted", systemImage: "document.on.document") {
-					Copy.copyToClipboard(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
+					copyToClipboard(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 				}
 				
 				Button("Copy Weighted", systemImage: "document.on.document") {
-					Copy.copyToClipboard(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
+					copyToClipboard(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 				}
 			}
 		}
