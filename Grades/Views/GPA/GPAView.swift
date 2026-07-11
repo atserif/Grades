@@ -64,9 +64,7 @@ struct GPAView: View {
 				if editState == .inactive {
 					ToolbarItem(placement: .topBarTrailing) {
 						Button("Select") {
-							withAnimation {
-								editState = .active
-							}
+							editState = .active
 						}
 						.disabled(courses.isEmpty)
 					}
@@ -75,16 +73,12 @@ struct GPAView: View {
 					
 					ToolbarItemGroup(placement: .primaryAction) {
 						Button("New Course", systemImage: "plus") {
-							withAnimation {
-								newCourse()
-							}
+							newCourse()
 						}
 						.disabled(courses.count >= 20)
 						
 						Button("Reset", systemImage: "arrow.clockwise") {
-							withAnimation {
-								courses.removeAll()
-							}
+							courses.removeAll()
 						}
 					}
 				} else {
@@ -104,11 +98,8 @@ struct GPAView: View {
 					
 					ToolbarItem(placement: .confirmationAction) {
 						Button(role: .confirm) {
+							editState = .inactive
 							selection.removeAll()
-							
-							withAnimation {
-								editState = .inactive
-							}
 						}
 					}
 				}
@@ -146,7 +137,9 @@ struct GPAView: View {
 			.toolbarTitleDisplayMode(.inline)
 			.toolbarRole(.editor)
 			.scrollDismissesKeyboard(.interactively)
+			.animation(.default, value: courses)
 			.animation(.default, value: selection)
+			.animation(.default, value: editState)
 			.environment(\.editMode, $editState)
 		}
 	}
