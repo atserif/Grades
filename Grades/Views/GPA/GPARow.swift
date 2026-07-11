@@ -28,21 +28,15 @@ struct GPARow: View {
 					Text(grade.description).tag(grade)
 				}
 			}
-			.pickerStyle(.menu)
-			#if os(iOS)
-			.tint(.secondary)
-			#endif
 			
 			Picker("Type", selection: $course.level) {
 				ForEach(Level.allCases, id: \.self) { level in
 					Text(level.description).tag(level)
 				}
 			}
-			.pickerStyle(.menu)
-			#if os(iOS)
-			.tint(.secondary)
-			#endif
 		}
+		.pickerStyle(.menu)
+		.tint(.secondary)
     }
 }
 

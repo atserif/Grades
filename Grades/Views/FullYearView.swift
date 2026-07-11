@@ -63,9 +63,7 @@ struct FullYearView: View {
 							}
 						}
 						.pickerStyle(.menu)
-						#if os(iOS)
 						.tint(.secondary)
-						#endif
 						.swipeActions(edge: .trailing, allowsFullSwipe: true) {
 							Button("Reset", systemImage: "arrow.clockwise") {
 								gradingPeriods[index].grade = .A
@@ -80,10 +78,17 @@ struct FullYearView: View {
 				}
 				
 				Section(footer: Text("Each quarter grade is worth \(quarterPercentage.formatted(.percent)). The midterm and final exams are worth \(examPercentage.formatted(.percent)) each.")) {
-					CopyableRow(
-						label: "Course Grade",
-						value: courseGrade.description
-					)
+					LabeledContent("Course Grade") {
+						Text(courseGrade.description)
+							.monospacedDigit()
+							.contentTransition(.numericText())
+							.animation(.default, value: courseGrade)
+					}
+					.contextMenu {
+						Button("Copy Course Grade", systemImage: "document.on.document") {
+							Copy.copyToClipboard(courseGrade.description)
+						}
+					}
 				}
 			}
 			.formStyle(.grouped)

@@ -60,9 +60,7 @@ struct StateAssessedView: View {
 							}
 						}
 						.pickerStyle(.menu)
-						#if os(iOS)
 						.tint(.secondary)
-						#endif
 						.swipeActions {
 							Button("Reset", systemImage: "arrow.clockwise") {
 								gradingPeriods[index].grade = .A
@@ -77,10 +75,17 @@ struct StateAssessedView: View {
 				}
 				
 				Section(footer: Text("Each quarter grade, as well as the state assessment, is worth \(gradingPercentage.formatted(.percent)). Applies to Biology, Biology G/T, American Government, and American Government Honors.")) {
-					CopyableRow(
-						label: "Course Grade",
-						value: courseGrade.description
-					)
+					LabeledContent("Course Grade") {
+						Text(courseGrade.description)
+							.monospacedDigit()
+							.contentTransition(.numericText())
+							.animation(.default, value: courseGrade)
+					}
+					.contextMenu {
+						Button("Copy Course Grade", systemImage: "document.on.document") {
+							Copy.copyToClipboard(courseGrade.description)
+						}
+					}
 				}
 			}
 			.formStyle(.grouped)

@@ -34,8 +34,8 @@ struct GPAContent: View {
 					}
 				}
 				.id(course.id)
+				.disabled(editState != .inactive)
 				.geometryGroup()
-				.allowsHitTesting(editState == .inactive)
 				.swipeActions(edge: .trailing, allowsFullSwipe: true) {
 					Button("Delete", systemImage: "trash", role: .destructive) {
 						courses.removeAll { $0.id == course.id }
@@ -71,19 +71,6 @@ struct GPAContent: View {
 		}
 		
 		Section(footer: Text("Regular courses are worth 4.0 points, Honors courses are worth 4.5 points, and G/T & AP courses are worth 5.0 points.")) {
-			#if os(macOS)
-			HStack(spacing: 16) {
-				CopyableRow(
-					label: "Unweighted GPA",
-					value: String(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
-				)
-				
-				CopyableRow(
-					label: "Weighted GPA",
-					value: String(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
-				)
-			}
-			#else
 			HStack(spacing: 16) {
 				LabeledContent("Unweighted") {
 					Text(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
@@ -108,7 +95,6 @@ struct GPAContent: View {
 					Copy.copyToClipboard(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 				}
 			}
-			#endif
 		}
 	}
 }
