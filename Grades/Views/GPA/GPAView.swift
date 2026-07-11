@@ -82,25 +82,33 @@ struct GPAView: View {
 						
 						ToolbarItemGroup(placement: .primaryAction) {
 							Button("New Course", systemImage: "plus") {
-								newCourse(scrollReaderProxy: proxy)
+								withAnimation {
+									newCourse(scrollReaderProxy: proxy)
+								}
 							}
 							.disabled(courses.count >= 20)
 							
 							Button("Reset", systemImage: "arrow.clockwise") {
-								courses.removeAll()
+								withAnimation {
+									courses.removeAll()
+								}
 							}
 						}
 					} else {
 						if selection.count == courses.count {
 							ToolbarItem(placement: .topBarTrailing) {
 								Button("Deselect All") {
-									selection.removeAll()
+									withAnimation {
+										selection.removeAll()
+									}
 								}
 							}
 						} else {
 							ToolbarItem(placement: .topBarTrailing) {
 								Button("Select All") {
-									selection = Set(courses.map { $0.id })
+									withAnimation {
+										selection = Set(courses.map { $0.id })
+									}
 								}
 							}
 						}
@@ -114,10 +122,12 @@ struct GPAView: View {
 					
 					ToolbarItem(placement: .bottomBar) {
 						Button("Reset", systemImage: "arrow.clockwise") {
-							for index in courses.indices where selection.contains(courses[index].id) {
-								courses[index].name = ""
-								courses[index].grade = .A
-								courses[index].level = .regular
+							withAnimation {
+								for index in courses.indices where selection.contains(courses[index].id) {
+									courses[index].name = ""
+									courses[index].grade = .A
+									courses[index].level = .regular
+								}
 							}
 						}
 						.disabled(selection.isEmpty)
@@ -127,14 +137,16 @@ struct GPAView: View {
 					
 					ToolbarItem(placement: .bottomBar) {
 						Button(role: .destructive) {
-							courses.removeAll { course in
-								selection.contains(course.id)
-							}
-							
-							selection.removeAll()
-							
-							if courses.isEmpty {
-								editState = .inactive
+							withAnimation {
+								courses.removeAll { course in
+									selection.contains(course.id)
+								}
+								
+								selection.removeAll()
+								
+								if courses.isEmpty {
+									editState = .inactive
+								}
 							}
 						}
 						.disabled(selection.isEmpty)
@@ -145,9 +157,7 @@ struct GPAView: View {
 				.toolbarTitleDisplayMode(.inline)
 				.toolbarRole(.editor)
 				.scrollDismissesKeyboard(.immediately)
-				.animation(.default, value: courses)
 				.animation(.default, value: editState)
-				.animation(.default, value: selection)
 				.environment(\.editMode, $editState)
 			}
 		}
