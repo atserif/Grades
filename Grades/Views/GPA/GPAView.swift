@@ -109,7 +109,6 @@ struct GPAView: View {
 					ToolbarItem(placement: .confirmationAction) {
 						Button(role: .confirm) {
 							editState = .inactive
-							selection.removeAll()
 						}
 					}
 				}
@@ -128,12 +127,27 @@ struct GPAView: View {
 				ToolbarSpacer(.flexible, placement: .bottomBar)
 				
 				ToolbarItem(placement: .bottomBar) {
+					ZStack {
+						Text("00 selected")
+							.monospacedDigit()
+							.opacity(0)
+						
+						if editState == .active {
+							Text("\(selection.count) selected")
+								.monospacedDigit()
+								.contentTransition(.numericText())
+						}
+					}
+					.padding(.horizontal, 10)
+				}
+				
+				ToolbarSpacer(.flexible, placement: .bottomBar)
+				
+				ToolbarItem(placement: .bottomBar) {
 					Button(role: .destructive) {
 						courses.removeAll { course in
 							selection.contains(course.id)
 						}
-						
-						selection.removeAll()
 						
 						if courses.isEmpty {
 							editState = .inactive
