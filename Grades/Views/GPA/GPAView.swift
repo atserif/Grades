@@ -107,7 +107,7 @@ struct GPAView: View {
 					}
 					
 					ToolbarItem(placement: .confirmationAction) {
-						Button(role: .confirm) {
+						Button("Confirm", systemImage: "checkmark", role: .confirm) {
 							editState = .inactive
 						}
 					}
@@ -144,10 +144,12 @@ struct GPAView: View {
 				ToolbarSpacer(.flexible, placement: .bottomBar)
 				
 				ToolbarItem(placement: .bottomBar) {
-					Button(role: .destructive) {
+					Button("Delete", systemImage: "trash", role: .destructive) {
 						courses.removeAll { course in
 							selection.contains(course.id)
 						}
+						
+						selection.removeAll()
 						
 						if courses.isEmpty {
 							editState = .inactive
