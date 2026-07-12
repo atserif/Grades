@@ -64,14 +64,15 @@ struct GPAView: View {
 				if editState == .inactive {
 					ToolbarItem(placement: .topBarTrailing) {
 						Button("Select") {
-							var noAnimation = Transaction(animation: focused == nil ? .default : nil)
-							noAnimation.disablesAnimations = focused != nil
-
-							withTransaction(noAnimation) {
-								focused = nil
-							}
-							
-							DispatchQueue.main.async {
+							if focused != nil {
+								withAnimation(.none) {
+									focused = nil
+								}
+								
+								DispatchQueue.main.async {
+									editState = .active
+								}
+							} else {
 								editState = .active
 							}
 						}
