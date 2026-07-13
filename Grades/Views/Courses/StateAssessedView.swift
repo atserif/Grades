@@ -59,7 +59,7 @@ struct StateAssessedView: View {
 			}
 		}
 		
-		Section(footer: Text("Each quarter grade, as well as the state assessment, is worth \(gradingPercentage.formatted(.percent)). Applies to Biology, Biology G/T, American Government, and American Government Honors.")) {
+		Section(footer: Text("Each quarter grade, as well as the state assessment, is worth \(gradingPercentage.formatted(.percent)).")) {
 			LabeledContent("Course Grade") {
 				Text(courseGrade.description)
 					.monospacedDigit()
