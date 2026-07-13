@@ -59,6 +59,8 @@ struct CoursesView: View {
 				
 				ToolbarItem(placement: .primaryAction) {
 					Button("Reset", systemImage: "arrow.clockwise") {
+						calculatorSelection = .fullYear
+						
 						fullYearGradingPeriods.indices.forEach { fullYearGradingPeriods[$0].grade = .A }
 						semesterGradingPeriods.indices.forEach { semesterGradingPeriods[$0].grade = .A }
 						stateAssessedGradingPeriods.indices.forEach { stateAssessedGradingPeriods[$0].grade = .A }
