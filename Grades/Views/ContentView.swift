@@ -10,29 +10,12 @@ import SwiftUI
 struct ContentView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
-	@State private var tabSelection: TabSelection = .fullYear
-	
-	private var stateAssessedTabDisplayName: String {
-		switch horizontalSizeClass {
-		case .regular:
-			"State-Assessed"
-		case .compact, .none, .some:
-			"State"
-		}
-	}
+	@State private var tabSelection: TabSelection = .courses
 	
 	var body: some View {
 		TabView(selection: $tabSelection) {
-			Tab("Full Year", systemImage: "calendar", value: .fullYear) {
-				FullYearView()
-			}
-			
-			Tab("Semester", systemImage: "circle.lefthalf.striped.horizontal", value: .semester) {
-				SemesterView()
-			}
-			
-			Tab(stateAssessedTabDisplayName, systemImage: "mappin.and.ellipse", value: .stateAssessed) {
-				StateAssessedView()
+			Tab("Courses", systemImage: "graduationcap", value: .courses) {
+				CoursesView()
 			}
 			
 			Tab("GPA", systemImage: "rosette", value: .gpa) {

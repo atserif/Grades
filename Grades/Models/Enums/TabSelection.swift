@@ -6,8 +6,6 @@
 //
 
 enum TabSelection {
-	case fullYear
-	case semester
-	case stateAssessed
+	case courses
 	case gpa
 }

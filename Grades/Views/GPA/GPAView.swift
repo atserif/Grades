@@ -82,14 +82,14 @@ struct GPAView: View {
 					ToolbarSpacer(.fixed, placement: .topBarTrailing)
 					
 					ToolbarItemGroup(placement: .primaryAction) {
+						Button("Reset", systemImage: "arrow.clockwise") {
+							courses.removeAll()
+						}
+						
 						Button("New Course", systemImage: "plus") {
 							newCourse()
 						}
 						.disabled(courses.count >= 20)
-						
-						Button("Reset", systemImage: "arrow.clockwise") {
-							courses.removeAll()
-						}
 					}
 				} else {
 					if selection.count == courses.count {
