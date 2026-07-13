@@ -33,14 +33,16 @@ struct CoursesView: View {
     var body: some View {
 		NavigationStack {
 			Form {
-				Picker("Type", selection: $calculatorSelection) {
-					ForEach(CalculatorSelection.allCases, id: \.self) { calculator in
-						Text(calculator.description)
-							.tag(calculator)
+				Section {
+					Picker("Type", selection: $calculatorSelection) {
+						ForEach(CalculatorSelection.allCases, id: \.self) { calculator in
+							Text(calculator.description)
+								.tag(calculator)
+						}
 					}
+					.pickerStyle(.menu)
+					.tint(.secondary)
 				}
-				.pickerStyle(.menu)
-				.tint(.secondary)
 				
 				switch calculatorSelection {
 				case .fullYear:
