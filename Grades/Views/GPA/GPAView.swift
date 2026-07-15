@@ -24,7 +24,7 @@ struct GPAView: View {
 		let total = courses.map { $0.grade.rawValue + $0.level.rawValue }.reduce(0, +)
 		return total / Double(courses.count)
 	}
-	private var navigationTitle: LocalizedStringKey {
+	private var title: LocalizedStringKey {
 		switch horizontalSizeClass {
 		case .regular:
 			"Grade Point Average"
@@ -49,7 +49,8 @@ struct GPAView: View {
 			.overlay {
 				if courses.isEmpty {
 					ContentUnavailableView {
-						Label("No Courses", systemImage: "graduationcap.fill")
+						Label("No Courses", systemImage: "chart.bar")
+							.symbolVariant(.fill)
 					} description: {
 						Text("Courses you add will appear here.")
 					}
@@ -58,7 +59,7 @@ struct GPAView: View {
 			}
 			.toolbar {
 				ToolbarItem(placement: .title) {
-					StaticNavigationTitle(title: navigationTitle)
+					StaticNavigationTitle(title: title)
 				}
 				
 				if editState == .inactive {

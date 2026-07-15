@@ -10,15 +10,15 @@ import SwiftUI
 struct ContentView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
-	@State private var tabSelection: TabSelection = .courses
+	@State private var tabSelection: TabSelection = .grades
 	
 	var body: some View {
 		TabView(selection: $tabSelection) {
-			Tab("Courses", systemImage: "graduationcap", value: .courses) {
-				CoursesView()
+			Tab("Grades", systemImage: "book.pages", value: .grades) {
+				GradesView()
 			}
 			
-			Tab("GPA", systemImage: "rosette", value: .gpa) {
+			Tab("GPA", systemImage: "chart.bar", value: .gpa) {
 				GPAView()
 			}
 		}

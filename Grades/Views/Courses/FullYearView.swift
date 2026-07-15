@@ -78,5 +78,5 @@ struct FullYearView: View {
 }
 
 #Preview {
-	CoursesView()
+	GradesView()
 }

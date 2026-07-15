@@ -1,5 +1,5 @@
 //
-//  CoursesView.swift
+//  GradesView.swift
 //  Grades
 //
 //  Created by Aram Soneson on 7/12/26.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CoursesView: View {
+struct GradesView: View {
 	@State private var calculatorSelection: CalculatorSelection = .fullYear
 	@State private var fullYearGradingPeriods: [GradingPeriod] = [
 		GradingPeriod(name: "Quarter 1", grade: .A),
@@ -29,6 +29,8 @@ struct CoursesView: View {
 		GradingPeriod(name: "Quarter 4", grade: .A),
 		GradingPeriod(name: "State Assessment", grade: .A)
 	]
+	
+	private var title: LocalizedStringKey = "Grades"
 	
 	var body: some View {
 		NavigationStack {
@@ -56,7 +58,7 @@ struct CoursesView: View {
 			.formStyle(.grouped)
 			.toolbar {
 				ToolbarItem(placement: .title) {
-					StaticNavigationTitle(title: "Courses")
+					StaticNavigationTitle(title: title)
 				}
 				
 				ToolbarItem(placement: .primaryAction) {
@@ -76,5 +78,5 @@ struct CoursesView: View {
 }
 
 #Preview {
-	CoursesView()
+	GradesView()
 }
