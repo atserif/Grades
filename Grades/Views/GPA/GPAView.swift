@@ -149,11 +149,7 @@ struct GPAView: View {
 							selection.contains(course.id)
 						}
 						
-						selection.removeAll()
-						
-						if courses.isEmpty {
-							editState = .inactive
-						}
+						editState = .inactive
 					}
 					.disabled(selection.isEmpty)
 				}

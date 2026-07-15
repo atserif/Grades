@@ -30,7 +30,7 @@ struct CoursesView: View {
 		GradingPeriod(name: "State Assessment", grade: .A)
 	]
 	
-    var body: some View {
+	var body: some View {
 		NavigationStack {
 			Form {
 				Section {
@@ -72,9 +72,9 @@ struct CoursesView: View {
 			.toolbarTitleDisplayMode(.inline)
 			.toolbarRole(.editor)
 		}
-    }
+	}
 }
 
 #Preview {
-    CoursesView()
+	CoursesView()
 }
