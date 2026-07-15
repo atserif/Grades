@@ -84,12 +84,16 @@ struct GPAView: View {
 					
 					ToolbarItemGroup(placement: .primaryAction) {
 						Button("New Course", systemImage: "plus") {
-							newCourse()
+							withAnimation {
+								newCourse()
+							}
 						}
 						.disabled(courses.count >= 20)
 						
 						Button("Reset", systemImage: "arrow.clockwise") {
-							courses.removeAll()
+							withAnimation {
+								courses.removeAll()
+							}
 						}
 					}
 				} else {
@@ -116,10 +120,12 @@ struct GPAView: View {
 				
 				ToolbarItem(placement: .bottomBar) {
 					Button("Reset", systemImage: "arrow.clockwise") {
-						for index in courses.indices where selection.contains(courses[index].id) {
-							courses[index].name = ""
-							courses[index].grade = .A
-							courses[index].level = .regular
+						withAnimation {
+							for index in courses.indices where selection.contains(courses[index].id) {
+								courses[index].name = ""
+								courses[index].grade = .A
+								courses[index].level = .regular
+							}
 						}
 					}
 					.disabled(selection.isEmpty)
@@ -146,8 +152,10 @@ struct GPAView: View {
 				
 				ToolbarItem(placement: .bottomBar) {
 					Button("Delete", systemImage: "trash", role: .destructive) {
-						courses.removeAll { course in
-							selection.contains(course.id)
+						withAnimation {
+							courses.removeAll { course in
+								selection.contains(course.id)
+							}
 						}
 						
 						editState = .inactive
@@ -160,7 +168,6 @@ struct GPAView: View {
 			.toolbarTitleDisplayMode(.inline)
 			.toolbarRole(.editor)
 			.scrollDismissesKeyboard(.interactively)
-			.animation(.default, value: courses)
 			.animation(.default, value: selection)
 			.animation(.default, value: editState)
 			.environment(\.editMode, $editState)

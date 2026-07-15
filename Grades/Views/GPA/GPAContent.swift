@@ -37,7 +37,9 @@ struct GPAContent: View {
 				.disabled(editState != .inactive)
 				.swipeActions(edge: .trailing, allowsFullSwipe: true) {
 					Button("Delete", systemImage: "trash", role: .destructive) {
-						courses.removeAll { $0.id == course.id }
+						withAnimation {
+							courses.removeAll { $0.id == course.id }
+						}
 					}
 					
 					Button("Reset", systemImage: "arrow.clockwise") {
@@ -48,9 +50,11 @@ struct GPAContent: View {
 				}
 				.contextMenu {
 					Button("Duplicate", systemImage: "plus.square.on.square") {
-						if let selectedIndex = courses.firstIndex(where: { $0.id == course.id }) {
-							let duplicatedCourse = Course(name: course.name.wrappedValue, grade: course.grade.wrappedValue, level: course.level.wrappedValue)
-							courses.insert(duplicatedCourse, at: courses.index(after: selectedIndex))
+						withAnimation {
+							if let selectedIndex = courses.firstIndex(where: { $0.id == course.id }) {
+								let duplicatedCourse = Course(name: course.name.wrappedValue, grade: course.grade.wrappedValue, level: course.level.wrappedValue)
+								courses.insert(duplicatedCourse, at: courses.index(after: selectedIndex))
+							}
 						}
 					}
 					
@@ -63,7 +67,9 @@ struct GPAContent: View {
 					Divider()
 					
 					Button("Delete", systemImage: "trash", role: .destructive) {
-						courses.removeAll { $0.id == course.id }
+						withAnimation {
+							courses.removeAll { $0.id == course.id }
+						}
 					}
 				}
 			}
