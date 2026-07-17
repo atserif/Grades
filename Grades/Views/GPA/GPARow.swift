@@ -15,7 +15,7 @@ struct GPARow: View {
 	var body: some View {
 		TextField("New Course", text: $course.name, prompt: Text("New Course"))
 			.focused(focused, equals: course.id)
-			.fontWeight(.semibold)
+			.bold()
 			.submitLabel(.done)
 			.autocorrectionDisabled()
 			.labelsHidden()
