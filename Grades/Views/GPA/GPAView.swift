@@ -49,7 +49,7 @@ struct GPAView: View {
 			.overlay {
 				if courses.isEmpty {
 					ContentUnavailableView {
-						Label("No Courses", systemImage: "chart.bar")
+						Label("No Courses", systemImage: "sum")
 							.symbolVariant(.fill)
 					} description: {
 						Text("Courses you add will appear here.")

@@ -14,11 +14,11 @@ struct ContentView: View {
 	
 	var body: some View {
 		TabView(selection: $tabSelection) {
-			Tab("Grades", systemImage: "book.pages", value: .grades) {
+			Tab("Grades", systemImage: "checklist", value: .grades) {
 				GradesView()
 			}
 			
-			Tab("GPA", systemImage: "chart.bar", value: .gpa) {
+			Tab("GPA", systemImage: "sum", value: .gpa) {
 				GPAView()
 			}
 		}
