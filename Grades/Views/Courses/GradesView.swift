@@ -7,6 +7,20 @@
 
 import SwiftUI
 
+enum CalculatorSelection: CaseIterable {
+	case fullYear
+	case semester
+	case stateAssessed
+	
+	var description: LocalizedStringKey {
+		switch self {
+		case .fullYear: "Full Year"
+		case .semester: "Semester"
+		case .stateAssessed: "State-Assessed"
+		}
+	}
+}
+
 extension UISegmentedControl {
 	override open func didMoveToSuperview() {
 		super.didMoveToSuperview()
@@ -81,6 +95,7 @@ struct GradesView: View {
 			}
 			.toolbarTitleDisplayMode(.inline)
 			.toolbarRole(.editor)
+			.animation(.default, value: calculatorSelection)
 		}
 	}
 }

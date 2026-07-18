@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum TabSelection {
+	case grades
+	case gpa
+}
+
 struct ContentView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
