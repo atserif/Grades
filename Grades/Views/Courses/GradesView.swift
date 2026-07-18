@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+extension UISegmentedControl {
+	override open func didMoveToSuperview() {
+		super.didMoveToSuperview()
+		self.setContentHuggingPriority(.defaultLow, for: .vertical)
+	}
+}
+
 struct GradesView: View {
 	@State private var calculatorSelection: CalculatorSelection = .fullYear
 	@State private var fullYearGradingPeriods: [GradingPeriod] = [
@@ -42,8 +49,9 @@ struct GradesView: View {
 								.tag(calculator)
 						}
 					}
-					.pickerStyle(.menu)
-					.tint(.secondary)
+					.pickerStyle(.segmented)
+					.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
+					.listRowBackground(Color.clear)
 				}
 				
 				switch calculatorSelection {
