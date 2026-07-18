@@ -48,7 +48,7 @@ struct FullYearView: View {
 				}
 				.pickerStyle(.menu)
 				.tint(.secondary)
-				.swipeActions(edge: .trailing, allowsFullSwipe: true) {
+				.swipeActions {
 					Button("Reset", systemImage: "arrow.clockwise") {
 						gradingPeriods[index].grade = .A
 					}

@@ -35,7 +35,7 @@ struct GPAContent: View {
 				}
 				.id(course.id)
 				.disabled(editState != .inactive)
-				.swipeActions(edge: .trailing, allowsFullSwipe: true) {
+				.swipeActions {
 					Button("Delete", systemImage: "trash", role: .destructive) {
 						withAnimation {
 							courses.removeAll { $0.id == course.id }
