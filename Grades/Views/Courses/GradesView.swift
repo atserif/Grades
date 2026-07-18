@@ -57,7 +57,7 @@ struct GradesView: View {
 		NavigationStack {
 			Form {
 				Section {
-					Picker("Type", selection: $calculatorSelection) {
+					Picker("Type", selection: $calculatorSelection.animation()) {
 						ForEach(CalculatorSelection.allCases, id: \.self) { calculator in
 							Text(calculator.description)
 								.tag(calculator)
@@ -95,7 +95,6 @@ struct GradesView: View {
 			}
 			.toolbarTitleDisplayMode(.inline)
 			.toolbarRole(.editor)
-			.animation(.default, value: calculatorSelection)
 		}
 	}
 }
