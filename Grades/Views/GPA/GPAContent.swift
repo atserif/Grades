@@ -40,6 +40,10 @@ struct GPAContent: View {
 						withAnimation {
 							courses.removeAll { $0.id == course.id }
 						}
+						
+						if courses.isEmpty {
+							editState = .inactive
+						}
 					}
 					
 					Button("Reset", systemImage: "arrow.clockwise") {
@@ -69,6 +73,10 @@ struct GPAContent: View {
 					Button("Delete", systemImage: "trash", role: .destructive) {
 						withAnimation {
 							courses.removeAll { $0.id == course.id }
+						}
+						
+						if courses.isEmpty {
+							editState = .inactive
 						}
 					}
 				}
