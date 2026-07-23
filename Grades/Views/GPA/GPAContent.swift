@@ -20,7 +20,7 @@ struct GPAContent: View {
 	
 	var body: some View {
 		Section(header: Text("Course Grades & Types")) {
-			ForEach($courses) { course in
+			ForEach($courses, editActions: .move) { course in
 				Group {
 					switch horizontalSizeClass {
 					case .regular:
