@@ -12,7 +12,7 @@ enum CalculatorSelection: CaseIterable {
 	case semester
 	case stateAssessed
 	
-	var description: LocalizedStringKey {
+	var description: String {
 		switch self {
 		case .fullYear: "Full Year"
 		case .semester: "Semester"
@@ -51,7 +51,7 @@ struct GradesView: View {
 		GradingPeriod(name: "State Assessment", grade: .A)
 	]
 	
-	private var title: LocalizedStringKey = "Grades"
+	private var title: String = "Grades"
 	
 	var body: some View {
 		NavigationStack {

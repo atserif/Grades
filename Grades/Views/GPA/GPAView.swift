@@ -24,7 +24,7 @@ struct GPAView: View {
 		let total = courses.map { $0.grade.rawValue + $0.level.rawValue }.reduce(0, +)
 		return total / Double(courses.count)
 	}
-	private var title: LocalizedStringKey {
+	private var title: String {
 		switch horizontalSizeClass {
 		case .regular:
 			"Grade Point Average"

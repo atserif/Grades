@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StaticNavigationTitle: View {
-	var title: LocalizedStringKey
+	var title: String
 	
 	var body: some View {
 		HStack {
