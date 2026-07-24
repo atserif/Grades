@@ -56,7 +56,7 @@ struct GradesView: View {
 	var body: some View {
 		NavigationStack {
 			Form {
-				Section(header: Text("Grading Format")) {
+				Section {
 					Picker("Grading Format", selection: $calculatorSelection) {
 						ForEach(CalculatorSelection.allCases, id: \.self) { calculator in
 							Text(calculator.description)
