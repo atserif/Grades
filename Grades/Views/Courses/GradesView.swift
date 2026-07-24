@@ -16,7 +16,7 @@ enum CalculatorSelection: CaseIterable {
 		switch self {
 		case .fullYear: "Full Year"
 		case .semester: "Semester"
-		case .stateAssessed: "State-Assessed"
+		case .stateAssessed: "Assessed"
 		}
 	}
 }
