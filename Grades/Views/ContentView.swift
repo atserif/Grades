@@ -27,7 +27,6 @@ struct ContentView: View {
 				GPAView()
 			}
 		}
-		.scrollEdgeEffectStyle(.soft, for: .all)
 	}
 }
 
