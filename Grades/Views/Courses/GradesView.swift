@@ -49,6 +49,19 @@ struct GradesView: View {
 	var body: some View {
 		NavigationStack {
 			Form {
+				Section {
+					Picker("Grading Format", selection: $calculatorSelection) {
+						ForEach(CalculatorSelection.allCases, id: \.self) { calculator in
+							Text(calculator.description)
+								.tag(calculator)
+						}
+					}
+					.pickerStyle(.segmented)
+					.controlSize(.extraLarge)
+					.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
+					.listRowBackground(Color.clear)
+				}
+				
 				switch calculatorSelection {
 				case .fullYear:
 					FullYearView(gradingPeriods: $fullYearGradingPeriods)
@@ -58,20 +71,8 @@ struct GradesView: View {
 					StateAssessedView(gradingPeriods: $stateAssessedGradingPeriods)
 				}
 			}
+			.contentMargins(.top, 16)
 			.formStyle(.grouped)
-			.safeAreaBar(edge: .top) {
-				Picker("Grading Format", selection: $calculatorSelection) {
-					ForEach(CalculatorSelection.allCases, id: \.self) { calculator in
-						Text(calculator.description)
-							.tag(calculator)
-					}
-				}
-				.pickerStyle(.segmented)
-				.controlSize(.extraLarge)
-				.padding(.horizontal)
-				// 1pt to account for height deficit in the default picker, plus 12pt of actual padding
-				.padding(.bottom, 13)
-			}
 			.toolbar {
 				ToolbarItem(placement: .title) {
 					StaticNavigationTitle(title: title)
