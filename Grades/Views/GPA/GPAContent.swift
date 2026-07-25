@@ -83,6 +83,10 @@ struct GPAContent: View {
 						.animation(.default, value: unweightedGPA)
 				}
 				
+				Rectangle()
+					.fill(Color(.separator))
+					.frame(width: 1)
+				
 				LabeledContent("Weighted") {
 					Text(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 						.monospacedDigit()
