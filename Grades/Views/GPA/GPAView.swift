@@ -21,7 +21,7 @@ struct GPAView: View {
 		return total / Double(courses.count)
 	}
 	private var weightedGPA: Double {
-		let total = courses.map { $0.grade.rawValue + $0.level.rawValue }.reduce(0, +)
+		let total = courses.map { $0.grade.rawValue > 1 ? $0.grade.rawValue + $0.level.rawValue : $0.grade.rawValue }.reduce(0, +)
 		return total / Double(courses.count)
 	}
 	private var title: String {
