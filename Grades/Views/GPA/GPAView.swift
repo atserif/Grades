@@ -71,10 +71,14 @@ struct GPAView: View {
 								}
 								
 								DispatchQueue.main.async {
-									editState = .active
+									withAnimation {
+										editState = .active
+									}
 								}
 							} else {
-								editState = .active
+								withAnimation {
+									editState = .active
+								}
 							}
 						}
 						.disabled(courses.isEmpty)
@@ -113,7 +117,9 @@ struct GPAView: View {
 					
 					ToolbarItem(placement: .confirmationAction) {
 						Button("Confirm", systemImage: "checkmark", role: .confirm) {
-							editState = .inactive
+							withAnimation {
+								editState = .inactive
+							}
 						}
 					}
 				}
@@ -156,9 +162,9 @@ struct GPAView: View {
 							courses.removeAll { course in
 								selection.contains(course.id)
 							}
+							
+							editState = .inactive
 						}
-						
-						editState = .inactive
 					}
 					.disabled(selection.isEmpty)
 				}
@@ -169,7 +175,6 @@ struct GPAView: View {
 			.toolbarRole(.editor)
 			.scrollDismissesKeyboard(.interactively)
 			.animation(.default, value: selection)
-			.animation(.default, value: editState)
 			.environment(\.editMode, $editState)
 		}
 	}
