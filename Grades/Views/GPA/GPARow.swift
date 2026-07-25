@@ -21,20 +21,28 @@ struct GPARow: View {
 			.writingToolsBehavior(.disabled)
 			.writingToolsAffordanceVisibility(.hidden)
 		
-		HStack(spacing: 16) {
-			Picker("Grade", selection: $course.grade) {
-				ForEach(Grade.allCases, id: \.self) { grade in
-					Text(grade.description)
-						.tag(grade)
+		HStack(spacing: 8) {
+			Menu(course.grade.description, systemImage: "checkmark.circle") {
+				Picker("Grade", selection: $course.grade) {
+					ForEach(Grade.allCases, id: \.self) { grade in
+						Text(grade.description)
+							.tag(grade)
+					}
 				}
+				.pickerStyle(.inline)
 			}
+			.menuStyle(.capsule)
 			
-			Picker("Level", selection: $course.level) {
-				ForEach(Level.allCases, id: \.self) { level in
-					Text(level.description)
-						.tag(level)
+			Menu(course.level.description, systemImage: "square.3.layers.3d") {
+				Picker("Level", selection: $course.level) {
+					ForEach(Level.allCases, id: \.self) { level in
+						Text(level.description)
+							.tag(level)
+					}
 				}
+				.pickerStyle(.inline)
 			}
+			.menuStyle(.capsule)
 		}
 		.pickerStyle(.menu)
 		.tint(.secondary)
