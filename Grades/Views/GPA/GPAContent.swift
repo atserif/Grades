@@ -53,15 +53,6 @@ struct GPAContent: View {
 					}
 				}
 				.contextMenu {
-					Button("Duplicate", systemImage: "plus.square.on.square") {
-						withAnimation {
-							if let selectedIndex = courses.firstIndex(where: { $0.id == course.id }) {
-								let duplicatedCourse = Course(name: course.name.wrappedValue, grade: course.grade.wrappedValue, level: course.level.wrappedValue)
-								courses.insert(duplicatedCourse, at: courses.index(after: selectedIndex))
-							}
-						}
-					}
-					
 					Button("Reset", systemImage: "arrow.clockwise") {
 						course.name.wrappedValue = ""
 						course.grade.wrappedValue = .A
