@@ -34,7 +34,8 @@ struct GPAContent: View {
 					}
 				}
 				.id(course.id)
-				.disabled(editState != .inactive)
+				.allowsHitTesting(editState == .inactive)
+				.geometryGroup()
 				.swipeActions {
 					Button("Delete", systemImage: "trash", role: .destructive) {
 						withAnimation {
