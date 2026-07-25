@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum TabSelection {
+private enum TabSelection {
 	case grades
 	case gpa
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum CalculatorSelection: CaseIterable {
+private enum CalculatorSelection: CaseIterable {
 	case fullYear
 	case semester
 	case stateAssessed

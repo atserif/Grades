@@ -29,9 +29,7 @@ struct GPARow: View {
 							.tag(grade)
 					}
 				}
-				.pickerStyle(.inline)
 			}
-			.menuStyle(.capsule)
 			
 			Menu(course.level.description, systemImage: "square.3.layers.3d") {
 				Picker("Level", selection: $course.level) {
@@ -40,12 +38,9 @@ struct GPARow: View {
 							.tag(level)
 					}
 				}
-				.pickerStyle(.inline)
 			}
-			.menuStyle(.capsule)
 		}
-		.pickerStyle(.menu)
-		.tint(.secondary)
+		.labelStyle(.simple)
 	}
 }
 
