@@ -44,8 +44,6 @@ struct GradesView: View {
 		GradingPeriod(name: "State Assessment", grade: .A)
 	]
 	
-	private var title: String = "Grades"
-	
 	var body: some View {
 		NavigationStack {
 			Form {
@@ -75,7 +73,7 @@ struct GradesView: View {
 			.formStyle(.grouped)
 			.toolbar {
 				ToolbarItem(placement: .title) {
-					StaticNavigationTitle(title: title)
+					StaticNavigationTitle(title: "Grades")
 				}
 				
 				ToolbarItem(placement: .primaryAction) {

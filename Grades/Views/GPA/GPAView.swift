@@ -24,14 +24,6 @@ struct GPAView: View {
 		let total = courses.map { $0.grade.rawValue > 1 ? $0.grade.rawValue + $0.level.rawValue : $0.grade.rawValue }.reduce(0, +)
 		return total / Double(courses.count)
 	}
-	private var title: String {
-		switch horizontalSizeClass {
-		case .regular:
-			"Grade Point Average"
-		case .compact, .none, .some:
-			"GPA"
-		}
-	}
 	
 	private func newCourse() {
 		let newCourse = Course(name: "", grade: .A, level: .regular)
@@ -59,7 +51,7 @@ struct GPAView: View {
 			}
 			.toolbar {
 				ToolbarItem(placement: .title) {
-					StaticNavigationTitle(title: title)
+					StaticNavigationTitle(title: "GPA")
 				}
 				
 				if editState == .inactive {

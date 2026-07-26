@@ -14,7 +14,6 @@ struct GPAContent: View {
 	@Binding var editState: EditMode
 	
 	var focused: FocusState<UUID?>.Binding
-	
 	let unweightedGPA: Double
 	let weightedGPA: Double
 	
