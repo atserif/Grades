@@ -17,6 +17,13 @@ struct GPAContent: View {
 	let unweightedGPA: Double
 	let weightedGPA: Double
 	
+	private func resetCourse(_ course: Binding<Course>) {
+		course.name.wrappedValue = ""
+		course.grade.wrappedValue = .A
+		course.level.wrappedValue = .regular
+		course.credits.wrappedValue = 1.0
+	}
+	
 	var body: some View {
 		Section(header: Text("Course Grades & Types")) {
 			ForEach($courses, editActions: .move) { course in
@@ -47,16 +54,12 @@ struct GPAContent: View {
 					}
 					
 					Button("Reset", systemImage: "arrow.clockwise") {
-						course.name.wrappedValue = ""
-						course.grade.wrappedValue = .A
-						course.level.wrappedValue = .regular
+						resetCourse(course)
 					}
 				}
 				.contextMenu {
 					Button("Reset", systemImage: "arrow.clockwise") {
-						course.name.wrappedValue = ""
-						course.grade.wrappedValue = .A
-						course.level.wrappedValue = .regular
+						resetCourse(course)
 					}
 					
 					Divider()
