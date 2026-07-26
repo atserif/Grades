@@ -17,16 +17,18 @@ struct GPAView: View {
 	@FocusState private var focused: UUID?
 	
 	private var unweightedGPA: Double {
-		let total: Double = courses.map { $0.grade.rawValue }.reduce(0, +)
-		return total / Double(courses.count)
+		let points: Double = courses.map { $0.grade.rawValue * $0.credits }.reduce(0, +)
+		let credits: Double = courses.map { $0.credits }.reduce(0, +)
+		return points / credits
 	}
 	private var weightedGPA: Double {
-		let total = courses.map { $0.grade.rawValue > 1 ? $0.grade.rawValue + $0.level.rawValue : $0.grade.rawValue }.reduce(0, +)
-		return total / Double(courses.count)
+		let points: Double = courses.map { ($0.grade.rawValue > 1 ? $0.grade.rawValue + $0.level.rawValue : $0.grade.rawValue) * $0.credits }.reduce(0, +)
+		let credits: Double = courses.map { $0.credits }.reduce(0, +)
+		return points / credits
 	}
 	
 	private func newCourse() {
-		let newCourse = Course(name: "", grade: .A, level: .regular)
+		let newCourse = Course(name: "", grade: .A, level: .regular, credits: 1.0)
 		courses.append(newCourse)
 	}
 	

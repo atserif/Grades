@@ -13,4 +13,5 @@ struct Course: Identifiable, Equatable {
 	var name: String
 	var grade: Grade
 	var level: Level
+	var credits: Double
 }
