@@ -13,43 +13,45 @@ struct GPARow: View {
 	var focused: FocusState<UUID?>.Binding
 	
 	var body: some View {
-		TextField("New Course", text: $course.name, prompt: Text("New Course"))
-			.focused(focused, equals: course.id)
-			.bold()
-			.submitLabel(.done)
-			.autocorrectionDisabled()
-			.writingToolsBehavior(.disabled)
-			.writingToolsAffordanceVisibility(.hidden)
-		
-		HStack(spacing: 12) {
-			Menu(course.grade.description, systemImage: "checkmark.circle") {
-				Picker("Grade", selection: $course.grade) {
-					ForEach(Grade.allCases, id: \.self) { grade in
-						Text(grade.description)
-							.tag(grade)
-					}
-				}
-			}
+		VStack(alignment: .leading) {
+			TextField("New Course", text: $course.name, prompt: Text("New Course"))
+				.focused(focused, equals: course.id)
+				.bold()
+				.submitLabel(.done)
+				.autocorrectionDisabled()
+				.writingToolsBehavior(.disabled)
+				.writingToolsAffordanceVisibility(.hidden)
 			
-			Menu(course.level.description, systemImage: "square.3.layers.3d") {
-				Picker("Level", selection: $course.level) {
-					ForEach(Level.allCases, id: \.self) { level in
-						Text(level.description)
-							.tag(level)
+			HStack(spacing: 12) {
+				Menu(course.grade.description, systemImage: "checkmark.circle") {
+					Picker("Grade", selection: $course.grade) {
+						ForEach(Grade.allCases, id: \.self) { grade in
+							Text(grade.description)
+								.tag(grade)
+						}
+					}
+				}
+				
+				Menu(course.level.description, systemImage: "square.3.layers.3d") {
+					Picker("Level", selection: $course.level) {
+						ForEach(Level.allCases, id: \.self) { level in
+							Text(level.description)
+								.tag(level)
+						}
+					}
+				}
+				
+				Menu(course.credits.description, systemImage: "star") {
+					Picker("Credits", selection: $course.credits) {
+						ForEach([1.0, 0.5, 0.25], id: \.self) { credits in
+							Text(String(credits))
+								.tag(credits)
+						}
 					}
 				}
 			}
-			
-			Menu(course.credits.description, systemImage: "star") {
-				Picker("Credits", selection: $course.credits) {
-					ForEach([1.0, 0.5, 0.25], id: \.self) { credits in
-						Text(String(credits))
-							.tag(credits)
-					}
-				}
-			}
+			.labelStyle(.simple)
 		}
-		.labelStyle(.simple)
 	}
 }
 

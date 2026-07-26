@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct GPAView: View {
-	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
-
 	@State private var courses: [Course] = []
 	@State private var selection: Set<UUID> = []
 	@State private var editState: EditMode = .inactive

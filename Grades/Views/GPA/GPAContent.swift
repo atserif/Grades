@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct GPAContent: View {
-	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
-	
 	@Binding var courses: [Course]
 	@Binding var editState: EditMode
 	
@@ -27,53 +25,42 @@ struct GPAContent: View {
 	var body: some View {
 		Section(header: Text("Course Grades & Types")) {
 			ForEach($courses, editActions: .move) { course in
-				Group {
-					switch horizontalSizeClass {
-					case .regular:
-						HStack(spacing: 16) {
-							GPARow(course: course, focused: focused)
+				GPARow(course: course, focused: focused)
+					.id(course.id)
+					.allowsHitTesting(editState == .inactive)
+					.geometryGroup()
+					.swipeActions {
+						Button("Delete", systemImage: "trash", role: .destructive) {
+							withAnimation {
+								courses.removeAll { $0.id == course.id }
+								
+								if courses.isEmpty {
+									editState = .inactive
+								}
+							}
 						}
-					case .compact, .none, .some:
-						VStack(alignment: .leading) {
-							GPARow(course: course, focused: focused)
+						
+						Button("Reset", systemImage: "arrow.clockwise") {
+							resetCourse(course)
 						}
 					}
-				}
-				.id(course.id)
-				.allowsHitTesting(editState == .inactive)
-				.geometryGroup()
-				.swipeActions {
-					Button("Delete", systemImage: "trash", role: .destructive) {
-						withAnimation {
-							courses.removeAll { $0.id == course.id }
-							
-							if courses.isEmpty {
-								editState = .inactive
+					.contextMenu {
+						Button("Reset", systemImage: "arrow.clockwise") {
+							resetCourse(course)
+						}
+						
+						Divider()
+						
+						Button("Delete", systemImage: "trash", role: .destructive) {
+							withAnimation {
+								courses.removeAll { $0.id == course.id }
+								
+								if courses.isEmpty {
+									editState = .inactive
+								}
 							}
 						}
 					}
-					
-					Button("Reset", systemImage: "arrow.clockwise") {
-						resetCourse(course)
-					}
-				}
-				.contextMenu {
-					Button("Reset", systemImage: "arrow.clockwise") {
-						resetCourse(course)
-					}
-					
-					Divider()
-					
-					Button("Delete", systemImage: "trash", role: .destructive) {
-						withAnimation {
-							courses.removeAll { $0.id == course.id }
-							
-							if courses.isEmpty {
-								editState = .inactive
-							}
-						}
-					}
-				}
 			}
 		}
 		

@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct StateAssessedView: View {
-	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
-	
 	@Binding var gradingPeriods: [GradingPeriod]
 	
 	private let gradingPercentage: Int = 20

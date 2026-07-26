@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct SemesterView: View {
-	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
-	
 	@Binding var gradingPeriods: [GradingPeriod]
 	
 	private let quarterPercentage: Int = 40

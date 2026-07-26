@@ -13,8 +13,6 @@ private enum TabSelection {
 }
 
 struct ContentView: View {
-	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
-	
 	@State private var tabSelection: TabSelection = .grades
 	
 	var body: some View {
