@@ -29,6 +29,12 @@ struct GPAView: View {
 		let newCourse = Course(name: "", grade: .A, level: .regular, credits: 1.0)
 		courses.append(newCourse)
 	}
+	private func resetCourse(at index: Int) {
+		courses[index].name = ""
+		courses[index].grade = .A
+		courses[index].level = .regular
+		courses[index].credits = 1.0
+	}
 	
 	var body: some View {
 		NavigationStack {
@@ -118,12 +124,8 @@ struct GPAView: View {
 				
 				ToolbarItem(placement: .bottomBar) {
 					Button("Reset", systemImage: "arrow.clockwise") {
-						withAnimation {
-							for index in courses.indices where selection.contains(courses[index].id) {
-								courses[index].name = ""
-								courses[index].grade = .A
-								courses[index].level = .regular
-							}
+						for index in courses.indices where selection.contains(courses[index].id) {
+							resetCourse(at: index)
 						}
 					}
 					.disabled(selection.isEmpty)
