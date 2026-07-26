@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct GPARow: View {
+	@State private var credits: [Double] = [1.0, 0.5, 0.25]
+	
 	@Binding var course: Course
 	
 	var focused: FocusState<UUID?>.Binding
@@ -43,7 +45,7 @@ struct GPARow: View {
 				
 				Menu(course.credits.description, systemImage: "star") {
 					Picker("Credits", selection: $course.credits) {
-						ForEach([1.0, 0.5, 0.25], id: \.self) { credits in
+						ForEach(credits, id: \.self) { credits in
 							Text(String(credits))
 								.tag(credits)
 						}
