@@ -23,7 +23,9 @@ struct SimpleLabelStyle: LabelStyle {
 }
 
 extension LabelStyle where Self == SimpleLabelStyle {
-	static var simple: SimpleLabelStyle { SimpleLabelStyle() }
+	static var simple: SimpleLabelStyle {
+		SimpleLabelStyle()
+	}
 }
 
 #Preview {

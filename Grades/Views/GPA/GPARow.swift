@@ -25,7 +25,7 @@ struct GPARow: View {
 				.writingToolsBehavior(.disabled)
 				.writingToolsAffordanceVisibility(.hidden)
 			
-			HStack(spacing: 12) {
+			WrappingHStack(alignment: .leading, horizontalSpacing: 12) {
 				Menu(course.grade.description, systemImage: "checkmark.circle") {
 					Picker("Grade", selection: $course.grade) {
 						ForEach(Grade.allCases, id: \.self) { grade in
