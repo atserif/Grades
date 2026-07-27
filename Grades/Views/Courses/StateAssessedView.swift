@@ -74,5 +74,5 @@ struct StateAssessedView: View {
 }
 
 #Preview {
-	GradesView()
+	CoursesView()
 }

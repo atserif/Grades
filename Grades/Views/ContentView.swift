@@ -8,17 +8,17 @@
 import SwiftUI
 
 private enum TabSelection {
-	case grades
+	case courses
 	case gpa
 }
 
 struct ContentView: View {
-	@State private var tabSelection: TabSelection = .grades
+	@State private var tabSelection: TabSelection = .courses
 	
 	var body: some View {
 		TabView(selection: $tabSelection) {
-			Tab("Grades", systemImage: "checklist", value: .grades) {
-				GradesView()
+			Tab("Courses", systemImage: "timeline.selection", value: .courses) {
+				CoursesView()
 			}
 			
 			Tab("GPA", systemImage: "sum", value: .gpa) {

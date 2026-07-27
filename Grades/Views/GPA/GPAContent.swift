@@ -23,7 +23,7 @@ struct GPAContent: View {
 	}
 	
 	var body: some View {
-		Section(header: Text("Course Grades & Types")) {
+		Section(header: Text("Course Grades, Levels, & Credits")) {
 			ForEach($courses, editActions: .move) { course in
 				GPARow(course: course, focused: focused)
 					.id(course.id)

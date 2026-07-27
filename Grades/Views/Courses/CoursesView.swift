@@ -1,5 +1,5 @@
 //
-//  GradesView.swift
+//  CoursesView.swift
 //  Grades
 //
 //  Created by Aram Soneson on 7/12/26.
@@ -21,7 +21,7 @@ private enum CalculatorSelection: CaseIterable {
 	}
 }
 
-struct GradesView: View {
+struct CoursesView: View {
 	@State private var calculatorSelection: CalculatorSelection = .fullYear
 	@State private var fullYearGradingPeriods: [GradingPeriod] = [
 		GradingPeriod(name: "Quarter 1", grade: .A),
@@ -73,7 +73,7 @@ struct GradesView: View {
 			.formStyle(.grouped)
 			.toolbar {
 				ToolbarItem(placement: .title) {
-					StaticNavigationTitle(title: "Grades")
+					StaticNavigationTitle(title: "Courses")
 				}
 				
 				ToolbarItem(placement: .primaryAction) {
@@ -93,5 +93,5 @@ struct GradesView: View {
 }
 
 #Preview {
-	GradesView()
+	CoursesView()
 }

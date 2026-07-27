@@ -76,5 +76,5 @@ struct SemesterView: View {
 }
 
 #Preview {
-	GradesView()
+	CoursesView()
 }
