@@ -95,8 +95,20 @@ struct GPAView: View {
 							.disabled(courses.count >= 20)
 							
 							Button("Reset", systemImage: "arrow.clockwise") {
-								withAnimation {
-									courses.removeAll()
+								if focused != nil {
+									withAnimation(.none) {
+										focused = nil
+									}
+									
+									DispatchQueue.main.async {
+										withAnimation {
+											courses.removeAll()
+										}
+									}
+								} else {
+									withAnimation {
+										courses.removeAll()
+									}
 								}
 							}
 						}
