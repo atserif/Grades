@@ -94,6 +94,7 @@ struct GPAContent: View {
 				}
 			}
 		}
+		.id("bottom")
 	}
 }
 

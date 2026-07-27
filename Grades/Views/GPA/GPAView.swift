@@ -38,138 +38,141 @@ struct GPAView: View {
 	
 	var body: some View {
 		NavigationStack {
-			List(selection: $selection) {
-				if !courses.isEmpty {
-					GPAContent(courses: $courses, editState: $editState, focused: $focused, unweightedGPA: unweightedGPA, weightedGPA: weightedGPA)
-				}
-			}
-			.listStyle(.insetGrouped)
-			.overlay {
-				if courses.isEmpty {
-					ContentUnavailableView {
-						Label("No Courses", systemImage: "sum")
-							.symbolVariant(.fill)
-					} description: {
-						Text("Courses you add will appear here.")
+			ScrollViewReader { proxy in
+				List(selection: $selection) {
+					if !courses.isEmpty {
+						GPAContent(courses: $courses, editState: $editState, focused: $focused, unweightedGPA: unweightedGPA, weightedGPA: weightedGPA)
 					}
-					.background(Color(.systemGroupedBackground))
 				}
-			}
-			.toolbar {
-				ToolbarItem(placement: .title) {
-					StaticNavigationTitle(title: "GPA")
+				.listStyle(.insetGrouped)
+				.overlay {
+					if courses.isEmpty {
+						ContentUnavailableView {
+							Label("No Courses", systemImage: "sum")
+								.symbolVariant(.fill)
+						} description: {
+							Text("Courses you add will appear here.")
+						}
+						.background(Color(.systemGroupedBackground))
+					}
 				}
-				
-				if editState == .inactive {
-					ToolbarItem(placement: .topBarTrailing) {
-						Button("Select") {
-							if focused != nil {
-								withAnimation(.none) {
-									focused = nil
-								}
-								
-								DispatchQueue.main.async {
+				.toolbar {
+					ToolbarItem(placement: .title) {
+						StaticNavigationTitle(title: "GPA")
+					}
+					
+					if editState == .inactive {
+						ToolbarItem(placement: .topBarTrailing) {
+							Button("Select") {
+								if focused != nil {
+									withAnimation(.none) {
+										focused = nil
+									}
+									
+									DispatchQueue.main.async {
+										withAnimation {
+											editState = .active
+										}
+									}
+								} else {
 									withAnimation {
 										editState = .active
 									}
 								}
-							} else {
+							}
+							.disabled(courses.isEmpty)
+						}
+						
+						ToolbarSpacer(.fixed, placement: .topBarTrailing)
+						
+						ToolbarItemGroup(placement: .primaryAction) {
+							Button("New Course", systemImage: "plus") {
 								withAnimation {
-									editState = .active
+									newCourse()
+									proxy.scrollTo("bottom", anchor: .top)
+								}
+							}
+							.disabled(courses.count >= 20)
+							
+							Button("Reset", systemImage: "arrow.clockwise") {
+								withAnimation {
+									courses.removeAll()
 								}
 							}
 						}
-						.disabled(courses.isEmpty)
-					}
-					
-					ToolbarSpacer(.fixed, placement: .topBarTrailing)
-					
-					ToolbarItemGroup(placement: .primaryAction) {
-						Button("New Course", systemImage: "plus") {
-							withAnimation {
-								newCourse()
-							}
-						}
-						.disabled(courses.count >= 20)
-						
-						Button("Reset", systemImage: "arrow.clockwise") {
-							withAnimation {
-								courses.removeAll()
-							}
-						}
-					}
-				} else {
-					if selection.count == courses.count {
-						ToolbarItem(placement: .topBarTrailing) {
-							Button("Deselect All") {
-								selection.removeAll()
-							}
-						}
 					} else {
-						ToolbarItem(placement: .topBarTrailing) {
-							Button("Select All") {
-								selection = Set(courses.map { $0.id })
+						if selection.count == courses.count {
+							ToolbarItem(placement: .topBarTrailing) {
+								Button("Deselect All") {
+									selection.removeAll()
+								}
+							}
+						} else {
+							ToolbarItem(placement: .topBarTrailing) {
+								Button("Select All") {
+									selection = Set(courses.map { $0.id })
+								}
+							}
+						}
+						
+						ToolbarItem(placement: .confirmationAction) {
+							Button("Confirm", systemImage: "checkmark", role: .confirm) {
+								withAnimation {
+									editState = .inactive
+								}
 							}
 						}
 					}
 					
-					ToolbarItem(placement: .confirmationAction) {
-						Button("Confirm", systemImage: "checkmark", role: .confirm) {
+					ToolbarItem(placement: .bottomBar) {
+						Button("Reset", systemImage: "arrow.clockwise") {
+							for index in courses.indices where selection.contains(courses[index].id) {
+								resetCourse(at: index)
+							}
+						}
+						.disabled(selection.isEmpty)
+					}
+					
+					ToolbarSpacer(.flexible, placement: .bottomBar)
+					
+					ToolbarItem(placement: .bottomBar) {
+						ZStack {
+							Text("00 selected")
+								.monospacedDigit()
+								.opacity(0)
+							
+							if editState == .active {
+								Text("\(selection.count) selected")
+									.monospacedDigit()
+									.contentTransition(.numericText())
+							}
+						}
+						.padding(.horizontal, 10)
+					}
+					
+					ToolbarSpacer(.flexible, placement: .bottomBar)
+					
+					ToolbarItem(placement: .bottomBar) {
+						Button("Delete", systemImage: "trash", role: .destructive) {
 							withAnimation {
+								courses.removeAll { course in
+									selection.contains(course.id)
+								}
+								
 								editState = .inactive
 							}
 						}
+						.disabled(selection.isEmpty)
 					}
 				}
-				
-				ToolbarItem(placement: .bottomBar) {
-					Button("Reset", systemImage: "arrow.clockwise") {
-						for index in courses.indices where selection.contains(courses[index].id) {
-							resetCourse(at: index)
-						}
-					}
-					.disabled(selection.isEmpty)
-				}
-				
-				ToolbarSpacer(.flexible, placement: .bottomBar)
-				
-				ToolbarItem(placement: .bottomBar) {
-					ZStack {
-						Text("00 selected")
-							.monospacedDigit()
-							.opacity(0)
-						
-						if editState == .active {
-							Text("\(selection.count) selected")
-								.monospacedDigit()
-								.contentTransition(.numericText())
-						}
-					}
-					.padding(.horizontal, 10)
-				}
-				
-				ToolbarSpacer(.flexible, placement: .bottomBar)
-				
-				ToolbarItem(placement: .bottomBar) {
-					Button("Delete", systemImage: "trash", role: .destructive) {
-						withAnimation {
-							courses.removeAll { course in
-								selection.contains(course.id)
-							}
-							
-							editState = .inactive
-						}
-					}
-					.disabled(selection.isEmpty)
-				}
+				.toolbarVisibility(editState == .inactive ? .automatic : .hidden, for: .tabBar)
+				.toolbarVisibility(editState == .inactive ? .hidden : .automatic, for: .bottomBar)
+				.toolbarTitleDisplayMode(.inline)
+				.toolbarRole(.editor)
+				.scrollDismissesKeyboard(.interactively)
+				.animation(.default, value: selection)
+				.environment(\.editMode, $editState)
 			}
-			.toolbarVisibility(editState == .inactive ? .automatic : .hidden, for: .tabBar)
-			.toolbarVisibility(editState == .inactive ? .hidden : .automatic, for: .bottomBar)
-			.toolbarTitleDisplayMode(.inline)
-			.toolbarRole(.editor)
-			.scrollDismissesKeyboard(.interactively)
-			.animation(.default, value: selection)
-			.environment(\.editMode, $editState)
 		}
 	}
 }
