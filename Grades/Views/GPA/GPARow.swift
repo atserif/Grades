@@ -45,7 +45,7 @@ struct GPARow: View {
 					.labelsVisibility(.visible)
 				}
 				
-				Menu(course.credits.description, systemImage: "star") {
+				Menu(course.credits.description, systemImage: "scalemass") {
 					Picker("Credits", selection: $course.credits) {
 						ForEach(credits, id: \.self) { credits in
 							Text(String(credits))
