@@ -25,7 +25,7 @@ struct GPAContent: View {
 	var body: some View {
 		Section(header: Text("Course Grades, Levels, & Credits")) {
 			ForEach($courses, editActions: .move) { course in
-				GPARow(course: course, focused: focused)
+				GPARow(course: course, editState: $editState, focused: focused)
 					.id(course.id)
 					.alignmentGuide(.listRowSeparatorLeading) { _ in 0 }
 					.allowsHitTesting(editState == .inactive)
