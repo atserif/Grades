@@ -27,6 +27,7 @@ struct GPAContent: View {
 			ForEach($courses, editActions: .move) { course in
 				GPARow(course: course, focused: focused)
 					.id(course.id)
+					.alignmentGuide(.listRowSeparatorLeading) { _ in 0 }
 					.allowsHitTesting(editState == .inactive)
 					.geometryGroup()
 					.swipeActions {
