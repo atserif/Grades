@@ -90,6 +90,7 @@ struct GPAView: View {
 								withAnimation {
 									newCourse()
 									proxy.scrollTo("bottom", anchor: .top)
+//									focused = courses.last?.id
 								}
 							}
 							.disabled(courses.count >= 20)
