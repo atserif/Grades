@@ -21,6 +21,7 @@ struct GPARow: View {
 				.bold()
 				.submitLabel(.done)
 				.autocorrectionDisabled()
+				.textInputAutocapitalization(.words)
 				.writingToolsBehavior(.disabled)
 				.writingToolsAffordanceVisibility(.hidden)
 			
