@@ -32,6 +32,7 @@ struct GPARow: View {
 								.tag(grade)
 						}
 					}
+					.labelsVisibility(.visible)
 				}
 				
 				Menu(course.level.description, systemImage: "square.3.layers.3d") {
@@ -41,6 +42,7 @@ struct GPARow: View {
 								.tag(level)
 						}
 					}
+					.labelsVisibility(.visible)
 				}
 				
 				Menu(course.credits.description, systemImage: "star") {
@@ -50,6 +52,7 @@ struct GPARow: View {
 								.tag(credits)
 						}
 					}
+					.labelsVisibility(.visible)
 				}
 			}
 			.labelStyle(.simple)
