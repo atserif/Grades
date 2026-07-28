@@ -72,19 +72,14 @@ struct GPARow: View {
 			.scrollBounceBehavior(.basedOnSize, axes: .horizontal)
 			.mask {
 				HStack(spacing: 0) {
-					if editState != .inactive {
-						LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: .leading, endPoint: .trailing)
-							.frame(width: 16)
-						
-						Rectangle()
-							.fill(.black)
-						
-						LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: .leading, endPoint: .trailing)
-							.frame(width: 16)
-					} else {
-						Rectangle()
-							.fill(.black)
-					}
+					LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: .leading, endPoint: .trailing)
+						.frame(width: 16)
+					
+					Rectangle()
+						.fill(.black)
+					
+					LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: .trailing, endPoint: .leading)
+						.frame(width: 16)
 				}
 			}
 			.animation(.default, value: editState)
