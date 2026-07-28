@@ -161,6 +161,7 @@ struct GPAView: View {
 							}
 						}
 						.padding(.horizontal, 10)
+						.fixedSize(horizontal: true, vertical: false)
 					}
 					
 					ToolbarSpacer(.flexible, placement: .bottomBar)
