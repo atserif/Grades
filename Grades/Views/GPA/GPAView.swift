@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct GPAView: View {
+	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
+	
 	@State private var courses: [Course] = []
 	@State private var selection: Set<UUID> = []
 	@State private var editState: EditMode = .inactive
@@ -146,7 +148,7 @@ struct GPAView: View {
 						.disabled(selection.isEmpty)
 					}
 					
-					ToolbarSpacer(.flexible, placement: .bottomBar)
+					ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
 					
 					ToolbarItem(placement: .bottomBar) {
 						ZStack {
@@ -164,7 +166,7 @@ struct GPAView: View {
 						.fixedSize(horizontal: true, vertical: false)
 					}
 					
-					ToolbarSpacer(.flexible, placement: .bottomBar)
+					ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
 					
 					ToolbarItem(placement: .bottomBar) {
 						Button("Delete", systemImage: "trash", role: .destructive) {
