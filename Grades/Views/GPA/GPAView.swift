@@ -11,6 +11,7 @@ struct GPAView: View {
 	@State private var courses: [Course] = []
 	@State private var selection: Set<UUID> = []
 	@State private var editState: EditMode = .inactive
+	@State private var deleteConfirmationShown: Bool = false
 	
 	@FocusState private var focused: UUID?
 	
@@ -167,15 +168,20 @@ struct GPAView: View {
 					
 					ToolbarItem(placement: .bottomBar) {
 						Button("Delete", systemImage: "trash", role: .destructive) {
-							withAnimation {
-								courses.removeAll { course in
-									selection.contains(course.id)
-								}
-								
-								editState = .inactive
-							}
+							deleteConfirmationShown = true
 						}
 						.disabled(selection.isEmpty)
+						.confirmationDialog("Are you sure you want to delete \(selection.count == 1 ? "this course?" : "these courses?")", isPresented: $deleteConfirmationShown, titleVisibility: .visible) {
+							Button("Delete \(selection.count == 1 ? "Course" : "\(selection.count) Courses")", role: .destructive) {
+								withAnimation {
+									courses.removeAll { course in
+										selection.contains(course.id)
+									}
+									
+									editState = .inactive
+								}
+							}
+						}
 					}
 				}
 				.toolbarVisibility(editState == .inactive ? .automatic : .hidden, for: .tabBar)
