@@ -18,9 +18,9 @@ struct GPARow: View {
 	var body: some View {
 		VStack(alignment: .leading) {
 			TextField("New Course", text: $course.name, prompt: Text("New Course"))
+				.font(.headline)
 				.padding(.horizontal)
 				.focused(focused, equals: course.id)
-				.bold()
 				.submitLabel(.done)
 				.autocorrectionDisabled()
 				.textInputAutocapitalization(.words)
@@ -84,7 +84,6 @@ struct GPARow: View {
 			}
 			.animation(.default, value: editState)
 		}
-		.listRowInsets(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
 	}
 }
 

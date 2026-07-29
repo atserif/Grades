@@ -69,7 +69,6 @@ struct CoursesView: View {
 					StateAssessedView(gradingPeriods: $stateAssessedGradingPeriods)
 				}
 			}
-			.contentMargins(.top, 16)
 			.formStyle(.grouped)
 			.toolbar {
 				ToolbarItem(placement: .title) {
@@ -88,6 +87,7 @@ struct CoursesView: View {
 			}
 			.toolbarTitleDisplayMode(.inline)
 			.toolbarRole(.editor)
+			.contentMargins(.top, 16)
 		}
 	}
 }
