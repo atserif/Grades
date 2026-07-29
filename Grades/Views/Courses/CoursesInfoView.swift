@@ -55,6 +55,7 @@ struct CoursesInfoView: View {
 				}
 			}
 			.navigationTitle("About Courses")
+			.toolbarTitleDisplayMode(.inline)
 		}
 	}
 }
