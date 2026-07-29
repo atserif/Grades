@@ -38,31 +38,6 @@
               3.7
             ]
           }
-        },
-        {
-          "fill-specializations" : [
-            {
-              "appearance" : "dark",
-              "value" : {
-                "automatic-gradient" : "srgb:0.27059,0.43529,0.67843,1.00000"
-              }
-            },
-            {
-              "appearance" : "tinted",
-              "value" : "system-light"
-            }
-          ],
-          "glass" : true,
-          "hidden" : true,
-          "image-name" : "symbol.svg",
-          "name" : "symbol",
-          "position" : {
-            "scale" : 1,
-            "translation-in-points" : [
-              -14.2,
-              5.5
-            ]
-          }
         }
       ],
       "opacity-specializations" : [
