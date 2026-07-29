@@ -43,6 +43,7 @@ struct CoursesView: View {
 		GradingPeriod(name: "Quarter 4", grade: .A),
 		GradingPeriod(name: "State Assessment", grade: .A)
 	]
+	@State private var infoSheetPresented: Bool = false
 	
 	var body: some View {
 		NavigationStack {
@@ -75,6 +76,12 @@ struct CoursesView: View {
 					StaticNavigationTitle(title: "Courses")
 				}
 				
+				ToolbarItem(placement: .topBarTrailing) {
+					Button("Info", systemImage: "info") {
+						infoSheetPresented = true
+					}
+				}
+				
 				ToolbarItem(placement: .primaryAction) {
 					Button("Reset", systemImage: "arrow.clockwise") {
 						calculatorSelection = .fullYear
@@ -85,9 +92,12 @@ struct CoursesView: View {
 					}
 				}
 			}
+			.sheet(isPresented: $infoSheetPresented) {
+				CoursesInfoView()
+			}
 			.toolbarTitleDisplayMode(.inline)
 			.toolbarRole(.editor)
-			.contentMargins(.top, 16)
+			.contentMargins(.top, 8)
 		}
 	}
 }
