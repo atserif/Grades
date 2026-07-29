@@ -10,8 +10,6 @@ import SwiftUI
 struct SemesterView: View {
 	@Binding var gradingPeriods: [GradingPeriod]
 	
-	private let quarterPercentage: Int = 40
-	private let examPercentage: Int = 20
 	private var courseGrade: Grade {
 		var letterGrade: Grade
 		
@@ -59,7 +57,7 @@ struct SemesterView: View {
 			}
 		}
 		
-		Section(footer: Text("Each quarter grade is worth \(quarterPercentage.formatted(.percent)). The final exam is worth \(examPercentage.formatted(.percent)).")) {
+		Section {
 			LabeledContent("Course Grade") {
 				Text(courseGrade.description)
 					.monospacedDigit()

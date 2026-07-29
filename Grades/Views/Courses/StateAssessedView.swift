@@ -10,7 +10,6 @@ import SwiftUI
 struct StateAssessedView: View {
 	@Binding var gradingPeriods: [GradingPeriod]
 	
-	private let gradingPercentage: Int = 20
 	private var courseGrade: Grade {
 		var letterGrade: Grade
 		
@@ -57,7 +56,7 @@ struct StateAssessedView: View {
 			}
 		}
 		
-		Section(footer: Text("Each quarter grade, as well as the state assessment, is worth \(gradingPercentage.formatted(.percent)).")) {
+		Section {
 			LabeledContent("Course Grade") {
 				Text(courseGrade.description)
 					.monospacedDigit()
