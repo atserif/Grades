@@ -14,7 +14,7 @@ struct PresentationRimLight: ViewModifier {
 		content
 			.overlay {
 				ContainerRelativeShape()
-					.strokeBorder(.white.opacity(0.075).exposureAdjust(colorScheme == .dark ? 0 : 2), lineWidth: 1)
+					.strokeBorder(.white.opacity(0.075).exposureAdjust(colorScheme == .dark ? 0 : 1.5), lineWidth: 1)
 					.ignoresSafeArea()
 					.mask {
 						VStack(spacing: 0) {
