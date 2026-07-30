@@ -77,7 +77,7 @@ struct CoursesView: View {
 				}
 				
 				ToolbarItem(placement: .topBarTrailing) {
-					Button("Info", systemImage: "info") {
+					Button("About Courses", systemImage: "info") {
 						infoSheetPresented = true
 					}
 				}
