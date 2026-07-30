@@ -27,7 +27,3 @@ extension LabelStyle where Self == SimpleLabelStyle {
 		SimpleLabelStyle()
 	}
 }
-
-#Preview {
-	GPAView()
-}
