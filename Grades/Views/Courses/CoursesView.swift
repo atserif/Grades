@@ -22,8 +22,6 @@ private enum CalculatorSelection: CaseIterable {
 }
 
 struct CoursesView: View {
-	@Environment(\.colorScheme) private var colorScheme
-	
 	@State private var calculatorSelection: CalculatorSelection = .fullYear
 	@State private var fullYearGradingPeriods: [GradingPeriod] = [
 		GradingPeriod(name: "Quarter 1", grade: .A),
@@ -96,19 +94,7 @@ struct CoursesView: View {
 			}
 			.sheet(isPresented: $infoSheetPresented) {
 				CoursesInfoView()
-					.overlay {
-						ContainerRelativeShape()
-							.strokeBorder(.white.opacity(colorScheme == .dark ? 0.075 : 0.5), lineWidth: 1)
-							.mask {
-								VStack(spacing: 0) {
-									LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: .top, endPoint: .bottom)
-										.frame(height: 70)
-									
-									Rectangle()
-										.fill(.clear)
-								}
-							}
-					}
+					.presentationRimLight()
 			}
 			.toolbarTitleDisplayMode(.inline)
 			.toolbarRole(.editor)
