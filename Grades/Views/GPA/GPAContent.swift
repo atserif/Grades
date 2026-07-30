@@ -66,7 +66,7 @@ struct GPAContent: View {
 			}
 		}
 		
-		Section(footer: Text("Regular courses are worth 4.0 points, Honors courses are worth 4.5 points, and G/T & AP courses are worth 5.0 points.")) {
+		Section {
 			ViewThatFits {
 				HStack(spacing: 16) {
 					HStack {

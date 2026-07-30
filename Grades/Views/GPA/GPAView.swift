@@ -13,6 +13,7 @@ struct GPAView: View {
 	@State private var courses: [Course] = []
 	@State private var selection: Set<UUID> = []
 	@State private var editState: EditMode = .inactive
+	@State private var infoSheetPresented: Bool = false
 	
 	@FocusState private var focused: UUID?
 	
@@ -97,20 +98,28 @@ struct GPAView: View {
 							}
 							.disabled(courses.count >= 20)
 							
-							Button("Reset", systemImage: "arrow.clockwise") {
-								if focused != nil {
-									withAnimation(.none) {
-										focused = nil
-									}
-									
-									DispatchQueue.main.async {
+							Menu("More", systemImage: "ellipsis") {
+								Button("About GPA", systemImage: "info") {
+									infoSheetPresented = true
+								}
+								
+								Divider()
+								
+								Button("Reset", systemImage: "arrow.clockwise") {
+									if focused != nil {
+										withAnimation(.none) {
+											focused = nil
+										}
+										
+										DispatchQueue.main.async {
+											withAnimation {
+												courses.removeAll()
+											}
+										}
+									} else {
 										withAnimation {
 											courses.removeAll()
 										}
-									}
-								} else {
-									withAnimation {
-										courses.removeAll()
 									}
 								}
 							}
@@ -180,6 +189,10 @@ struct GPAView: View {
 						}
 						.disabled(selection.isEmpty)
 					}
+				}
+				.sheet(isPresented: $infoSheetPresented) {
+					GPAInfoView()
+						.presentationRimLight()
 				}
 				.toolbarVisibility(editState == .inactive ? .automatic : .hidden, for: .tabBar)
 				.toolbarVisibility(editState == .inactive ? .hidden : .automatic, for: .bottomBar)
