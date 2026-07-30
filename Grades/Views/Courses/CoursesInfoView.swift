@@ -49,7 +49,7 @@ struct CoursesInfoView: View {
 			.listSectionSpacing(.compact)
 			.toolbar {
 				ToolbarItem(placement: .cancellationAction) {
-					Button("Cancel", systemImage: "xmark", role: .cancel) {
+					Button("Close", systemImage: "xmark", role: .close) {
 						dismiss()
 					}
 				}
@@ -57,10 +57,15 @@ struct CoursesInfoView: View {
 			.navigationTitle("About Courses")
 			.toolbarTitleDisplayMode(.inline)
 			.scrollEdgeEffectStyle(.soft, for: .all)
+			.contentMargins(.top, 10)
 		}
 	}
 }
 
 #Preview {
-	CoursesView()
+	VStack { }
+		.sheet(isPresented: .constant(true)) {
+			CoursesInfoView()
+				.presentationRimLight()
+		}
 }
