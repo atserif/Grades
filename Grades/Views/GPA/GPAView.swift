@@ -99,7 +99,7 @@ struct GPAView: View {
 							.disabled(courses.count >= 20)
 							
 							Menu("More", systemImage: "ellipsis") {
-								Button("About GPA", systemImage: "info") {
+								Button("About GPA", systemImage: "info.circle") {
 									infoSheetPresented = true
 								}
 								
