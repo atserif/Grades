@@ -14,12 +14,53 @@ struct GPAInfoView: View {
 		NavigationStack {
 			List {
 				Section {
-					Text("Course Scoring")
+					Text("Grade Values")
 						.font(.headline)
 					
-					Text("Regular courses are worth 4.0 points, Honors courses are worth 4.5 points, and G/T & AP courses are worth 5.0 points.")
-						.font(.subheadline)
-						.foregroundStyle(.secondary)
+					Grid(alignment: .leading) {
+						GridRow {
+							HStack { }
+							Text("Regular")
+							Text("Honors")
+							Text("G/T · AP")
+						}
+						
+						GridRow {
+							Text("A")
+							Text("5.0")
+							Text("4.5")
+							Text("4.0")
+						}
+						
+						GridRow {
+							Text("B")
+							Text("4.0")
+							Text("3.5")
+							Text("3.0")
+						}
+						
+						GridRow {
+							Text("C")
+							Text("3.0")
+							Text("2.5")
+							Text("2.0")
+						}
+						
+						GridRow {
+							Text("D")
+							Text("1.0")
+							Text("1.0")
+							Text("1.0")
+						}
+						
+						GridRow {
+							Text("E")
+							Text("0")
+							Text("0")
+							Text("0")
+						}
+					}
+					.monospacedDigit()
 				}
 			}
 			.listSectionSpacing(.compact)
