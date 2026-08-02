@@ -41,7 +41,7 @@ struct GPAInfoView: View {
 				.listRowBackground(Color.clear)
 				.listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
 			}
-			.listSectionSpacing(.compact)
+			.listSectionSpacing(20)
 			.toolbar {
 				ToolbarItem(placement: .cancellationAction) {
 					Button("Close", systemImage: "xmark", role: .close) {
