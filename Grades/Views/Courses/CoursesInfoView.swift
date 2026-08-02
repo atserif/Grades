@@ -45,6 +45,14 @@ struct CoursesInfoView: View {
 						.font(.subheadline)
 						.foregroundStyle(.secondary)
 				}
+				
+				Section {
+					Text("All grade calculation information is derived from [Howard County Public School System Policy 8020](https://policy.hcpss.org/8000/8020/).")
+						.font(.subheadline)
+						.foregroundStyle(.secondary)
+				}
+				.listRowBackground(Color.clear)
+				.listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
 			}
 			.listSectionSpacing(.compact)
 			.toolbar {
