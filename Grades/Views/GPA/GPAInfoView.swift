@@ -17,50 +17,20 @@ struct GPAInfoView: View {
 					Text("Grade Values")
 						.font(.headline)
 					
-					Grid(alignment: .leading) {
-						GridRow {
-							HStack { }
-							Text("Regular")
-							Text("Honors")
-							Text("G/T · AP")
-						}
-						
-						GridRow {
-							Text("A")
-							Text("5.0")
-							Text("4.5")
-							Text("4.0")
-						}
-						
-						GridRow {
-							Text("B")
-							Text("4.0")
-							Text("3.5")
-							Text("3.0")
-						}
-						
-						GridRow {
-							Text("C")
-							Text("3.0")
-							Text("2.5")
-							Text("2.0")
-						}
-						
-						GridRow {
-							Text("D")
-							Text("1.0")
-							Text("1.0")
-							Text("1.0")
-						}
-						
-						GridRow {
-							Text("E")
-							Text("0")
-							Text("0")
-							Text("0")
-						}
+					ForEach(Grade.allCases, id: \.self) { grade in
+						LabeledContent(grade.description, value: String(grade.rawValue))
+							.monospacedDigit()
 					}
-					.monospacedDigit()
+				}
+				
+				Section {
+					Text("Level Values")
+						.font(.headline)
+					
+					ForEach(Level.allCases, id: \.self) { level in
+						LabeledContent(level.description, value: String(level.rawValue))
+							.monospacedDigit()
+					}
 				}
 			}
 			.listSectionSpacing(.compact)
