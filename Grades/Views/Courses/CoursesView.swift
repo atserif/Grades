@@ -76,19 +76,21 @@ struct CoursesView: View {
 					StaticNavigationTitle(title: "Courses")
 				}
 				
-				ToolbarItem(placement: .topBarTrailing) {
-					Button("About Courses", systemImage: "info") {
-						infoSheetPresented = true
-					}
-				}
-				
 				ToolbarItem(placement: .primaryAction) {
-					Button("Reset", systemImage: "arrow.clockwise") {
-						calculatorSelection = .fullYear
+					Menu("More", systemImage: "ellipsis") {
+						Button("About GPA", systemImage: "info.circle") {
+							infoSheetPresented = true
+						}
 						
-						fullYearGradingPeriods.indices.forEach { fullYearGradingPeriods[$0].grade = .A }
-						semesterGradingPeriods.indices.forEach { semesterGradingPeriods[$0].grade = .A }
-						stateAssessedGradingPeriods.indices.forEach { stateAssessedGradingPeriods[$0].grade = .A }
+						Divider()
+						
+						Button("Reset", systemImage: "arrow.clockwise") {
+							calculatorSelection = .fullYear
+							
+							fullYearGradingPeriods.indices.forEach { fullYearGradingPeriods[$0].grade = .A }
+							semesterGradingPeriods.indices.forEach { semesterGradingPeriods[$0].grade = .A }
+							stateAssessedGradingPeriods.indices.forEach { stateAssessedGradingPeriods[$0].grade = .A }
+						}
 					}
 				}
 			}
