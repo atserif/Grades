@@ -84,5 +84,6 @@ struct GPAInfoView: View {
 		.sheet(isPresented: .constant(true)) {
 			GPAInfoView()
 				.presentationRimLight()
+				.interactiveDismissDisabled()
 		}
 }

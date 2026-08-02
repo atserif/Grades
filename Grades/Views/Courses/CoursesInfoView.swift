@@ -67,5 +67,6 @@ struct CoursesInfoView: View {
 		.sheet(isPresented: .constant(true)) {
 			CoursesInfoView()
 				.presentationRimLight()
+				.interactiveDismissDisabled()
 		}
 }
