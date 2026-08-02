@@ -23,7 +23,7 @@ struct GPAContent: View {
 	}
 	
 	var body: some View {
-		Section(header: Text("Course Grades, Levels, & Credits")) {
+		Section {
 			ForEach($courses, editActions: .move) { course in
 				GPARow(course: course, editState: $editState, focused: focused)
 					.listRowInsets(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
@@ -64,6 +64,8 @@ struct GPAContent: View {
 					.allowsHitTesting(editState == .inactive)
 					.geometryGroup()
 			}
+		} header: {
+			Text("Course Grades, Levels, & Credits")
 		}
 		
 		Section {

@@ -34,7 +34,7 @@ struct SemesterView: View {
 	}
 	
 	var body: some View {
-		Section(header: Text("Quarter & Exam Grades")) {
+		Section {
 			ForEach(gradingPeriods.indices, id: \.self) { index in
 				Picker(gradingPeriods[index].name, selection: $gradingPeriods[index].grade) {
 					ForEach(Grade.allCases, id: \.self) { grade in
@@ -55,6 +55,8 @@ struct SemesterView: View {
 					}
 				}
 			}
+		} header: {
+			Text("Quarter & Exam Grades")
 		}
 		
 		Section {
