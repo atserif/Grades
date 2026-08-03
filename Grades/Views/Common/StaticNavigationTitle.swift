@@ -8,31 +8,20 @@
 import SwiftUI
 
 struct StaticNavigationTitle: View {
+	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
+	
 	var title: String
 	
 	var body: some View {
-		HStack {
-			Text(title)
-				.font(.largeTitle)
-				.bold()
-				.fixedSize()
-			
-			Spacer()
-		}
-	}
-}
-
-#Preview {
-	NavigationStack {
-		ScrollView {
-			Text("Hello, world!")
-		}
-		.toolbar {
-			ToolbarItem(placement: .title) {
-				StaticNavigationTitle(title: "Title")
+		if horizontalSizeClass == .compact {
+			HStack {
+				Text(title)
+					.font(.largeTitle)
+					.bold()
+					.fixedSize()
+				
+				Spacer()
 			}
 		}
-		.toolbarTitleDisplayMode(.inline)
-		.toolbarRole(.editor)
 	}
 }
