@@ -69,83 +69,39 @@ struct GPAContent: View {
 		}
 		
 		Section {
-			ViewThatFits {
-				HStack(spacing: 16) {
-					HStack {
-						Text("Unweighted")
-							.fixedSize()
-						
-						Spacer()
-						
-						Text(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
-							.foregroundStyle(.secondary)
-							.monospacedDigit()
-							.contentTransition(.numericText())
-							.animation(.default, value: unweightedGPA)
-							.fixedSize()
-					}
-					.frame(maxWidth: .infinity, alignment: .leading)
-					
-					Rectangle()
-						.fill(Color(.separator))
-						.frame(width: 1)
-					
-					HStack {
-						Text("Weighted")
-							.fixedSize()
-						
-						Spacer()
-						
-						Text(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
-							.foregroundStyle(.secondary)
-							.monospacedDigit()
-							.contentTransition(.numericText())
-							.animation(.default, value: weightedGPA)
-							.fixedSize()
-					}
-					.frame(maxWidth: .infinity, alignment: .leading)
+			HStack(spacing: 16) {
+				LabeledContent {
+					Text(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
+						.monospacedDigit()
+						.contentTransition(.numericText())
+						.animation(.default, value: unweightedGPA)
+				} label: {
+					Text("Unweighted")
 				}
+				.frame(maxWidth: .infinity, alignment: .leading)
 				
-				HStack(spacing: 16) {
-					VStack(alignment: .leading) {
-						Text("Unweighted")
-						
-						Spacer(minLength: 0)
-						
-						Text(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
-							.foregroundStyle(.secondary)
-							.monospacedDigit()
-							.contentTransition(.numericText())
-							.animation(.default, value: unweightedGPA)
-					}
-					.frame(maxWidth: .infinity, alignment: .leading)
-					
-					Rectangle()
-						.fill(Color(.separator))
-						.frame(width: 1)
-					
-					VStack(alignment: .leading) {
-						Text("Weighted")
-						
-						Spacer(minLength: 0)
-						
-						Text(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
-							.foregroundStyle(.secondary)
-							.monospacedDigit()
-							.contentTransition(.numericText())
-							.animation(.default, value: weightedGPA)
-					}
-					.frame(maxWidth: .infinity, alignment: .leading)
+				Rectangle()
+					.fill(Color(.separator))
+					.frame(width: 1)
+				
+				LabeledContent {
+					Text(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
+						.monospacedDigit()
+						.contentTransition(.numericText())
+						.animation(.default, value: weightedGPA)
+				} label: {
+					Text("Weighted")
 				}
+				.frame(maxWidth: .infinity, alignment: .leading)
 			}
-			.contextMenu {
-				Button("Copy Unweighted", systemImage: "document.on.document") {
-					copyToClipboard(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
-				}
-				
-				Button("Copy Weighted", systemImage: "document.on.document") {
-					copyToClipboard(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
-				}
+		}
+		.contextMenu {
+			Button("Copy Unweighted", systemImage: "document.on.document") {
+				copyToClipboard(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
+			}
+			
+			Button("Copy Weighted", systemImage: "document.on.document") {
+				copyToClipboard(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 			}
 		}
 		.id("bottom")
