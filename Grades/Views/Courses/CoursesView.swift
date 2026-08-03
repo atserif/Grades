@@ -57,9 +57,9 @@ struct CoursesView: View {
 					}
 					.pickerStyle(.segmented)
 					.controlSize(.extraLarge)
-					.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
-					.listRowBackground(Color.clear)
 				}
+				.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
+				.listRowBackground(Color.clear)
 				
 				switch calculatorSelection {
 				case .fullYear:
