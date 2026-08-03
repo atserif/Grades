@@ -14,7 +14,6 @@ struct GPAView: View {
 	@State private var selection: Set<UUID> = []
 	@State private var editState: EditMode = .inactive
 	@State private var infoSheetPresented: Bool = false
-	
 	@FocusState private var focused: UUID?
 	
 	private var unweightedGPA: Double {
@@ -48,6 +47,11 @@ struct GPAView: View {
 					}
 				}
 				.listStyle(.insetGrouped)
+				.onChange(of: selection) {
+					if editState == .inactive {
+						selection.removeAll()
+					}
+				}
 				.overlay {
 					if courses.isEmpty {
 						ContentUnavailableView {

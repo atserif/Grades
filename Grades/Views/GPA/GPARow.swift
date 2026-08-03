@@ -9,7 +9,6 @@ import SwiftUI
 
 struct GPARow: View {
 	@State private var credits: [Double] = [1.0, 0.5, 0.25]
-	
 	@Binding var course: Course
 	@Binding var editState: EditMode
 	
