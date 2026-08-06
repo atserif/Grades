@@ -59,6 +59,7 @@ struct GPAView: View {
 				.listStyle(.insetGrouped)
 				.task {
 					do {
+						Tips.showAllTipsForTesting()
 						try Tips.configure()
 					} catch {
 						print("Error initializing TipKit \(error.localizedDescription)")
