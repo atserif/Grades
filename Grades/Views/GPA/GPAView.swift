@@ -56,15 +56,19 @@ struct GPAView: View {
 						GPAContent(courses: $courses, editState: $editState, focused: $focused, unweightedGPA: unweightedGPA, weightedGPA: weightedGPA)
 					}
 				}
+				.listStyle(.insetGrouped)
 				.task {
 					do {
 						try Tips.configure()
-					}
-					catch {
+					} catch {
 						print("Error initializing TipKit \(error.localizedDescription)")
 					}
 				}
-				.listStyle(.insetGrouped)
+				.onChange(of: focused) {
+					if focused != nil {
+						renameCoursesTip.invalidate(reason: .actionPerformed)
+					}
+				}
 				.onChange(of: selection) {
 					if editState == .inactive {
 						selection.removeAll()
