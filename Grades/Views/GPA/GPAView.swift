@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TipKit
 
 struct GPAView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -16,6 +17,7 @@ struct GPAView: View {
 	@State private var infoSheetPresented: Bool = false
 	@FocusState private var focused: UUID?
 	
+	private var renameCoursesTip = RenameCoursesTip()
 	private var unweightedGPA: Double {
 		let points: Double = courses.map { $0.grade.rawValue * $0.credits }.reduce(0, +)
 		let credits: Double = courses.map { $0.credits }.reduce(0, +)
@@ -43,7 +45,23 @@ struct GPAView: View {
 			ScrollViewReader { proxy in
 				List(selection: $selection) {
 					if !courses.isEmpty {
+						Section {
+							TipView(renameCoursesTip)
+								.tipBackground(Color(.secondarySystemGroupedBackground))
+						}
+						.listSectionMargins(.top, 10)
+						.listRowBackground(Color.clear)
+						.listRowInsets(EdgeInsets())
+						
 						GPAContent(courses: $courses, editState: $editState, focused: $focused, unweightedGPA: unweightedGPA, weightedGPA: weightedGPA)
+					}
+				}
+				.task {
+					do {
+						try Tips.configure()
+					}
+					catch {
+						print("Error initializing TipKit \(error.localizedDescription)")
 					}
 				}
 				.listStyle(.insetGrouped)
