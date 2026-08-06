@@ -101,7 +101,7 @@ struct CoursesView: View {
 			.toolbarTitleDisplayMode(.inline)
 			.toolbarRole(.editor)
 			.scrollEdgeEffectStyle(.soft, for: .all)
-			.contentMargins(.top, 8)
+			.contentMargins(.top, 7 + (1 / 3))
 		}
 	}
 }
