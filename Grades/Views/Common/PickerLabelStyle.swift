@@ -16,14 +16,15 @@ struct PickerLabelStyle: LabelStyle {
 				configuration.icon
 				
 				configuration.title
+					.underline(false)
 				
 				Image(systemName: "chevron.up.chevron.down")
 					.imageScale(.small)
 			}
+			.tint(.secondary)
 			.padding(.vertical, 8)
 			.padding(.horizontal, 12)
 			.background(Color(.tertiarySystemFill))
-			.foregroundStyle(.secondary)
 			.clipShape(.capsule)
 		} else {
 			HStack(spacing: 4) {
@@ -34,13 +35,7 @@ struct PickerLabelStyle: LabelStyle {
 				Image(systemName: "chevron.up.chevron.down")
 					.imageScale(.small)
 			}
-			.foregroundStyle(.secondary)
+			.tint(.secondary)
 		}
-	}
-}
-
-extension LabelStyle where Self == PickerLabelStyle {
-	static var picker: PickerLabelStyle {
-		PickerLabelStyle()
 	}
 }

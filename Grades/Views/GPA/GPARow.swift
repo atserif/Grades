@@ -61,8 +61,8 @@ struct GPARow: View {
 					.animation(.default, value: course.grade)
 					.animation(.default, value: course.level)
 				}
-				.labelStyle(.picker)
-				.buttonStyle(.plain)
+				.labelStyle(PickerLabelStyle())
+				.buttonStyle(.borderless)
 				.padding(.horizontal)
 			}
 			.scrollIndicators(.hidden)
