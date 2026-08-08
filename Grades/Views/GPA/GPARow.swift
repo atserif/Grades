@@ -35,7 +35,6 @@ struct GPARow: View {
 									.tag(grade)
 							}
 						}
-						.labelsVisibility(.visible)
 					}
 					.animation(.default, value: course.level)
 					.animation(.default, value: course.credits)
@@ -47,7 +46,6 @@ struct GPARow: View {
 									.tag(level)
 							}
 						}
-						.labelsVisibility(.visible)
 					}
 					.animation(.default, value: course.grade)
 					.animation(.default, value: course.credits)
@@ -59,13 +57,13 @@ struct GPARow: View {
 									.tag(credits)
 							}
 						}
-						.labelsVisibility(.visible)
 					}
 					.animation(.default, value: course.grade)
 					.animation(.default, value: course.level)
 				}
+				.labelStyle(.picker)
+				.buttonStyle(.plain)
 				.padding(.horizontal)
-				.labelStyle(.simple)
 			}
 			.scrollIndicators(.hidden)
 			.scrollBounceBehavior(.basedOnSize, axes: .horizontal)
