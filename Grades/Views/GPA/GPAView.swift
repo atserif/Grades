@@ -10,6 +10,7 @@ import TipKit
 
 struct GPAView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
+	@Environment(\.accessibilityShowBorders) private var accessibilityShowBorders
 	
 	@State private var courses: [Course] = []
 	@State private var selection: Set<UUID> = []
@@ -92,7 +93,7 @@ struct GPAView: View {
 					
 					if editState == .inactive {
 						ToolbarItem(placement: .topBarTrailing) {
-							Button("Select") {
+							Button {
 								if focused != nil {
 									withAnimation(.none) {
 										focused = nil
@@ -108,6 +109,10 @@ struct GPAView: View {
 										editState = .active
 									}
 								}
+							} label: {
+								Text("Select")
+									.underline(false)
+									.padding(.horizontal, accessibilityShowBorders ? 12 : 0)
 							}
 							.disabled(courses.isEmpty)
 						}
@@ -153,14 +158,22 @@ struct GPAView: View {
 					} else {
 						if selection.count == courses.count {
 							ToolbarItem(placement: .topBarTrailing) {
-								Button("Deselect All") {
+								Button {
 									selection.removeAll()
+								} label: {
+									Text("Deselect All")
+										.underline(false)
+										.padding(.horizontal, accessibilityShowBorders ? 12 : 0)
 								}
 							}
 						} else {
 							ToolbarItem(placement: .topBarTrailing) {
-								Button("Select All") {
+								Button {
 									selection = Set(courses.map { $0.id })
+								} label: {
+									Text("Select All")
+										.underline(false)
+										.padding(.horizontal, accessibilityShowBorders ? 12 : 0)
 								}
 							}
 						}
