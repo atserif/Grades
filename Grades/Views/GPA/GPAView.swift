@@ -111,7 +111,6 @@ struct GPAView: View {
 								}
 							} label: {
 								Text("Select")
-									.underline(false)
 									.padding(.horizontal, accessibilityShowBorders ? 12 : 0)
 							}
 							.disabled(courses.isEmpty)
@@ -162,7 +161,6 @@ struct GPAView: View {
 									selection.removeAll()
 								} label: {
 									Text("Deselect All")
-										.underline(false)
 										.padding(.horizontal, accessibilityShowBorders ? 12 : 0)
 								}
 							}
@@ -172,7 +170,6 @@ struct GPAView: View {
 									selection = Set(courses.map { $0.id })
 								} label: {
 									Text("Select All")
-										.underline(false)
 										.padding(.horizontal, accessibilityShowBorders ? 12 : 0)
 								}
 							}
