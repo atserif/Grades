@@ -228,7 +228,7 @@ struct GPAView: View {
 				}
 				.sheet(isPresented: $infoSheetPresented) {
 					GPAInfoView()
-						.presentationRimLight()
+						.presentationRimLight(.visible)
 				}
 				.toolbarVisibility(editState == .inactive ? .visible : .hidden, for: .tabBar)
 				.toolbarVisibility(editState == .inactive ? .hidden : .visible, for: .bottomBar)

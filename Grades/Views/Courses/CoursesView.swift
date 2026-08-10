@@ -96,7 +96,7 @@ struct CoursesView: View {
 			}
 			.sheet(isPresented: $infoSheetPresented) {
 				CoursesInfoView()
-					.presentationRimLight()
+					.presentationRimLight(.visible)
 			}
 			.toolbarTitleDisplayMode(.inline)
 			.toolbarRole(.editor)
