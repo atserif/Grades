@@ -207,7 +207,7 @@ struct GPAView: View {
 									.contentTransition(.numericText())
 							}
 						}
-						.padding(.horizontal, 10)
+						.padding(.horizontal, 12)
 						.fixedSize(horizontal: true, vertical: false)
 					}
 					
@@ -230,8 +230,8 @@ struct GPAView: View {
 					GPAInfoView()
 						.presentationRimLight()
 				}
-				.toolbarVisibility(editState == .inactive ? .automatic : .hidden, for: .tabBar)
-				.toolbarVisibility(editState == .inactive ? .hidden : .automatic, for: .bottomBar)
+				.toolbarVisibility(editState == .inactive ? .visible : .hidden, for: .tabBar)
+				.toolbarVisibility(editState == .inactive ? .hidden : .visible, for: .bottomBar)
 				.toolbarTitleDisplayMode(.inline)
 				.toolbarRole(.editor)
 				.scrollEdgeEffectStyle(.soft, for: .all)
