@@ -7,11 +7,13 @@
 
 import SwiftUI
 
+// TODO: Add documentation
 struct PresentationRimLight: ViewModifier {
 	@Environment(\.colorScheme) private var colorScheme
 	
 	private var visibility: Visibility = .automatic
 	
+	// TODO: Make presentationRimLight appear on sheets by default
 	func body(content: Content) -> some View {
 		if visibility == .visible {
 			content

@@ -58,6 +58,7 @@ struct CoursesView: View {
 					.pickerStyle(.segmented)
 					.controlSize(.extraLarge)
 				}
+				// 1 pt bottom inset accounts for the segmented Picker's arbitrary vertical offset
 				.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
 				.listRowBackground(Color.clear)
 				
@@ -101,6 +102,7 @@ struct CoursesView: View {
 			.toolbarTitleDisplayMode(.inline)
 			.toolbarRole(.editor)
 			.scrollEdgeEffectStyle(.soft, for: .all)
+			// Accounts for the 2 2/3 pt gap between the segmented Picker's and List row's vertical bounds
 			.contentMargins(.top, 7 + (1 / 3))
 		}
 	}

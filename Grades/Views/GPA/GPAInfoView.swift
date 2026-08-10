@@ -58,6 +58,7 @@ struct GPAInfoView: View {
 }
 
 #Preview {
+	// Previews View as a sheet
 	VStack { }
 		.sheet(isPresented: .constant(true)) {
 			GPAInfoView()

@@ -26,6 +26,7 @@ struct GPAContent: View {
 		Section {
 			ForEach($courses, editActions: .move) { course in
 				GPARow(course: course, editState: $editState, focused: focused)
+					// Prevents horizontal ScrollView from clipping when scrolled
 					.listRowInsets(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
 					.alignmentGuide(.listRowSeparatorLeading) { _ in 16 }
 					.swipeActions {
@@ -62,6 +63,7 @@ struct GPAContent: View {
 					}
 					.id(course.id)
 					.allowsHitTesting(editState == .inactive)
+					// Fixes animation issues when allowsHitTesting is toggled
 					.geometryGroup()
 			}
 		} header: {
@@ -80,6 +82,7 @@ struct GPAContent: View {
 				}
 				.frame(maxWidth: .infinity, alignment: .leading)
 				
+				// Replicates default List row separator styling
 				Rectangle()
 					.fill(Color(.separator))
 					.frame(width: 1)

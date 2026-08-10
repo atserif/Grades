@@ -71,6 +71,7 @@ struct GPARow: View {
 			.scrollIndicators(.hidden)
 			.scrollBounceBehavior(.basedOnSize, axes: .horizontal)
 			.mask {
+				// Applies fade out effect
 				HStack(spacing: 0) {
 					LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: .leading, endPoint: .trailing)
 						.frame(width: 16)

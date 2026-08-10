@@ -65,6 +65,7 @@ struct CoursesInfoView: View {
 }
 
 #Preview {
+	// Previews View as a sheet
 	VStack { }
 		.sheet(isPresented: .constant(true)) {
 			CoursesInfoView()

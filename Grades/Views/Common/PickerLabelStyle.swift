@@ -22,6 +22,7 @@ struct PickerLabelStyle: LabelStyle {
 					.imageScale(.small)
 			}
 			.tint(.secondary)
+			// Matches default Picker styling when Show Borders is enabled
 			.padding(.vertical, 8)
 			.padding(.horizontal, 12)
 			.background(Color(.tertiarySystemFill))
