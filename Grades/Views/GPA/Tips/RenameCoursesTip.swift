@@ -12,11 +12,9 @@ struct RenameCoursesTip: Tip {
 	var title: Text {
 		Text("Rename Courses")
 	}
-	
 	var message: Text? {
 		Text("Tap any course's name to edit it.")
 	}
-	
 	var image: Image? {
 		Image(systemName: "character.cursor.ibeam")
 	}

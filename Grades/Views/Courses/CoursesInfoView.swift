@@ -9,12 +9,6 @@ import SwiftUI
 
 struct CoursesInfoView: View {
 	@Environment(\.dismiss) private var dismiss
-	
-	private let fullYearQuarterPercentage: Int = 20
-	private let fullYearExamPercentage: Int = 10
-	private let semesterQuarterPercentage: Int = 40
-	private let semesterExamPercentage: Int = 20
-	private let stateAssessedGradingPercentage: Int = 20
 
 	var body: some View {
 		NavigationStack {
@@ -23,7 +17,7 @@ struct CoursesInfoView: View {
 					Text("Full Year")
 						.font(.headline)
 					
-					Text("Quarter grades are worth \(fullYearQuarterPercentage.formatted(.percent)) each. The midterm and final exams are worth \(fullYearExamPercentage.formatted(.percent)) each.")
+					Text("Quarter grades are worth \(20.formatted(.percent)) each. The midterm and final exams are worth \(10.formatted(.percent)) each.")
 						.font(.subheadline)
 						.foregroundStyle(.secondary)
 				}
@@ -32,7 +26,7 @@ struct CoursesInfoView: View {
 					Text("Semester")
 						.font(.headline)
 					
-					Text("Quarter grades are worth \(semesterQuarterPercentage.formatted(.percent)) each. The final exam is worth \(semesterExamPercentage.formatted(.percent)).")
+					Text("Quarter grades are worth \(40.formatted(.percent)) each. The final exam is worth \(20.formatted(.percent)).")
 						.font(.subheadline)
 						.foregroundStyle(.secondary)
 				}
@@ -41,7 +35,7 @@ struct CoursesInfoView: View {
 					Text("State-Assessed")
 						.font(.headline)
 					
-					Text("Quarter grades, as well as the state assessment, are worth \(stateAssessedGradingPercentage.formatted(.percent)) each.")
+					Text("Quarter grades, as well as the state assessment, are worth \(20.formatted(.percent)) each.")
 						.font(.subheadline)
 						.foregroundStyle(.secondary)
 				}
