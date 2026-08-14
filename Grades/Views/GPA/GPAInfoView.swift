@@ -62,7 +62,6 @@ struct GPAInfoView: View {
 	VStack { }
 		.sheet(isPresented: .constant(true)) {
 			GPAInfoView()
-				.presentationRimLight(.visible)
 				.interactiveDismissDisabled()
 		}
 }

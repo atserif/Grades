@@ -69,7 +69,6 @@ struct CoursesInfoView: View {
 	VStack { }
 		.sheet(isPresented: .constant(true)) {
 			CoursesInfoView()
-				.presentationRimLight(.visible)
 				.interactiveDismissDisabled()
 		}
 }
