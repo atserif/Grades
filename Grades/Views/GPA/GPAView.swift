@@ -16,6 +16,7 @@ struct GPAView: View {
 	@State private var selection: Set<UUID> = []
 	@State private var editState: EditMode = .inactive
 	@State private var infoSheetPresented: Bool = false
+	@State private var courseNumber: Int = 0
 	@FocusState private var focused: UUID?
 	
 	private var renameCoursesTip = RenameCoursesTip()
@@ -31,11 +32,13 @@ struct GPAView: View {
 	}
 	
 	private func newCourse() {
-		let newCourse = Course(name: "", grade: .A, level: .regular, credits: 1.0)
+		courseNumber += 1
+		let newCourse = Course(number: courseNumber, name: "Course \(courseNumber)", grade: .A, level: .regular, credits: 1.0)
+		
 		courses.append(newCourse)
 	}
 	private func resetCourse(at index: Int) {
-		courses[index].name = ""
+		courses[index].name = "Course \(courses[index].number)"
 		courses[index].grade = .A
 		courses[index].level = .regular
 		courses[index].credits = 1.0
@@ -148,11 +151,15 @@ struct GPAView: View {
 											withAnimation {
 												courses.removeAll()
 											}
+											
+											courseNumber = 0
 										}
 									} else {
 										withAnimation {
 											courses.removeAll()
 										}
+										
+										courseNumber = 0
 									}
 								}
 							}

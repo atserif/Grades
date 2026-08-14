@@ -16,7 +16,7 @@ struct GPAContent: View {
 	let weightedGPA: Double
 	
 	private func resetCourse(_ course: Binding<Course>) {
-		course.name.wrappedValue = ""
+		course.name.wrappedValue = "Course \(course.wrappedValue.number)"
 		course.grade.wrappedValue = .A
 		course.level.wrappedValue = .regular
 		course.credits.wrappedValue = 1.0

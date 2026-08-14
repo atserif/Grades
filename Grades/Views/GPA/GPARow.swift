@@ -16,7 +16,7 @@ struct GPARow: View {
 	
 	var body: some View {
 		VStack(alignment: .leading) {
-			TextField("New Course", text: $course.name, prompt: Text("New Course"))
+			TextField("Course Name", text: $course.name, prompt: Text("Course Name"))
 				.font(.headline)
 				.padding(.horizontal)
 				.focused(focused, equals: course.id)

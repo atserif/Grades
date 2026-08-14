@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Course: Identifiable, Equatable {
 	let id = UUID()
+	let number: Int
 	
 	var name: String
 	var grade: Grade
