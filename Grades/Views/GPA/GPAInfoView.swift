@@ -51,7 +51,7 @@ struct GPAInfoView: View {
 			}
 			.navigationTitle("About GPA")
 			.toolbarTitleDisplayMode(.inline)
-			.scrollEdgeEffectStyle(.soft, for: .all)
+			.scrollEdgeEffectStyle(.soft, for: .top)
 			.contentMargins(.top, 10)
 		}
 	}

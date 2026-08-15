@@ -58,7 +58,7 @@ struct CoursesInfoView: View {
 			}
 			.navigationTitle("About Courses")
 			.toolbarTitleDisplayMode(.inline)
-			.scrollEdgeEffectStyle(.soft, for: .all)
+			.scrollEdgeEffectStyle(.soft, for: .top)
 			.contentMargins(.top, 10)
 		}
 	}

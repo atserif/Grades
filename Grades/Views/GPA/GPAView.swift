@@ -223,7 +223,7 @@ struct GPAView: View {
 				.toolbarVisibility(editState == .inactive ? .hidden : .visible, for: .bottomBar)
 				.toolbarTitleDisplayMode(.inline)
 				.toolbarRole(.editor)
-				.scrollEdgeEffectStyle(.soft, for: .all)
+				.scrollEdgeEffectStyle(.soft, for: .top)
 				.scrollDismissesKeyboard(.immediately)
 				.animation(.default, value: selection)
 				.environment(\.editMode, $editState)
