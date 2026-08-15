@@ -45,6 +45,10 @@ struct GPAContent: View {
 						}
 					}
 					.contextMenu {
+						Button("Rename", systemImage: "character.cursor.ibeam") {
+							focused.wrappedValue = course.id
+						}
+						
 						Button("Reset", systemImage: "arrow.clockwise") {
 							resetCourse(course)
 						}
@@ -62,7 +66,6 @@ struct GPAContent: View {
 						}
 					}
 					.id(course.id)
-					.allowsHitTesting(editState == .inactive)
 					// Fixes animation issues when allowsHitTesting is toggled
 					.geometryGroup()
 			}
