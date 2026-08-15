@@ -16,8 +16,9 @@ struct GPARow: View {
 	
 	var body: some View {
 		VStack(alignment: .leading) {
+			// TODO: Add clear button when focused
 			TextField("Course Name", text: $course.name, prompt: Text("Course Name"))
-				// Enable editing when rename button is pressed
+				// Enables editing when rename button is pressed
 				.allowsHitTesting(editState == .inactive && focused.wrappedValue != nil && course.id == focused.wrappedValue)
 				.font(.headline)
 				.padding(.horizontal)
