@@ -45,7 +45,7 @@ struct GPAContent: View {
 						}
 					}
 					.contextMenu {
-						Button("Rename", systemImage: "character.cursor.ibeam") {
+						Button("Rename", systemImage: "pencil") {
 							focused.wrappedValue = course.id
 						}
 						
