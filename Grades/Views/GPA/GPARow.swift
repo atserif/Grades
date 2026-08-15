@@ -16,6 +16,7 @@ struct GPARow: View {
 	
 	var body: some View {
 		VStack(alignment: .leading) {
+			// TODO: Switch rename functionality to an alert
 			TextField("Course Name", text: $course.name, prompt: Text("Course Name"))
 				.font(.headline)
 				.padding(.horizontal)
