@@ -22,6 +22,8 @@ private enum CalculatorSelection: CaseIterable {
 }
 
 struct CoursesView: View {
+	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
+	
 	@State private var calculatorSelection: CalculatorSelection = .fullYear
 	@State private var fullYearGradingPeriods: [GradingPeriod] = [
 		GradingPeriod(name: "Quarter 1", grade: .A),
@@ -56,7 +58,7 @@ struct CoursesView: View {
 						}
 					}
 					.pickerStyle(.segmented)
-					.controlSize(.extraLarge)
+					.controlSize(horizontalSizeClass == .compact ? .extraLarge : .regular)
 				}
 				// 1 pt bottom inset accounts for the segmented Picker's arbitrary vertical offset
 				.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
