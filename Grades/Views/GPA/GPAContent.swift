@@ -46,6 +46,12 @@ struct GPAContent: View {
 					}
 					.contextMenu {
 						Button("Rename", systemImage: "pencil") {
+							if editState != .inactive {
+								withAnimation {
+									editState = .inactive
+								}
+							}
+							
 							focused.wrappedValue = course.id
 						}
 						
