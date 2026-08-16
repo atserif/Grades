@@ -56,17 +56,37 @@ struct GPAContent: View {
 						}
 						
 						Button("Reset", systemImage: "arrow.clockwise") {
+							if focused.wrappedValue == course.id {
+								focused.wrappedValue = nil
+							}
+							
 							resetCourse(course)
 						}
 						
 						Divider()
 						
 						Button("Delete", systemImage: "trash", role: .destructive) {
-							withAnimation {
-								courses.removeAll { $0.id == course.id }
+							if focused.wrappedValue == course.id {
+								withAnimation(.none) {
+									focused.wrappedValue = nil
+								}
 								
-								if courses.isEmpty {
-									editState = .inactive
+								DispatchQueue.main.async {
+									withAnimation {
+										courses.removeAll { $0.id == course.id }
+										
+										if courses.isEmpty {
+											editState = .inactive
+										}
+									}
+								}
+							} else {
+								withAnimation {
+									courses.removeAll { $0.id == course.id }
+									
+									if courses.isEmpty {
+										editState = .inactive
+									}
 								}
 							}
 						}
