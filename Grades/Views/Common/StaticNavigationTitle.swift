@@ -9,12 +9,10 @@ import SwiftUI
 
 // Custom inlineLarge navigation title that doesn't collapse on scroll
 struct StaticNavigationTitle: View {
-	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
-	
 	var title: String
 	
 	var body: some View {
-		if horizontalSizeClass == .compact {
+		if UIDevice.current.userInterfaceIdiom == .phone {
 			HStack {
 				Text(title)
 					.font(.largeTitle)
