@@ -38,6 +38,7 @@ struct GPARow: View {
 									.tag(grade)
 							}
 						}
+						// Shows header in Menu
 						.labelsVisibility(.visible)
 					}
 					.animation(.default, value: course.level)

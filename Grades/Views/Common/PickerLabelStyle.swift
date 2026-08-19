@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PickerLabelStyle: LabelStyle {
 	@Environment(\.accessibilityShowBorders) private var accessibilityShowBorders
+	@ScaledMetric(relativeTo: .largeTitle) private var dynamicPadding: CGFloat = 12
 	
 	func makeBody(configuration: Configuration) -> some View {
 		if accessibilityShowBorders {
@@ -24,7 +25,7 @@ struct PickerLabelStyle: LabelStyle {
 			.tint(.secondary)
 			// Matches default Picker styling when Show Borders is enabled
 			.padding(.vertical, 8)
-			.padding(.horizontal, 12)
+			.padding(.horizontal, dynamicPadding)
 			.background(Color(.tertiarySystemFill))
 			.clipShape(.capsule)
 		} else {
