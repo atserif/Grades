@@ -13,14 +13,9 @@ struct StaticNavigationTitle: View {
 	
 	var body: some View {
 		if UIDevice.current.userInterfaceIdiom == .phone {
-			HStack {
-				Text(title)
-					.font(.largeTitle)
-					.bold()
-					.fixedSize()
-				
-				Spacer()
-			}
+			Text(title)
+				.font(.largeTitle)
+				.bold()
 		}
 	}
 }
