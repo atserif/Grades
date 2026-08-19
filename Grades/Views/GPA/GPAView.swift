@@ -105,9 +105,6 @@ struct GPAView: View {
 								withAnimation {
 									newCourse()
 									proxy.scrollTo("bottom", anchor: .top)
-									
-									// TODO: Properly implement this without scroll jittering
-									// focused = courses.last?.id
 								}
 							}
 							.disabled(courses.count >= 20)
