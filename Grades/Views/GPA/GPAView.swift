@@ -67,6 +67,37 @@ struct GPAView: View {
 						.background(Color(.systemGroupedBackground))
 					}
 				}
+				// Multiple selection context menu
+				.contextMenu(forSelectionType: Course.ID.self) { selectedCourses in
+					if selectedCourses.isEmpty { } else if selection.count > 1 {
+						Button("Reset", systemImage: "arrow.clockwise") {
+							for index in courses.indices {
+								if selectedCourses.contains(courses[index].id) {
+									resetCourse(at: index)
+								}
+							}
+						}
+						
+						Divider()
+						
+						Button("Delete", systemImage: "trash", role: .destructive) {
+							// Avoids animation conflicts by delaying
+							DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+								withAnimation {
+									courses.removeAll { selectedCourses.contains($0.id) }
+								}
+								
+								selection.removeAll()
+								
+								if courses.isEmpty {
+									withAnimation {
+										editState = .inactive
+									}
+								}
+							}
+						}
+					}
+				}
 				.toolbar {
 					ToolbarItem(placement: .title) {
 						StaticNavigationTitle(title: "GPA")

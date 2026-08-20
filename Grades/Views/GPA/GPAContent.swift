@@ -44,6 +44,7 @@ struct GPAContent: View {
 							resetCourse(course)
 						}
 					}
+					// Individual selection context menu
 					.contextMenu {
 						Button("Rename", systemImage: "pencil") {
 							if editState != .inactive {
