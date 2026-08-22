@@ -15,6 +15,7 @@ struct GPAView: View {
 	@State private var selection: Set<UUID> = []
 	@State private var editState: EditMode = .inactive
 	@State private var infoSheetPresented: Bool = false
+	@State private var deleteConfirmationPresented: Bool = false
 	@State private var courseNumber: Int = 0
 	@FocusState private var focused: UUID?
 	
@@ -52,6 +53,7 @@ struct GPAView: View {
 				}
 				.listStyle(.insetGrouped)
 				.onChange(of: selection) {
+					// Prevents tap when edit mode is inactive triggering persistent row selection highlight
 					if editState == .inactive {
 						selection.removeAll()
 					}
@@ -236,12 +238,17 @@ struct GPAView: View {
 					
 					ToolbarItem(placement: .bottomBar) {
 						Button("Delete", systemImage: "trash", role: .destructive) {
-							withAnimation {
-								courses.removeAll { course in
-									selection.contains(course.id)
+							deleteConfirmationPresented.toggle()
+						}
+						.confirmationDialog("Are you sure you want to delete \(selection.count == 1 ? "this course?" : "these courses?")", isPresented: $deleteConfirmationPresented, titleVisibility: .visible) {
+							Button("Delete \(selection.count == 1 ? "Course" : "\(selection.count) Courses")", role: .destructive) {
+								withAnimation {
+									courses.removeAll { course in
+										selection.contains(course.id)
+									}
+									
+									editState = .inactive
 								}
-								
-								editState = .inactive
 							}
 						}
 						.disabled(selection.isEmpty)
