@@ -54,6 +54,11 @@ struct GPAView: View {
 					}
 				}
 				.listStyle(.insetGrouped)
+				.onChange(of: courses.count) {
+					if courses.isEmpty {
+						courseNumber = 0
+					}
+				}
 				.onChange(of: selection) {
 					// Prevents tap when edit mode is inactive triggering persistent row selection highlight
 					if editState == .inactive {
@@ -162,15 +167,11 @@ struct GPAView: View {
 											withAnimation {
 												courses.removeAll()
 											}
-											
-											courseNumber = 0
 										}
 									} else {
 										withAnimation {
 											courses.removeAll()
 										}
-										
-										courseNumber = 0
 									}
 								}
 							}
