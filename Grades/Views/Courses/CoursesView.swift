@@ -24,6 +24,7 @@ private enum CalculatorSelection: CaseIterable {
 struct CoursesView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
+	@AppStorage("resetAllCalculators") var resetAllCalculators: Bool = true
 	@State private var calculatorSelection: CalculatorSelection = .fullYear
 	@State private var fullYearGradingPeriods: [GradingPeriod] = [
 		GradingPeriod(name: "Quarter 1", grade: .A),
@@ -46,7 +47,6 @@ struct CoursesView: View {
 		GradingPeriod(name: "State Assessment", grade: .A)
 	]
 	@State private var infoSheetPresented: Bool = false
-	@AppStorage("resetAllCalculators") var resetAllCalculators: Bool = true
 	
 	var body: some View {
 		NavigationStack {
