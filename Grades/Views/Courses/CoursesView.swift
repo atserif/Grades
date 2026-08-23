@@ -46,6 +46,7 @@ struct CoursesView: View {
 		GradingPeriod(name: "State Assessment", grade: .A)
 	]
 	@State private var infoSheetPresented: Bool = false
+	@AppStorage("resetAllCalculators") var resetAllCalculators: Bool = true
 	
 	var body: some View {
 		NavigationStack {
@@ -88,11 +89,22 @@ struct CoursesView: View {
 						Divider()
 						
 						Button("Reset", systemImage: "arrow.clockwise") {
-							calculatorSelection = .fullYear
-							
-							fullYearGradingPeriods.indices.forEach { fullYearGradingPeriods[$0].grade = .A }
-							semesterGradingPeriods.indices.forEach { semesterGradingPeriods[$0].grade = .A }
-							stateAssessedGradingPeriods.indices.forEach { stateAssessedGradingPeriods[$0].grade = .A }
+							if resetAllCalculators {
+								calculatorSelection = .fullYear
+								
+								fullYearGradingPeriods.indices.forEach { fullYearGradingPeriods[$0].grade = .A }
+								semesterGradingPeriods.indices.forEach { semesterGradingPeriods[$0].grade = .A }
+								stateAssessedGradingPeriods.indices.forEach { stateAssessedGradingPeriods[$0].grade = .A }
+							} else {
+								switch calculatorSelection {
+								case .fullYear:
+									fullYearGradingPeriods.indices.forEach { fullYearGradingPeriods[$0].grade = .A }
+								case .semester:
+									semesterGradingPeriods.indices.forEach { semesterGradingPeriods[$0].grade = .A }
+								case .stateAssessed:
+									stateAssessedGradingPeriods.indices.forEach { stateAssessedGradingPeriods[$0].grade = .A }
+								}
+							}
 						}
 					}
 				}
