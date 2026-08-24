@@ -7,5 +7,6 @@
 
 struct GradingPeriod {
 	let name: String
+	let type: `Type`
 	var grade: Grade
 }

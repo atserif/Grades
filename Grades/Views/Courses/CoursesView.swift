@@ -27,23 +27,23 @@ struct CoursesView: View {
 	@AppStorage("resetAllCalculators") var resetAllCalculators: Bool = true
 	@State private var calculatorSelection: CalculatorSelection = .fullYear
 	@State private var fullYearGradingPeriods: [GradingPeriod] = [
-		GradingPeriod(name: "Quarter 1", grade: .A),
-		GradingPeriod(name: "Quarter 2", grade: .A),
-		GradingPeriod(name: "Quarter 3", grade: .A),
-		GradingPeriod(name: "Quarter 4", grade: .A),
-		GradingPeriod(name: "Final", grade: .A)
+		GradingPeriod(name: "Quarter 1", type: .quarter, grade: .A),
+		GradingPeriod(name: "Quarter 2", type: .quarter, grade: .A),
+		GradingPeriod(name: "Quarter 3", type: .quarter, grade: .A),
+		GradingPeriod(name: "Quarter 4", type: .quarter, grade: .A),
+		GradingPeriod(name: "Final", type: .exam, grade: .A)
 	]
 	@State private var semesterGradingPeriods: [GradingPeriod] = [
-		GradingPeriod(name: "Quarter 1", grade: .A),
-		GradingPeriod(name: "Quarter 2", grade: .A),
-		GradingPeriod(name: "Final", grade: .A),
+		GradingPeriod(name: "Quarter 1", type: .quarter, grade: .A),
+		GradingPeriod(name: "Quarter 2", type: .quarter, grade: .A),
+		GradingPeriod(name: "Final", type: .exam, grade: .A),
 	]
 	@State private var stateAssessedGradingPeriods: [GradingPeriod] = [
-		GradingPeriod(name: "Quarter 1", grade: .A),
-		GradingPeriod(name: "Quarter 2", grade: .A),
-		GradingPeriod(name: "Quarter 3", grade: .A),
-		GradingPeriod(name: "Quarter 4", grade: .A),
-		GradingPeriod(name: "State Assessment", grade: .A)
+		GradingPeriod(name: "Quarter 1", type: .quarter, grade: .A),
+		GradingPeriod(name: "Quarter 2", type: .quarter, grade: .A),
+		GradingPeriod(name: "Quarter 3", type: .quarter, grade: .A),
+		GradingPeriod(name: "Quarter 4", type: .quarter, grade: .A),
+		GradingPeriod(name: "State Assessment", type: .exam, grade: .A)
 	]
 	@State private var infoSheetPresented: Bool = false
 	
