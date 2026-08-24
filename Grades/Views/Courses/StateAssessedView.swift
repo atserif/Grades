@@ -13,8 +13,8 @@ struct StateAssessedView: View {
 	private var courseGrade: Grade {
 		var letterGrade: Grade
 		
-		let total: Double = gradingPeriods.map { $0.grade.rawValue }.reduce(0, +)
-		let average: Double = total / 5
+		let total: Double = gradingPeriods.map { $0.grade.rawValue }.reduce(0, +) * 20
+		let average: Double = total / 100
 		
 		switch average {
 		case 3.5...:

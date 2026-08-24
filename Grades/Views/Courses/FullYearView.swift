@@ -13,9 +13,9 @@ struct FullYearView: View {
 	private var courseGrade: Grade {
 		var letterGrade: Grade
 		
-		let quarterTotal: Double = gradingPeriods.filter { $0.name.hasPrefix("Quarter ") }.map { $0.grade.rawValue }.reduce(0, +) * 2
-		let examTotal: Double = gradingPeriods.filter { !$0.name.hasPrefix("Quarter ") }.map { $0.grade.rawValue }.reduce(0, +)
-		let average: Double = (quarterTotal + examTotal) / 10
+		let quarterTotal: Double = gradingPeriods.filter { $0.name.hasPrefix("Quarter") }.map { $0.grade.rawValue }.reduce(0, +) * 22.5
+		let examTotal: Double = gradingPeriods.filter { !$0.name.hasPrefix("Quarter") }.map { $0.grade.rawValue }.reduce(0, +) * 10
+		let average: Double = (quarterTotal + examTotal) / 100
 		
 		switch average {
 		case 3.5...:

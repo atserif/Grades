@@ -29,7 +29,6 @@ struct CoursesView: View {
 	@State private var fullYearGradingPeriods: [GradingPeriod] = [
 		GradingPeriod(name: "Quarter 1", grade: .A),
 		GradingPeriod(name: "Quarter 2", grade: .A),
-		GradingPeriod(name: "Midterm", grade: .A),
 		GradingPeriod(name: "Quarter 3", grade: .A),
 		GradingPeriod(name: "Quarter 4", grade: .A),
 		GradingPeriod(name: "Final", grade: .A)

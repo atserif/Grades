@@ -17,7 +17,7 @@ struct CoursesInfoView: View {
 					Text("Full Year")
 						.font(.headline)
 					
-					Text("Quarter grades are worth \(20.formatted(.percent)) each. The midterm and final exams are worth \(10.formatted(.percent)) each.")
+					Text("Quarter grades are worth \(22.5.formatted(.percent)) each. The final exam is worth \(10.formatted(.percent)).")
 						.font(.subheadline)
 						.foregroundStyle(.secondary)
 				}
@@ -26,7 +26,7 @@ struct CoursesInfoView: View {
 					Text("Semester")
 						.font(.headline)
 					
-					Text("Quarter grades are worth \(40.formatted(.percent)) each. The final exam is worth \(20.formatted(.percent)).")
+					Text("Quarter grades are worth \(45.formatted(.percent)) each. The final exam is worth \(10.formatted(.percent)).")
 						.font(.subheadline)
 						.foregroundStyle(.secondary)
 				}
