@@ -5,7 +5,7 @@
 //  Created by Aram Soneson on 6/1/26.
 //
 
-enum Level: Double, CaseIterable {
+enum Level: Double, CaseIterable, Codable {
 	case regular = 0
 	case honors = 0.5
 	case gtap = 1
