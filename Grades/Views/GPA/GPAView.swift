@@ -11,6 +11,7 @@ struct GPAView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	@Environment(\.accessibilityShowBorders) private var accessibilityShowBorders
 	
+	@AppStorage("rememberGPAChanges") private var rememberGPAChanges: Bool = true
 	@AppStorage("coursesData") private var coursesData: Data = Data()
 	@State private var courses: [Course] = []
 	@State private var editState: EditMode = .inactive
@@ -284,7 +285,9 @@ struct GPAView: View {
 			}
 		}
 		.onAppear {
-			loadCourses()
+			if rememberGPAChanges {
+				loadCourses()
+			}
 		}
 		.onChange(of: courses) {
 			saveCourses()

@@ -24,7 +24,8 @@ private enum CalculatorSelection: CaseIterable {
 struct CoursesView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	
-	@AppStorage("resetAllCalculators") var resetAllCalculators: Bool = true
+	@AppStorage("rememberCoursesChanges") private var rememberCoursesChanges: Bool = true
+	@AppStorage("resetAllCalculators") private var resetAllCalculators: Bool = true
 	@AppStorage("fullYearGradingPeriodsData") private var fullYearGradingPeriodsData: Data = Data()
 	@AppStorage("semesterGradingPeriodsData") private var semesterGradingPeriodsData: Data = Data()
 	@AppStorage("stateAssessedGradingPeriodsData") private var stateAssessedGradingPeriodsData: Data = Data()
@@ -152,9 +153,11 @@ struct CoursesView: View {
 			.contentMargins(.top, 7 + (1 / 3))
 		}
 		.onAppear {
-			loadFullYearGradingPeriods()
-			loadSemesterGradingPeriods()
-			loadStateAssessedGradingPeriods()
+			if rememberCoursesChanges {
+				loadFullYearGradingPeriods()
+				loadSemesterGradingPeriods()
+				loadStateAssessedGradingPeriods()
+			}
 		}
 		.onChange(of: [fullYearGradingPeriods, semesterGradingPeriods, stateAssessedGradingPeriods]) {
 			saveFullYearGradingPeriods()
