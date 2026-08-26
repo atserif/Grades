@@ -11,6 +11,7 @@ struct GPAView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	@Environment(\.accessibilityShowBorders) private var accessibilityShowBorders
 	
+	@AppStorage("coursesData") private var coursesData: Data = Data()
 	@State private var courses: [Course] = []
 	@State private var editState: EditMode = .inactive
 	@State private var selection: Set<UUID> = []
@@ -43,6 +44,16 @@ struct GPAView: View {
 		courses[index].grade = .A
 		courses[index].level = .regular
 		courses[index].credits = 1.0
+	}
+	private func saveCourses() {
+		if let encoded = try? JSONEncoder().encode(courses) {
+			coursesData = encoded
+		}
+	}
+	private func loadCourses() {
+		if let decoded = try? JSONDecoder().decode([Course].self, from: coursesData) {
+			courses = decoded
+		}
 	}
 	
 	var body: some View {
@@ -271,6 +282,12 @@ struct GPAView: View {
 				.animation(.default, value: selection)
 				.environment(\.editMode, $editState)
 			}
+		}
+		.onAppear {
+			loadCourses()
+		}
+		.onChange(of: courses) {
+			saveCourses()
 		}
 	}
 }
