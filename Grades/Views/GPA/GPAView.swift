@@ -12,8 +12,11 @@ struct GPAView: View {
 	@Environment(\.accessibilityShowBorders) private var accessibilityShowBorders
 	
 	@AppStorage("rememberGPAChanges") private var rememberGPAChanges: Bool = true
-	@AppStorage("coursesData") private var coursesData: Data = Data()
+	
 	@State private var courses: [Course] = []
+	@AppStorage("coursesData") private var coursesData: Data = Data()
+	@AppStorage("courseNumber") private var courseNumber: Int = 0
+	
 	@State private var editState: EditMode = .inactive
 	@State private var selection: Set<UUID> = []
 	// Prevents changes in selection while deletion is occurring
