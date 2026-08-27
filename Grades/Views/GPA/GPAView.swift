@@ -21,10 +21,9 @@ struct GPAView: View {
 	@State private var selection: Set<UUID> = []
 	// Prevents changes in selection while deletion is occurring
 	@State private var temporarySelection: Set<UUID> = []
+	
 	@State private var deleteConfirmationPresented: Bool = false
 	@State private var infoSheetPresented: Bool = false
-	@State private var courseNumber: Int = 0
-	@State private var showBottomToolbar: Bool = false
 	@FocusState private var focused: UUID?
 	
 	private var unweightedGPA: Double {
@@ -50,6 +49,7 @@ struct GPAView: View {
 		courses[index].level = .regular
 		courses[index].credits = 1.0
 	}
+	
 	private func saveCourses() {
 		if let encoded = try? JSONEncoder().encode(courses) {
 			coursesData = encoded
@@ -70,9 +70,6 @@ struct GPAView: View {
 					}
 				}
 				.listStyle(.insetGrouped)
-				.onAppear {
-					showBottomToolbar = true
-				}
 				.onChange(of: courses.count) {
 					if courses.isEmpty {
 						courseNumber = 0
@@ -229,55 +226,53 @@ struct GPAView: View {
 						}
 					}
 					
-					if showBottomToolbar {
-						ToolbarItem(placement: .bottomBar) {
-							Button("Reset", systemImage: "arrow.clockwise") {
-								for index in courses.indices where selection.contains(courses[index].id) {
-									resetCourse(at: index)
-								}
+					ToolbarItem(placement: .bottomBar) {
+						Button("Reset", systemImage: "arrow.clockwise") {
+							for index in courses.indices where selection.contains(courses[index].id) {
+								resetCourse(at: index)
 							}
-							.disabled(selection.isEmpty)
 						}
-						
-						ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
-						
-						ToolbarItem(placement: .bottomBar) {
-							ZStack {
-								Text("00 selected")
+						.disabled(selection.isEmpty)
+					}
+					
+					ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
+					
+					ToolbarItem(placement: .bottomBar) {
+						ZStack {
+							Text("00 selected")
+								.monospacedDigit()
+								.opacity(0)
+							
+							if editState == .active {
+								Text("\(selection.count) selected")
 									.monospacedDigit()
-									.opacity(0)
-								
-								if editState == .active {
-									Text("\(selection.count) selected")
-										.monospacedDigit()
-										.contentTransition(.numericText())
-								}
+									.contentTransition(.numericText())
 							}
-							.padding(.horizontal, 12)
-							.fixedSize(horizontal: true, vertical: false)
 						}
-						
-						ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
-						
-						ToolbarItem(placement: .bottomBar) {
-							Button("Delete", systemImage: "trash", role: .destructive) {
-								temporarySelection = selection
-								deleteConfirmationPresented = true
-							}
-							// TODO: Use a confirmationDialog once Apple fixes visual glitches
-							.confirmationDialog("Are you sure you want to delete \(selection.count == 1 ? "this course?" : "these courses?")", isPresented: $deleteConfirmationPresented, titleVisibility: .visible) {
-								Button("Delete \(selection.count == 1 ? "Course" : "\(selection.count) Courses")", role: .destructive) {
-									withAnimation {
-										courses.removeAll { course in
-											temporarySelection.contains(course.id)
-										}
-										
-										editState = .inactive
+						.padding(.horizontal, 12)
+						.fixedSize(horizontal: true, vertical: false)
+					}
+					
+					ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
+					
+					ToolbarItem(placement: .bottomBar) {
+						Button("Delete", systemImage: "trash", role: .destructive) {
+							temporarySelection = selection
+							deleteConfirmationPresented = true
+						}
+						// TODO: Use a confirmationDialog once Apple fixes visual glitches
+						.confirmationDialog("Are you sure you want to delete \(selection.count == 1 ? "this course?" : "these courses?")", isPresented: $deleteConfirmationPresented, titleVisibility: .visible) {
+							Button("Delete \(selection.count == 1 ? "Course" : "\(selection.count) Courses")", role: .destructive) {
+								withAnimation {
+									courses.removeAll { course in
+										temporarySelection.contains(course.id)
 									}
+									
+									editState = .inactive
 								}
 							}
-							.disabled(selection.isEmpty)
 						}
+						.disabled(selection.isEmpty)
 					}
 				}
 				.sheet(isPresented: $infoSheetPresented) {

@@ -29,6 +29,7 @@ struct CoursesView: View {
 	@AppStorage("fullYearGradingPeriodsData") private var fullYearGradingPeriodsData: Data = Data()
 	@AppStorage("semesterGradingPeriodsData") private var semesterGradingPeriodsData: Data = Data()
 	@AppStorage("stateAssessedGradingPeriodsData") private var stateAssessedGradingPeriodsData: Data = Data()
+	
 	@State private var calculatorSelection: CalculatorSelection = .fullYear
 	@State private var fullYearGradingPeriods: [GradingPeriod] = [
 		GradingPeriod(name: "Quarter 1", type: .quarter, grade: .A),
@@ -49,6 +50,7 @@ struct CoursesView: View {
 		GradingPeriod(name: "Quarter 4", type: .quarter, grade: .A),
 		GradingPeriod(name: "State Assessment", type: .exam, grade: .A)
 	]
+	
 	@State private var infoSheetPresented: Bool = false
 	
 	private func saveFullYearGradingPeriods() {
@@ -56,24 +58,24 @@ struct CoursesView: View {
 			fullYearGradingPeriodsData = encoded
 		}
 	}
-	private func loadFullYearGradingPeriods() {
-		if let decoded = try? JSONDecoder().decode([GradingPeriod].self, from: fullYearGradingPeriodsData) {
-			fullYearGradingPeriods = decoded
-		}
-	}
 	private func saveSemesterGradingPeriods() {
 		if let encoded = try? JSONEncoder().encode(semesterGradingPeriods) {
 			semesterGradingPeriodsData = encoded
 		}
 	}
-	private func loadSemesterGradingPeriods() {
-		if let decoded = try? JSONDecoder().decode([GradingPeriod].self, from: semesterGradingPeriodsData) {
-			semesterGradingPeriods = decoded
-		}
-	}
 	private func saveStateAssessedGradingPeriods() {
 		if let encoded = try? JSONEncoder().encode(stateAssessedGradingPeriods) {
 			stateAssessedGradingPeriodsData = encoded
+		}
+	}
+	private func loadFullYearGradingPeriods() {
+		if let decoded = try? JSONDecoder().decode([GradingPeriod].self, from: fullYearGradingPeriodsData) {
+			fullYearGradingPeriods = decoded
+		}
+	}
+	private func loadSemesterGradingPeriods() {
+		if let decoded = try? JSONDecoder().decode([GradingPeriod].self, from: semesterGradingPeriodsData) {
+			semesterGradingPeriods = decoded
 		}
 	}
 	private func loadStateAssessedGradingPeriods() {
