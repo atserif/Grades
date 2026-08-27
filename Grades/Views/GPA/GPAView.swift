@@ -67,6 +67,9 @@ struct GPAView: View {
 					}
 				}
 				.listStyle(.insetGrouped)
+				.onAppear {
+					showBottomToolbar = true
+				}
 				.onChange(of: courses.count) {
 					if courses.isEmpty {
 						courseNumber = 0
@@ -288,8 +291,6 @@ struct GPAView: View {
 			}
 		}
 		.onAppear {
-			showBottomToolbar = true
-			
 			if rememberGPAChanges {
 				loadCourses()
 			}
