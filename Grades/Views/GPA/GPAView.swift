@@ -21,6 +21,7 @@ struct GPAView: View {
 	@State private var deleteConfirmationPresented: Bool = false
 	@State private var infoSheetPresented: Bool = false
 	@State private var courseNumber: Int = 0
+	@State private var showBottomToolbar: Bool = false
 	@FocusState private var focused: UUID?
 	
 	private var unweightedGPA: Double {
@@ -222,53 +223,55 @@ struct GPAView: View {
 						}
 					}
 					
-					ToolbarItem(placement: .bottomBar) {
-						Button("Reset", systemImage: "arrow.clockwise") {
-							for index in courses.indices where selection.contains(courses[index].id) {
-								resetCourse(at: index)
-							}
-						}
-						.disabled(selection.isEmpty)
-					}
-					
-					ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
-					
-					ToolbarItem(placement: .bottomBar) {
-						ZStack {
-							Text("00 selected")
-								.monospacedDigit()
-								.opacity(0)
-							
-							if editState == .active {
-								Text("\(selection.count) selected")
-									.monospacedDigit()
-									.contentTransition(.numericText())
-							}
-						}
-						.padding(.horizontal, 12)
-						.fixedSize(horizontal: true, vertical: false)
-					}
-					
-					ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
-					
-					ToolbarItem(placement: .bottomBar) {
-						Button("Delete", systemImage: "trash", role: .destructive) {
-							temporarySelection = selection
-							deleteConfirmationPresented = true
-						}
-						// TODO: Use a confirmationDialog once Apple fixes visual glitches
-						.alert("Are you sure you want to delete \(selection.count == 1 ? "this course?" : "these courses?")", isPresented: $deleteConfirmationPresented) {
-							Button("Delete \(selection.count == 1 ? "Course" : "\(selection.count) Courses")", role: .destructive) {
-								withAnimation {
-									courses.removeAll { course in
-										temporarySelection.contains(course.id)
-									}
-									
-									editState = .inactive
+					if showBottomToolbar {
+						ToolbarItem(placement: .bottomBar) {
+							Button("Reset", systemImage: "arrow.clockwise") {
+								for index in courses.indices where selection.contains(courses[index].id) {
+									resetCourse(at: index)
 								}
 							}
+							.disabled(selection.isEmpty)
 						}
-						.disabled(selection.isEmpty)
+						
+						ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
+						
+						ToolbarItem(placement: .bottomBar) {
+							ZStack {
+								Text("00 selected")
+									.monospacedDigit()
+									.opacity(0)
+								
+								if editState == .active {
+									Text("\(selection.count) selected")
+										.monospacedDigit()
+										.contentTransition(.numericText())
+								}
+							}
+							.padding(.horizontal, 12)
+							.fixedSize(horizontal: true, vertical: false)
+						}
+						
+						ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
+						
+						ToolbarItem(placement: .bottomBar) {
+							Button("Delete", systemImage: "trash", role: .destructive) {
+								temporarySelection = selection
+								deleteConfirmationPresented = true
+							}
+							// TODO: Use a confirmationDialog once Apple fixes visual glitches
+							.confirmationDialog("Are you sure you want to delete \(selection.count == 1 ? "this course?" : "these courses?")", isPresented: $deleteConfirmationPresented, titleVisibility: .visible) {
+								Button("Delete \(selection.count == 1 ? "Course" : "\(selection.count) Courses")", role: .destructive) {
+									withAnimation {
+										courses.removeAll { course in
+											temporarySelection.contains(course.id)
+										}
+										
+										editState = .inactive
+									}
+								}
+							}
+							.disabled(selection.isEmpty)
+						}
 					}
 				}
 				.sheet(isPresented: $infoSheetPresented) {
@@ -285,6 +288,8 @@ struct GPAView: View {
 			}
 		}
 		.onAppear {
+			showBottomToolbar = true
+			
 			if rememberGPAChanges {
 				loadCourses()
 			}
