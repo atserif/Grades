@@ -125,44 +125,32 @@ struct CoursesView: View {
 		}
 		.onAppear {
 			if rememberCoursesChanges {
-				loadFullYearGradingPeriods()
-				loadSemesterGradingPeriods()
-				loadStateAssessedGradingPeriods()
+				loadGradingPeriods()
 			}
 		}
 		.onChange(of: [fullYearGradingPeriods, semesterGradingPeriods, stateAssessedGradingPeriods]) {
-			saveFullYearGradingPeriods()
-			saveSemesterGradingPeriods()
-			saveStateAssessedGradingPeriods()
+			saveGradingPeriods()
 		}
 	}
 	
-	private func saveFullYearGradingPeriods() {
+	private func saveGradingPeriods() {
 		if let encoded = try? JSONEncoder().encode(fullYearGradingPeriods) {
 			fullYearGradingPeriodsData = encoded
 		}
-	}
-	private func saveSemesterGradingPeriods() {
 		if let encoded = try? JSONEncoder().encode(semesterGradingPeriods) {
 			semesterGradingPeriodsData = encoded
 		}
-	}
-	private func saveStateAssessedGradingPeriods() {
 		if let encoded = try? JSONEncoder().encode(stateAssessedGradingPeriods) {
 			stateAssessedGradingPeriodsData = encoded
 		}
 	}
-	private func loadFullYearGradingPeriods() {
+	private func loadGradingPeriods() {
 		if let decoded = try? JSONDecoder().decode([GradingPeriod].self, from: fullYearGradingPeriodsData) {
 			fullYearGradingPeriods = decoded
 		}
-	}
-	private func loadSemesterGradingPeriods() {
 		if let decoded = try? JSONDecoder().decode([GradingPeriod].self, from: semesterGradingPeriodsData) {
 			semesterGradingPeriods = decoded
 		}
-	}
-	private func loadStateAssessedGradingPeriods() {
 		if let decoded = try? JSONDecoder().decode([GradingPeriod].self, from: stateAssessedGradingPeriodsData) {
 			stateAssessedGradingPeriods = decoded
 		}
