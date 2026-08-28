@@ -51,17 +51,6 @@ struct GPAView: View {
 		courses[index].credits = 1.0
 	}
 	
-	private func saveCourses() {
-		if let encoded = try? JSONEncoder().encode(courses) {
-			coursesData = encoded
-		}
-	}
-	private func loadCourses() {
-		if let decoded = try? JSONDecoder().decode([Course].self, from: coursesData) {
-			courses = decoded
-		}
-	}
-	
 	var body: some View {
 		NavigationStack {
 			ScrollViewReader { proxy in
@@ -301,6 +290,17 @@ struct GPAView: View {
 		}
 		.onChange(of: courses) {
 			saveCourses()
+		}
+	}
+	
+	private func saveCourses() {
+		if let encoded = try? JSONEncoder().encode(courses) {
+			coursesData = encoded
+		}
+	}
+	private func loadCourses() {
+		if let decoded = try? JSONDecoder().decode([Course].self, from: coursesData) {
+			courses = decoded
 		}
 	}
 }

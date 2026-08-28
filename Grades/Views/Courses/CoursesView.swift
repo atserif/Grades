@@ -53,37 +53,6 @@ struct CoursesView: View {
 	
 	@State private var infoSheetPresented: Bool = false
 	
-	private func saveFullYearGradingPeriods() {
-		if let encoded = try? JSONEncoder().encode(fullYearGradingPeriods) {
-			fullYearGradingPeriodsData = encoded
-		}
-	}
-	private func saveSemesterGradingPeriods() {
-		if let encoded = try? JSONEncoder().encode(semesterGradingPeriods) {
-			semesterGradingPeriodsData = encoded
-		}
-	}
-	private func saveStateAssessedGradingPeriods() {
-		if let encoded = try? JSONEncoder().encode(stateAssessedGradingPeriods) {
-			stateAssessedGradingPeriodsData = encoded
-		}
-	}
-	private func loadFullYearGradingPeriods() {
-		if let decoded = try? JSONDecoder().decode([GradingPeriod].self, from: fullYearGradingPeriodsData) {
-			fullYearGradingPeriods = decoded
-		}
-	}
-	private func loadSemesterGradingPeriods() {
-		if let decoded = try? JSONDecoder().decode([GradingPeriod].self, from: semesterGradingPeriodsData) {
-			semesterGradingPeriods = decoded
-		}
-	}
-	private func loadStateAssessedGradingPeriods() {
-		if let decoded = try? JSONDecoder().decode([GradingPeriod].self, from: stateAssessedGradingPeriodsData) {
-			stateAssessedGradingPeriods = decoded
-		}
-	}
-	
 	var body: some View {
 		NavigationStack {
 			Form {
@@ -165,6 +134,37 @@ struct CoursesView: View {
 			saveFullYearGradingPeriods()
 			saveSemesterGradingPeriods()
 			saveStateAssessedGradingPeriods()
+		}
+	}
+	
+	private func saveFullYearGradingPeriods() {
+		if let encoded = try? JSONEncoder().encode(fullYearGradingPeriods) {
+			fullYearGradingPeriodsData = encoded
+		}
+	}
+	private func saveSemesterGradingPeriods() {
+		if let encoded = try? JSONEncoder().encode(semesterGradingPeriods) {
+			semesterGradingPeriodsData = encoded
+		}
+	}
+	private func saveStateAssessedGradingPeriods() {
+		if let encoded = try? JSONEncoder().encode(stateAssessedGradingPeriods) {
+			stateAssessedGradingPeriodsData = encoded
+		}
+	}
+	private func loadFullYearGradingPeriods() {
+		if let decoded = try? JSONDecoder().decode([GradingPeriod].self, from: fullYearGradingPeriodsData) {
+			fullYearGradingPeriods = decoded
+		}
+	}
+	private func loadSemesterGradingPeriods() {
+		if let decoded = try? JSONDecoder().decode([GradingPeriod].self, from: semesterGradingPeriodsData) {
+			semesterGradingPeriods = decoded
+		}
+	}
+	private func loadStateAssessedGradingPeriods() {
+		if let decoded = try? JSONDecoder().decode([GradingPeriod].self, from: stateAssessedGradingPeriodsData) {
+			stateAssessedGradingPeriods = decoded
 		}
 	}
 }
