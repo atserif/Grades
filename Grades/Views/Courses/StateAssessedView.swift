@@ -67,7 +67,7 @@ struct StateAssessedView: View {
 			}
 			.contextMenu {
 				Button("Copy Course Grade", systemImage: "document.on.document") {
-					copyToClipboard(courseGrade.description)
+					UIPasteboard.general.string = courseGrade.description
 				}
 			}
 		}
