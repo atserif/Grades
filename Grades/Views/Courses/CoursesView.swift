@@ -79,7 +79,6 @@ struct CoursesView: View {
 					StateAssessedView(gradingPeriods: $stateAssessedGradingPeriods)
 				}
 			}
-			.formStyle(.grouped)
 			.toolbar {
 				ToolbarItem(placement: .title) {
 					StaticNavigationTitle(title: "Courses")

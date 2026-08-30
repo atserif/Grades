@@ -59,7 +59,6 @@ struct GPAView: View {
 						GPAContent(courses: $courses, editState: $editState, focused: $focused, unweightedGPA: unweightedGPA, weightedGPA: weightedGPA)
 					}
 				}
-				.listStyle(.insetGrouped)
 				// Avoids visual issues with confirmationDialog
 				.onAppear {
 					bottomToolbarVisible = true
