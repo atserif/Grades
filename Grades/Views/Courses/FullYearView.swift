@@ -42,6 +42,7 @@ struct FullYearView: View {
 							.tag(grade)
 					}
 				}
+				// Prevents tapping anywhere in the row from triggering the menu
 				.pickerStyle(.menu)
 				.tint(.secondary)
 				.swipeActions {

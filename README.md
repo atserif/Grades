@@ -5,6 +5,6 @@
 	  <img width=190 height=190 alt="Grades app icon.">
 	</picture>
 	<h1>Grades</h1>
-	<p>Fully native, performant grade calculator for HCPSS.</p>
+	<p>Fully native, performant grade calculator for HCPSS high schools.</p>
 	<p><i>Compatible with iOS and iPadOS 26 and later.</p>
 </div>
