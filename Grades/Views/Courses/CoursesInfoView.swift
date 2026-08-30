@@ -17,7 +17,8 @@ struct CoursesInfoView: View {
 					Text("Full Year")
 						.font(.headline)
 					
-					Text("Quarter grades are worth \(22.5.formatted(.percent)) each. The final exam is worth \(10.formatted(.percent)).")
+					// Divides by 100 because of how .percent handles decimals
+					Text("Quarter grades are worth \((22.5 / 100).formatted(.percent)) each. The final exam is worth \(10.formatted(.percent)).")
 						.font(.subheadline)
 						.foregroundStyle(.secondary)
 				}
