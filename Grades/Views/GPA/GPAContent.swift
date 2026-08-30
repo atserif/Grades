@@ -9,7 +9,6 @@ import SwiftUI
 
 struct GPAContent: View {
 	@Binding var courses: [Course]
-	
 	@Binding var editState: EditMode
 	
 	var focused: FocusState<UUID?>.Binding

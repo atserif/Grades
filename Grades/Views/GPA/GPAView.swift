@@ -12,11 +12,10 @@ struct GPAView: View {
 	@Environment(\.accessibilityShowBorders) private var accessibilityShowBorders
 	
 	@AppStorage("rememberGPAChanges") private var rememberGPAChanges: Bool = true
-	
-	@State private var courses: [Course] = []
 	@AppStorage("coursesData") private var coursesData: Data = Data()
 	@AppStorage("courseNumber") private var courseNumber: Int = 0
 	
+	@State private var courses: [Course] = []
 	@State private var editState: EditMode = .inactive
 	@State private var selection: Set<UUID> = []
 	// Prevents changes in selection while deletion is occurring
@@ -25,6 +24,7 @@ struct GPAView: View {
 	@State private var deleteConfirmationPresented: Bool = false
 	@State private var infoSheetPresented: Bool = false
 	@State private var bottomToolbarVisible: Bool = false
+	
 	@FocusState private var focused: UUID?
 	
 	private var unweightedGPA: Double {
