@@ -48,7 +48,7 @@ struct GPAContent: View {
 					}
 					// Individual selection context menu
 					.contextMenu {
-						Button("Rename", systemImage: "pencil") {
+						Button("Rename", systemImage: "character.cursor.ibeam") {
 							if editState != .inactive {
 								withAnimation {
 									editState = .inactive
