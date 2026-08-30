@@ -119,7 +119,7 @@ struct CoursesView: View {
 			}
 			.toolbarTitleDisplayMode(.inline)
 			.toolbarRole(.editor)
-			.scrollEdgeEffectStyle(.soft, for: .top)
+			.scrollEdgeEffectStyle(.soft, for: .all)
 			// Accounts for the 2 2/3 pt gap between the segmented Picker's and List row's vertical bounds
 			.contentMargins(.top, 7 + (1 / 3))
 		}
