@@ -60,6 +60,7 @@ struct GPAView: View {
 					}
 				}
 				.listStyle(.insetGrouped)
+				// Avoids visual issues with confirmationDialog
 				.onAppear {
 					bottomToolbarVisible = true
 				}
@@ -219,6 +220,7 @@ struct GPAView: View {
 						}
 					}
 					
+					// Avoids visual issues with confirmationDialog
 					if bottomToolbarVisible {
 						ToolbarItem(placement: .bottomBar) {
 							Button("Reset", systemImage: "arrow.clockwise") {
