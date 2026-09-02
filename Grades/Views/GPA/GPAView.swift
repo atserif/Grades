@@ -62,16 +62,12 @@ struct GPAView: View {
 				// Avoids visual issues with confirmationDialog
 				.onAppear {
 					bottomToolbarVisible = true
+					
+					UICollectionView.appearance().allowsSelection = false
 				}
 				.onChange(of: courses.count) {
 					if courses.isEmpty {
 						courseNumber = 0
-					}
-				}
-				.onChange(of: selection) {
-					// Prevents tap when edit mode is inactive triggering persistent row selection highlight
-					if editMode == .inactive {
-						selection.removeAll()
 					}
 				}
 				.overlay {
