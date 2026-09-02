@@ -16,7 +16,7 @@ struct GPAView: View {
 	@AppStorage("courseNumber") private var courseNumber: Int = 0
 	
 	@State private var courses: [Course] = []
-	@State private var editState: EditMode = .inactive
+	@State private var editMode: EditMode = .inactive
 	@State private var selection: Set<UUID> = []
 	// Prevents changes in selection while deletion is occurring
 	@State private var temporarySelection: Set<UUID> = []
@@ -56,7 +56,7 @@ struct GPAView: View {
 			ScrollViewReader { proxy in
 				List(selection: $selection) {
 					if !courses.isEmpty {
-						GPAContent(courses: $courses, editState: $editState, focused: $focused, unweightedGPA: unweightedGPA, weightedGPA: weightedGPA)
+						GPAContent(courses: $courses, editMode: $editMode, focused: $focused, unweightedGPA: unweightedGPA, weightedGPA: weightedGPA)
 					}
 				}
 				// Avoids visual issues with confirmationDialog
@@ -70,7 +70,7 @@ struct GPAView: View {
 				}
 				.onChange(of: selection) {
 					// Prevents tap when edit mode is inactive triggering persistent row selection highlight
-					if editState == .inactive {
+					if editMode == .inactive {
 						selection.removeAll()
 					}
 				}
@@ -109,7 +109,7 @@ struct GPAView: View {
 								
 								if courses.isEmpty {
 									withAnimation {
-										editState = .inactive
+										editMode = .inactive
 									}
 								}
 							}
@@ -121,7 +121,7 @@ struct GPAView: View {
 						StaticNavigationTitle(title: "GPA")
 					}
 					
-					if editState == .inactive {
+					if editMode == .inactive {
 						ToolbarItem(placement: .topBarTrailing) {
 							Button {
 								if focused != nil {
@@ -131,12 +131,12 @@ struct GPAView: View {
 									
 									DispatchQueue.main.async {
 										withAnimation {
-											editState = .active
+											editMode = .active
 										}
 									}
 								} else {
 									withAnimation {
-										editState = .active
+										editMode = .active
 									}
 								}
 							} label: {
@@ -213,7 +213,7 @@ struct GPAView: View {
 						ToolbarItem(placement: .confirmationAction) {
 							Button("Confirm", systemImage: "checkmark", role: .confirm) {
 								withAnimation {
-									editState = .inactive
+									editMode = .inactive
 								}
 							}
 						}
@@ -238,7 +238,7 @@ struct GPAView: View {
 									.monospacedDigit()
 									.opacity(0)
 								
-								if editState == .active {
+								if editMode == .active {
 									Text("\(selection.count) selected")
 										.monospacedDigit()
 										.contentTransition(.numericText())
@@ -263,7 +263,7 @@ struct GPAView: View {
 											temporarySelection.contains(course.id)
 										}
 										
-										editState = .inactive
+										editMode = .inactive
 									}
 								}
 							}
@@ -274,14 +274,14 @@ struct GPAView: View {
 				.sheet(isPresented: $infoSheetPresented) {
 					GPAInfoView()
 				}
-				.toolbarVisibility(editState == .inactive ? .visible : .hidden, for: .tabBar)
-				.toolbarVisibility(editState == .inactive ? .hidden : .visible, for: .bottomBar)
+				.toolbarVisibility(editMode == .inactive ? .visible : .hidden, for: .tabBar)
+				.toolbarVisibility(editMode == .inactive ? .hidden : .visible, for: .bottomBar)
 				.toolbarTitleDisplayMode(.inline)
 				.toolbarRole(.editor)
 				.scrollEdgeEffectStyle(.soft, for: .all)
 				.scrollDismissesKeyboard(.immediately)
 				.animation(.default, value: selection)
-				.environment(\.editMode, $editState)
+				.environment(\.editMode, $editMode)
 			}
 			.onTapGesture {
 				focused = nil

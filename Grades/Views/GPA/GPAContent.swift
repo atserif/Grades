@@ -10,7 +10,7 @@ import SwiftUI
 struct GPAContent: View {
 	@State private var textSelection: TextSelection?
 	@Binding var courses: [Course]
-	@Binding var editState: EditMode
+	@Binding var editMode: EditMode
 	
 	var focused: FocusState<UUID?>.Binding
 	
@@ -27,7 +27,7 @@ struct GPAContent: View {
 	var body: some View {
 		Section {
 			ForEach($courses, editActions: .move) { course in
-				GPARow(course: course, editState: $editState, textSelection: $textSelection, focused: focused)
+				GPARow(course: course, editMode: $editMode, textSelection: $textSelection, focused: focused)
 					// Prevents horizontal ScrollView from clipping when scrolled
 					.listRowInsets(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
 					.alignmentGuide(.listRowSeparatorLeading) { _ in 16 }
@@ -37,7 +37,7 @@ struct GPAContent: View {
 								courses.removeAll { $0.id == course.id }
 								
 								if courses.isEmpty {
-									editState = .inactive
+									editMode = .inactive
 								}
 							}
 						}
@@ -49,9 +49,9 @@ struct GPAContent: View {
 					// Individual selection context menu
 					.contextMenu {
 						Button("Rename", systemImage: "character.cursor.ibeam") {
-							if editState != .inactive {
+							if editMode != .inactive {
 								withAnimation {
-									editState = .inactive
+									editMode = .inactive
 								}
 							}
 							
@@ -83,7 +83,7 @@ struct GPAContent: View {
 										courses.removeAll { $0.id == course.id }
 										
 										if courses.isEmpty {
-											editState = .inactive
+											editMode = .inactive
 										}
 									}
 								}
@@ -92,7 +92,7 @@ struct GPAContent: View {
 									courses.removeAll { $0.id == course.id }
 									
 									if courses.isEmpty {
-										editState = .inactive
+										editMode = .inactive
 									}
 								}
 							}

@@ -10,7 +10,7 @@ import SwiftUI
 struct GPARow: View {
 	@State private var credits: [Double] = [1.0, 0.5, 0.25]
 	@Binding var course: Course
-	@Binding var editState: EditMode
+	@Binding var editMode: EditMode
 	@Binding var textSelection: TextSelection?
 	
 	var focused: FocusState<UUID?>.Binding
@@ -20,7 +20,7 @@ struct GPARow: View {
 			// TODO: Add clear button when focused
 			TextField("Course Name", text: $course.name, selection: $textSelection, prompt: Text("Course Name"))
 				// Enables editing when rename button is pressed
-				.allowsHitTesting(editState == .inactive && focused.wrappedValue != nil && course.id == focused.wrappedValue)
+				.allowsHitTesting(editMode == .inactive && focused.wrappedValue != nil && course.id == focused.wrappedValue)
 				.font(.headline)
 				.padding(.horizontal)
 				.focused(focused, equals: course.id)
@@ -73,7 +73,7 @@ struct GPARow: View {
 				.buttonStyle(.borderless)
 				.padding(.horizontal)
 			}
-			.allowsHitTesting(editState == .inactive)
+			.allowsHitTesting(editMode == .inactive)
 			.scrollIndicators(.hidden)
 			.scrollBounceBehavior(.basedOnSize, axes: .horizontal)
 			.mask {
@@ -89,7 +89,7 @@ struct GPARow: View {
 						.frame(width: 16)
 				}
 			}
-			.animation(.default, value: editState)
+			.animation(.default, value: editMode)
 		}
 	}
 }
