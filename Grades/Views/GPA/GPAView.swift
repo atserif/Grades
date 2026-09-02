@@ -259,7 +259,6 @@ struct GPAView: View {
 								temporarySelection = selection
 								deleteConfirmationPresented = true
 							}
-							// TODO: Use a confirmationDialog once Apple fixes visual glitches
 							.confirmationDialog("Are you sure you want to delete \(selection.count == 1 ? "this course?" : "these courses?")", isPresented: $deleteConfirmationPresented, titleVisibility: .visible) {
 								Button("Delete \(selection.count == 1 ? "Course" : "\(selection.count) Courses")", role: .destructive) {
 									withAnimation {
