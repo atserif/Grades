@@ -283,9 +283,6 @@ struct GPAView: View {
 				.animation(.default, value: selection)
 				.environment(\.editMode, $editMode)
 			}
-			.onTapGesture {
-				focused = nil
-			}
 		}
 		.onAppear {
 			if rememberGPAChanges {
@@ -295,6 +292,11 @@ struct GPAView: View {
 		.onChange(of: courses) {
 			saveCourses()
 		}
+		.simultaneousGesture(
+			TapGesture().onEnded {
+				focused = nil
+			}
+		)
 	}
 	
 	private func saveCourses() {
