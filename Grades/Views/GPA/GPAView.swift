@@ -63,11 +63,19 @@ struct GPAView: View {
 				.onAppear {
 					bottomToolbarVisible = true
 					
-					UICollectionView.appearance().allowsSelection = false
+					// Enable better reordering UI and behavior
+					UICollectionView.appearance().dragDelegate = nil
+					UICollectionView.appearance().dropDelegate = nil
 				}
 				.onChange(of: courses.count) {
 					if courses.isEmpty {
 						courseNumber = 0
+					}
+				}
+				// TODO: Implement a better method of disabling selected row highlight when editMode is disabled
+				.onChange(of: selection) {
+					if editMode == .inactive {
+						selection.removeAll()
 					}
 				}
 				.overlay {
