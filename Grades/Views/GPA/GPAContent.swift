@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct GPAContent: View {
+	@State private var textSelection: TextSelection?
 	@Binding var courses: [Course]
 	@Binding var editState: EditMode
 	
@@ -26,7 +27,7 @@ struct GPAContent: View {
 	var body: some View {
 		Section {
 			ForEach($courses, editActions: .move) { course in
-				GPARow(course: course, editState: $editState, focused: focused)
+				GPARow(course: course, editState: $editState, textSelection: $textSelection, focused: focused)
 					// Prevents horizontal ScrollView from clipping when scrolled
 					.listRowInsets(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
 					.alignmentGuide(.listRowSeparatorLeading) { _ in 16 }
@@ -55,6 +56,10 @@ struct GPAContent: View {
 							}
 							
 							focused.wrappedValue = course.id
+							
+							DispatchQueue.main.async {
+								textSelection = TextSelection(range: course.wrappedValue.name.startIndex..<course.wrappedValue.name.endIndex)
+							}
 						}
 						
 						Button("Reset", systemImage: "arrow.clockwise") {

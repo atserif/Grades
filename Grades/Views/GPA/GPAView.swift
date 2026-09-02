@@ -283,6 +283,9 @@ struct GPAView: View {
 				.animation(.default, value: selection)
 				.environment(\.editMode, $editState)
 			}
+			.onTapGesture {
+				focused = nil
+			}
 		}
 		.onAppear {
 			if rememberGPAChanges {

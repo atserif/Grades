@@ -11,13 +11,14 @@ struct GPARow: View {
 	@State private var credits: [Double] = [1.0, 0.5, 0.25]
 	@Binding var course: Course
 	@Binding var editState: EditMode
+	@Binding var textSelection: TextSelection?
 	
 	var focused: FocusState<UUID?>.Binding
 	
 	var body: some View {
 		VStack(alignment: .leading) {
 			// TODO: Add clear button when focused
-			TextField("Course Name", text: $course.name, prompt: Text("Course Name"))
+			TextField("Course Name", text: $course.name, selection: $textSelection, prompt: Text("Course Name"))
 				// Enables editing when rename button is pressed
 				.allowsHitTesting(editState == .inactive && focused.wrappedValue != nil && course.id == focused.wrappedValue)
 				.font(.headline)
