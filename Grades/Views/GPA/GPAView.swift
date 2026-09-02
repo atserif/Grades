@@ -288,11 +288,6 @@ struct GPAView: View {
 		.onChange(of: courses) {
 			saveCourses()
 		}
-		.simultaneousGesture(
-			TapGesture().onEnded {
-				focused = nil
-			}
-		)
 	}
 	
 	private func saveCourses() {
