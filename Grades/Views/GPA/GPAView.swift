@@ -277,6 +277,9 @@ struct GPAView: View {
 				.sheet(isPresented: $infoSheetPresented) {
 					GPAInfoView()
 				}
+				// Avoids scroll jump caused by changing bottom safe area height when disabling edit mode
+				.ignoresSafeArea(edges: .bottom)
+				.contentMargins(.bottom, 103)
 				.toolbarVisibility(editMode == .inactive ? .visible : .hidden, for: .tabBar)
 				.toolbarVisibility(editMode == .inactive ? .hidden : .visible, for: .bottomBar)
 				.toolbarTitleDisplayMode(.inline)
@@ -285,10 +288,6 @@ struct GPAView: View {
 				.scrollDismissesKeyboard(.immediately)
 				.animation(.default, value: selection)
 				.environment(\.editMode, $editMode)
-				// Backup plan to avoid scroll jump caused by changing bottom safe area height when disabling edit mode
-				// TODO: Try using a safeAreaBar to override the change in safe area height
-				// .ignoresSafeArea(edges: .bottom)
-				// .contentMargins(.bottom, 102)
 			}
 		}
 		.onAppear {

@@ -116,11 +116,11 @@ struct CoursesView: View {
 			.sheet(isPresented: $infoSheetPresented) {
 				CoursesInfoView()
 			}
+			// Accounts for the 2 2/3 pt gap between the segmented Picker's and List row's vertical bounds
+			.contentMargins(.top, 7 + (1 / 3))
 			.toolbarTitleDisplayMode(.inline)
 			.toolbarRole(.editor)
 			.scrollEdgeEffectStyle(.soft, for: .all)
-			// Accounts for the 2 2/3 pt gap between the segmented Picker's and List row's vertical bounds
-			.contentMargins(.top, 7 + (1 / 3))
 		}
 		.onAppear {
 			if rememberCoursesChanges {
