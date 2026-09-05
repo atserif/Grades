@@ -285,6 +285,10 @@ struct GPAView: View {
 				.scrollDismissesKeyboard(.immediately)
 				.animation(.default, value: selection)
 				.environment(\.editMode, $editMode)
+				// Backup plan to avoid scroll jump caused by changing bottom safe area height when disabling edit mode
+				// TODO: Try using a safeAreaBar to override the change in safe area height
+				// .ignoresSafeArea(edges: .bottom)
+				// .contentMargins(.bottom, 102)
 			}
 		}
 		.onAppear {
