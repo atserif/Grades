@@ -86,7 +86,7 @@ struct CoursesView: View {
 				
 				ToolbarItem(placement: .primaryAction) {
 					Menu("More", systemImage: "ellipsis") {
-						Button("About GPA", systemImage: "info.circle") {
+						Button("About Courses", systemImage: "info.circle") {
 							infoSheetPresented = true
 						}
 						
