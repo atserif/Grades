@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CoursesInfoView: View {
 	@Environment(\.dismiss) private var dismiss
+	@Environment(\.accessibilityShowBorders) private var showBorders
 
 	var body: some View {
 		NavigationStack {
@@ -42,12 +43,12 @@ struct CoursesInfoView: View {
 				}
 				
 				Section {
-					Text("All grade calculation information is derived from [Howard County Public School System Policy 8020](https://policy.hcpss.org/8000/8020/).")
+					Text("All grade calculation information is derived from \(Text("[Howard County Public School System Policy 8020](https://policy.hcpss.org/8000/8020/)").underline(showBorders)).")
 						.font(.subheadline)
 						.foregroundStyle(.secondary)
 				}
 				.listRowBackground(Color.clear)
-				.listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+				.listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
 			}
 			.listSectionSpacing(20)
 			.toolbar {

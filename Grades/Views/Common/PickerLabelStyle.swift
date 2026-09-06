@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct PickerLabelStyle: LabelStyle {
-	@Environment(\.accessibilityShowBorders) private var accessibilityShowBorders
+	@Environment(\.accessibilityShowBorders) private var showBorders
 	@ScaledMetric(relativeTo: .largeTitle) private var dynamicPadding: CGFloat = 12
 	
 	func makeBody(configuration: Configuration) -> some View {
-		if accessibilityShowBorders {
+		if showBorders {
 			HStack(spacing: 4) {
 				configuration.icon
 				

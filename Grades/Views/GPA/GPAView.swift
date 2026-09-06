@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GPAView: View {
 	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
-	@Environment(\.accessibilityShowBorders) private var accessibilityShowBorders
+	@Environment(\.accessibilityShowBorders) private var showBorders
 	
 	@AppStorage("rememberGPAChanges") private var rememberGPAChanges: Bool = true
 	@AppStorage("coursesData") private var coursesData: Data = Data()
@@ -146,8 +146,7 @@ struct GPAView: View {
 							} label: {
 								Text("Select")
 									// Fixes default styling when Show Borders is enabled
-									.padding(.horizontal, accessibilityShowBorders ? 12 : 0)
-									.underline(false)
+									.padding(.horizontal, showBorders ? 12 : 0)
 							}
 							.disabled(courses.isEmpty)
 						}
@@ -197,8 +196,7 @@ struct GPAView: View {
 								} label: {
 									Text("Deselect All")
 										// Fixes default styling when Show Borders is enabled
-										.padding(.horizontal, accessibilityShowBorders ? 12 : 0)
-										.underline(false)
+										.padding(.horizontal, showBorders ? 12 : 0)
 								}
 							}
 						} else {
@@ -208,8 +206,7 @@ struct GPAView: View {
 								} label: {
 									Text("Select All")
 										// Fixes default styling when Show Borders is enabled
-										.padding(.horizontal, accessibilityShowBorders ? 12 : 0)
-										.underline(false)
+										.padding(.horizontal, showBorders ? 12 : 0)
 								}
 							}
 						}
