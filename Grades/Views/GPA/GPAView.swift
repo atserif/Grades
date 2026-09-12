@@ -23,7 +23,6 @@ struct GPAView: View {
 	
 	@State private var deleteConfirmationPresented: Bool = false
 	@State private var infoSheetPresented: Bool = false
-	@State private var bottomToolbarVisible: Bool = false
 	
 	@FocusState private var focused: UUID?
 	
@@ -59,10 +58,7 @@ struct GPAView: View {
 						GPAContent(courses: $courses, editMode: $editMode, focused: $focused, unweightedGPA: unweightedGPA, weightedGPA: weightedGPA)
 					}
 				}
-				// Avoids visual issues with confirmationDialog
 				.onAppear {
-					bottomToolbarVisible = true
-					
 					// Enable better reordering UI and behavior
 					UICollectionView.appearance().dragDelegate = nil
 					UICollectionView.appearance().dropDelegate = nil
@@ -220,55 +216,52 @@ struct GPAView: View {
 						}
 					}
 					
-					// Avoids visual issues with confirmationDialog
-					if bottomToolbarVisible {
-						ToolbarItem(placement: .bottomBar) {
-							Button("Reset", systemImage: "arrow.clockwise") {
-								for index in courses.indices where selection.contains(courses[index].id) {
-									resetCourse(at: index)
-								}
+					ToolbarItem(placement: .bottomBar) {
+						Button("Reset", systemImage: "arrow.clockwise") {
+							for index in courses.indices where selection.contains(courses[index].id) {
+								resetCourse(at: index)
 							}
-							.disabled(selection.isEmpty)
 						}
-						
-						ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
-						
-						ToolbarItem(placement: .bottomBar) {
-							ZStack {
-								Text("00 selected")
+						.disabled(selection.isEmpty)
+					}
+					
+					ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
+					
+					ToolbarItem(placement: .bottomBar) {
+						ZStack {
+							Text("00 selected")
+								.monospacedDigit()
+								.opacity(0)
+							
+							if editMode == .active {
+								Text("\(selection.count) selected")
 									.monospacedDigit()
-									.opacity(0)
-								
-								if editMode == .active {
-									Text("\(selection.count) selected")
-										.monospacedDigit()
-										.contentTransition(.numericText())
-								}
+									.contentTransition(.numericText())
 							}
-							.padding(.horizontal, 12)
-							.fixedSize(horizontal: true, vertical: false)
 						}
-						
-						ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
-						
-						ToolbarItem(placement: .bottomBar) {
-							Button("Delete", systemImage: "trash", role: .destructive) {
-								temporarySelection = selection
-								deleteConfirmationPresented = true
-							}
-							.confirmationDialog("Are you sure you want to delete \(selection.count == 1 ? "this course?" : "these courses?")", isPresented: $deleteConfirmationPresented, titleVisibility: .visible) {
-								Button("Delete \(selection.count == 1 ? "Course" : "\(selection.count) Courses")", role: .destructive) {
-									withAnimation {
-										courses.removeAll { course in
-											temporarySelection.contains(course.id)
-										}
-										
-										editMode = .inactive
+						.padding(.horizontal, 12)
+						.fixedSize(horizontal: true, vertical: false)
+					}
+					
+					ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
+					
+					ToolbarItem(placement: .bottomBar) {
+						Button("Delete", systemImage: "trash", role: .destructive) {
+							temporarySelection = selection
+							deleteConfirmationPresented = true
+						}
+						.confirmationDialog("Are you sure you want to delete \(selection.count == 1 ? "this course?" : "these courses?")", isPresented: $deleteConfirmationPresented, titleVisibility: .visible) {
+							Button("Delete \(selection.count == 1 ? "Course" : "\(selection.count) Courses")", role: .destructive) {
+								withAnimation {
+									courses.removeAll { course in
+										temporarySelection.contains(course.id)
 									}
+									
+									editMode = .inactive
 								}
 							}
-							.disabled(selection.isEmpty)
 						}
+						.disabled(selection.isEmpty)
 					}
 				}
 				.sheet(isPresented: $infoSheetPresented) {
