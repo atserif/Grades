@@ -257,6 +257,7 @@ struct GPAView: View {
 					GPAInfoView()
 				}
 				// Avoids scroll jump caused by changing bottom safe area height when disabling edit mode
+				// TODO: Make this compatible with iPad
 				.ignoresSafeArea(.container, edges: .bottom)
 				.contentMargins(.bottom, 103)
 				.overlay {
