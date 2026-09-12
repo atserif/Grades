@@ -275,7 +275,7 @@ struct GPAView: View {
 					GPAInfoView()
 				}
 				// Avoids scroll jump caused by changing bottom safe area height when disabling edit mode
-				.ignoresSafeArea(edges: .bottom)
+				.ignoresSafeArea(.container, edges: .bottom)
 				.contentMargins(.bottom, 103)
 				.toolbarVisibility(editMode == .inactive ? .visible : .hidden, for: .tabBar)
 				.toolbarVisibility(editMode == .inactive ? .hidden : .visible, for: .bottomBar)
