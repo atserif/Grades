@@ -14,9 +14,6 @@ struct GradesApp: App {
 		if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
 			UserDefaults.standard.set("\(version) (\(build))", forKey: "version")
 		}
-		
-		// Apply keyboard dismiss behavior that doesn't have scrollDismissesKeyboard's janky animation
-		UIScrollView.appearance().keyboardDismissMode = .onDrag
 	}
 	
 	var body: some Scene {

@@ -275,6 +275,7 @@ struct GPAView: View {
 				.toolbarTitleDisplayMode(.inline)
 				.toolbarRole(.editor)
 				.scrollEdgeEffectStyle(.soft, for: .all)
+				.scrollDismissesKeyboard(.immediately)
 				.animation(.default, value: selection)
 				.environment(\.editMode, $editMode)
 			}
