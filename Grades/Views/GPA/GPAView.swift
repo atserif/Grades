@@ -74,17 +74,6 @@ struct GPAView: View {
 						selection.removeAll()
 					}
 				}
-				.overlay {
-					if courses.isEmpty {
-						ContentUnavailableView {
-							Label("No Courses", systemImage: "sum")
-								.symbolVariant(.fill)
-						} description: {
-							Text("Courses you add will appear here.")
-						}
-						.background(Color(.systemGroupedBackground))
-					}
-				}
 				// Multiple selection context menu
 				.contextMenu(forSelectionType: Course.ID.self) { selectedCourses in
 					if selectedCourses.isEmpty { } else if selection.count > 1 {
@@ -270,6 +259,17 @@ struct GPAView: View {
 				// Avoids scroll jump caused by changing bottom safe area height when disabling edit mode
 				.ignoresSafeArea(.container, edges: .bottom)
 				.contentMargins(.bottom, 103)
+				.overlay {
+					if courses.isEmpty {
+						ContentUnavailableView {
+							Label("No Courses", systemImage: "sum")
+								.symbolVariant(.fill)
+						} description: {
+							Text("Courses you add will appear here.")
+						}
+						.background(Color(.systemGroupedBackground))
+					}
+				}
 				.toolbarVisibility(editMode == .inactive ? .visible : .hidden, for: .tabBar)
 				.toolbarVisibility(editMode == .inactive ? .hidden : .visible, for: .bottomBar)
 				.toolbarTitleDisplayMode(.inline)
