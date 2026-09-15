@@ -214,7 +214,7 @@ struct GPAView: View {
 						.disabled(selection.isEmpty)
 					}
 					
-					ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
+					ToolbarSpacer(horizontalSizeClass == .compact ? .flexible : .fixed, placement: .bottomBar)
 					
 					ToolbarItem(placement: .bottomBar) {
 						ZStack {
@@ -232,7 +232,7 @@ struct GPAView: View {
 						.fixedSize(horizontal: true, vertical: false)
 					}
 					
-					ToolbarSpacer(horizontalSizeClass == .regular ? .fixed : .flexible, placement: .bottomBar)
+					ToolbarSpacer(horizontalSizeClass == .compact ? .flexible : .fixed, placement: .bottomBar)
 					
 					ToolbarItem(placement: .bottomBar) {
 						Button("Delete", systemImage: "trash", role: .destructive) {
@@ -257,9 +257,8 @@ struct GPAView: View {
 					GPAInfoView()
 				}
 				// Avoids scroll jump caused by changing bottom safe area height when disabling edit mode
-				// TODO: Make this compatible with iPad
 				.ignoresSafeArea(.container, edges: .bottom)
-				.contentMargins(.bottom, 103)
+				.contentMargins(.bottom, horizontalSizeClass == .compact ? 103 : editMode == .inactive ? 40 : 94)
 				.overlay {
 					if courses.isEmpty {
 						ContentUnavailableView {
