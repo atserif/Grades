@@ -57,7 +57,7 @@ struct GPAContent: View {
 							
 							focused.wrappedValue = course.id
 							
-							DispatchQueue.main.async {
+							Task {
 								textSelection = TextSelection(range: course.wrappedValue.name.startIndex..<course.wrappedValue.name.endIndex)
 							}
 						}
@@ -78,7 +78,7 @@ struct GPAContent: View {
 									focused.wrappedValue = nil
 								}
 								
-								DispatchQueue.main.async {
+								Task {
 									withAnimation {
 										courses.removeAll { $0.id == course.id }
 										

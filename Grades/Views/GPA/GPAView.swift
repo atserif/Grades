@@ -89,7 +89,9 @@ struct GPAView: View {
 						
 						Button("Delete", systemImage: "trash", role: .destructive) {
 							// Avoids animation conflicts by delaying
-							DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+							Task {
+								try? await Task.sleep(for: .seconds(0.75))
+								
 								withAnimation {
 									courses.removeAll { selectedCourses.contains($0.id) }
 								}
@@ -116,7 +118,7 @@ struct GPAView: View {
 								if focused != nil {
 									focused = nil
 									
-									DispatchQueue.main.async {
+									Task {
 										withAnimation {
 											editMode = .active
 										}
@@ -156,7 +158,7 @@ struct GPAView: View {
 									if focused != nil {
 										focused = nil
 										
-										DispatchQueue.main.async {
+										Task {
 											withAnimation {
 												courses.removeAll()
 											}
