@@ -114,9 +114,7 @@ struct GPAView: View {
 						ToolbarItem(placement: .topBarTrailing) {
 							Button {
 								if focused != nil {
-									withAnimation(.none) {
-										focused = nil
-									}
+									focused = nil
 									
 									DispatchQueue.main.async {
 										withAnimation {
@@ -156,9 +154,7 @@ struct GPAView: View {
 								
 								Button("Reset", systemImage: "arrow.clockwise") {
 									if focused != nil {
-										withAnimation(.none) {
-											focused = nil
-										}
+										focused = nil
 										
 										DispatchQueue.main.async {
 											withAnimation {
