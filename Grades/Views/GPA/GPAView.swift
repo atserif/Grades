@@ -281,6 +281,8 @@ struct GPAView: View {
 		.onAppear {
 			if rememberGPAChanges {
 				loadCourses()
+			} else {
+				courseNumber = 0
 			}
 		}
 		.onChange(of: courses) {
