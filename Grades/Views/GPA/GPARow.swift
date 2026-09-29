@@ -41,8 +41,6 @@ struct GPARow: View {
 						// Shows header in Menu
 						.labelsVisibility(.visible)
 					}
-					.animation(.default, value: course.level)
-					.animation(.default, value: course.credits)
 					
 					Menu(course.level.description, systemImage: "square.3.layers.3d") {
 						Picker("Level", selection: $course.level) {
@@ -53,8 +51,6 @@ struct GPARow: View {
 						}
 						.labelsVisibility(.visible)
 					}
-					.animation(.default, value: course.grade)
-					.animation(.default, value: course.credits)
 					
 					Menu(course.credits.description, systemImage: "scalemass") {
 						Picker("Credits", selection: $course.credits) {
@@ -65,9 +61,8 @@ struct GPARow: View {
 						}
 						.labelsVisibility(.visible)
 					}
-					.animation(.default, value: course.grade)
-					.animation(.default, value: course.level)
 				}
+				.animation(.default, value: course)
 				.labelStyle(PickerLabelStyle())
 				.buttonStyle(.borderless)
 				.padding(.horizontal)
