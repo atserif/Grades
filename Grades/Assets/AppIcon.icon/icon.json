@@ -12,7 +12,7 @@
   ],
   "groups" : [
     {
-      "blur-material" : 0.5,
+      "blur-material" : null,
       "hidden" : false,
       "layers" : [
         {
@@ -29,8 +29,8 @@
             }
           ],
           "hidden" : false,
-          "image-name" : "symbol_round.svg",
-          "name" : "symbol_round",
+          "image-name" : "symbol.svg",
+          "name" : "symbol",
           "position" : {
             "scale" : 1,
             "translation-in-points" : [
