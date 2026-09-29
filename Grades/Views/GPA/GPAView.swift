@@ -251,12 +251,12 @@ struct GPAView: View {
 						.disabled(selection.isEmpty)
 					}
 				}
-				.sheet(isPresented: $infoSheetPresented) {
-					GPAInfoView()
-				}
 				// Avoids scroll jump caused by changing bottom safe area height when disabling edit mode
 				.ignoresSafeArea(.container, edges: .bottom)
 				.contentMargins(.bottom, horizontalSizeClass == .compact ? 103 : editMode == .inactive ? 40 : 94)
+				.sheet(isPresented: $infoSheetPresented) {
+					GPAInfoView()
+				}
 				.overlay {
 					if courses.isEmpty {
 						ContentUnavailableView {
