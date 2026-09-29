@@ -107,6 +107,17 @@ struct GPAView: View {
 						}
 					}
 				}
+				.overlay {
+					if courses.isEmpty {
+						ContentUnavailableView {
+							Label("No Courses", systemImage: "sum")
+								.symbolVariant(.fill)
+						} description: {
+							Text("Courses you add will appear here.")
+						}
+						.background(Color(.systemGroupedBackground))
+					}
+				}
 				.toolbar {
 					ToolbarItem(placement: .title) {
 						StaticNavigationTitle(title: "GPA")
@@ -251,22 +262,8 @@ struct GPAView: View {
 						.disabled(selection.isEmpty)
 					}
 				}
-				// Avoids scroll jump caused by changing bottom safe area height when disabling edit mode
-				.ignoresSafeArea(.container, edges: .bottom)
-				.contentMargins(.bottom, horizontalSizeClass == .compact ? 103 : editMode == .inactive ? 40 : 94)
 				.sheet(isPresented: $infoSheetPresented) {
 					GPAInfoView()
-				}
-				.overlay {
-					if courses.isEmpty {
-						ContentUnavailableView {
-							Label("No Courses", systemImage: "sum")
-								.symbolVariant(.fill)
-						} description: {
-							Text("Courses you add will appear here.")
-						}
-						.background(Color(.systemGroupedBackground))
-					}
 				}
 				.toolbarVisibility(editMode == .inactive ? .visible : .hidden, for: .tabBar)
 				.toolbarVisibility(editMode == .inactive ? .hidden : .visible, for: .bottomBar)
