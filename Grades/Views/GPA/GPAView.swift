@@ -231,15 +231,15 @@ struct GPAView: View {
 								.monospacedDigit()
 								.opacity(0)
 							
-							if editMode == .active {
-								Text("\(selection.count) selected")
-									.monospacedDigit()
-									.contentTransition(.numericText())
-							}
+							Text("\(selection.count) Selected")
+								.bold()
+								.monospacedDigit()
+								.contentTransition(.numericText())
 						}
 						.padding(.horizontal, 12)
 						.fixedSize(horizontal: true, vertical: false)
 					}
+					.sharedBackgroundVisibility(.hidden)
 					
 					ToolbarSpacer(horizontalSizeClass == .compact ? .flexible : .fixed, placement: .bottomBar)
 					
