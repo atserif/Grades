@@ -51,6 +51,7 @@ struct CoursesView: View {
 		GradingPeriod(name: "State Assessment", type: .exam, grade: .A)
 	]
 	
+	@State private var selectionFeedback: Int = 0
 	@State private var infoSheetPresented: Bool = false
 	
 	var body: some View {
@@ -78,6 +79,9 @@ struct CoursesView: View {
 				case .stateAssessed:
 					StateAssessedView(gradingPeriods: $stateAssessedGradingPeriods)
 				}
+			}
+			.onChange(of: calculatorSelection) {
+				selectionFeedback += 1
 			}
 			.toolbar {
 				ToolbarItem(placement: .title) {
@@ -116,6 +120,7 @@ struct CoursesView: View {
 			.sheet(isPresented: $infoSheetPresented) {
 				CoursesInfoView()
 			}
+			.sensoryFeedback(.selection, trigger: selectionFeedback)
 			// Accounts for the 2 2/3 pt gap between the segmented Picker's and List row's vertical bounds
 			.contentMargins(.top, 7 + (1 / 3))
 			.toolbarTitleDisplayMode(.inline)
