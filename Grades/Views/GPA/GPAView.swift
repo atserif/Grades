@@ -234,7 +234,7 @@ struct GPAView: View {
 							Text("\(selection.count) Selected")
 								.bold()
 								.monospacedDigit()
-								.contentTransition(.numericText())
+								.contentTransition(.numericText(value: Double(selection.count)))
 						}
 						.padding(.horizontal, 12)
 						.fixedSize(horizontal: true, vertical: false)
