@@ -108,11 +108,13 @@ struct GPAContent: View {
 		
 		Section {
 			HStack(spacing: 16) {
-				LabeledContent("Unweighted") {
+				LabeledContent {
 					Text(unweightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 						.monospacedDigit()
 						.contentTransition(.numericText())
 						.animation(.default, value: unweightedGPA)
+				} label: {
+					Text("Unweighted")
 				}
 				.frame(maxWidth: .infinity, alignment: .leading)
 				
@@ -121,11 +123,18 @@ struct GPAContent: View {
 					.fill(Color(.separator))
 					.frame(width: 1)
 				
-				LabeledContent("Weighted") {
+				LabeledContent {
 					Text(weightedGPA.formatted(.number.precision(.fractionLength(1...3))))
 						.monospacedDigit()
 						.contentTransition(.numericText())
 						.animation(.default, value: weightedGPA)
+				} label: {
+					ZStack(alignment: .leading) {
+						Text("Unweighted")
+							.opacity(0)
+						
+						Text("Weighted")
+					}
 				}
 				.frame(maxWidth: .infinity, alignment: .leading)
 			}
