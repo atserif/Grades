@@ -41,3 +41,9 @@ struct PickerLabelStyle: LabelStyle {
 		}
 	}
 }
+
+extension LabelStyle where Self == PickerLabelStyle {
+	static var picker: PickerLabelStyle {
+		PickerLabelStyle()
+	}
+}

@@ -63,7 +63,7 @@ struct GPARow: View {
 					}
 				}
 				.animation(.default, value: course)
-				.labelStyle(PickerLabelStyle())
+				.labelStyle(.picker)
 				.buttonStyle(.borderless)
 				.padding(.horizontal)
 			}
