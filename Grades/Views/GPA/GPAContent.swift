@@ -109,7 +109,7 @@ struct GPAContent: View {
 		Section {
 			HStack(spacing: 16) {
 				LabeledContent {
-					Text(unweightedGPA.formatted(.number.precision(.fractionLength(1...2))))
+					Text(unweightedGPA.formatted(.number.precision(.fractionLength(2))))
 						.monospacedDigit()
 						.contentTransition(.numericText())
 						.animation(.default, value: unweightedGPA)
@@ -124,7 +124,7 @@ struct GPAContent: View {
 					.frame(width: 1)
 				
 				LabeledContent {
-					Text(weightedGPA.formatted(.number.precision(.fractionLength(1...2))))
+					Text(weightedGPA.formatted(.number.precision(.fractionLength(2))))
 						.monospacedDigit()
 						.contentTransition(.numericText())
 						.animation(.default, value: weightedGPA)
@@ -141,11 +141,11 @@ struct GPAContent: View {
 		}
 		.contextMenu {
 			Button("Copy Unweighted", systemImage: "document.on.document") {
-				UIPasteboard.general.string = unweightedGPA.formatted(.number.precision(.fractionLength(1...2)))
+				UIPasteboard.general.string = unweightedGPA.formatted(.number.precision(.fractionLength(2)))
 			}
 			
 			Button("Copy Weighted", systemImage: "document.on.document") {
-				UIPasteboard.general.string = weightedGPA.formatted(.number.precision(.fractionLength(1...2)))
+				UIPasteboard.general.string = weightedGPA.formatted(.number.precision(.fractionLength(2)))
 			}
 		}
 		.id("bottom")
