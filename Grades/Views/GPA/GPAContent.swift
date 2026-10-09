@@ -138,6 +138,7 @@ struct GPAContent: View {
 				}
 				.frame(maxWidth: .infinity, alignment: .leading)
 			}
+			.listRowBackground(Color(.secondarySystemGroupedBackground))
 		}
 		.contextMenu {
 			Button("Copy Unweighted", systemImage: "document.on.document") {
